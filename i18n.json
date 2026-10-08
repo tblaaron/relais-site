@@ -39,14 +39,6 @@
 "ru": "Relais читает любой канал, на любом языке, даже написанный небрежно, и выставляет ордер на ваш счёт меньше чем за секунду. Он сам отклоняет всё, что лишило бы вас финансируемого счёта.",
 "he": "Relais קורא כל ערוץ, בכל שפה, גם כשהוא כתוב גרוע, ומבצע את הפקודה בחשבון שלך בפחות משנייה. הוא דוחה לבד כל מה שיגרום לך לאבד את החשבון הממומן."
 },
-"Essayer 7 jours gratuits": {
-"en": "Start 7-day free trial",
-"es": "Probar 7 días gratis",
-"pt": "Experimentar 7 dias grátis",
-"ar": "جرّب 7 أيام مجاناً",
-"ru": "7 дней бесплатно",
-"he": "7 ימי ניסיון חינם"
-},
 "Tester avec mon message": {
 "en": "Test with my message",
 "es": "Probar con mi mensaje",
@@ -599,14 +591,6 @@
 "ru": "/ месяц",
 "he": "/ חודש"
 },
-"Essai gratuit de 7 jours, sans carte": {
-"en": "7-day free trial, no card",
-"es": "7 días gratis, sin tarjeta",
-"pt": "7 dias grátis, sem cartão",
-"ar": "7 أيام مجانية، دون بطاقة",
-"ru": "7 дней бесплатно, без карты",
-"he": "7 ימי ניסיון, בלי כרטיס"
-},
 "Relais Track offert aux admins de canaux": {
 "en": "Relais Track free for channel admins",
 "es": "Relais Track gratis para admins de canales",
@@ -1031,14 +1015,6 @@
 "ru": "Стартовая цена, закрепляется навсегда при регистрации до 1 января 2027. Потом: $69 в месяц.",
 "he": "מחיר השקה, מובטח לכל החיים אם נרשמים לפני 1 בינואר 2027. אחר כך: $69 לחודש."
 },
-"Inscrits avant le 1er janvier : 39 € par mois à vie.": {
-"en": "Sign up before 1 January: $45 a month for life.",
-"es": "Inscritos antes del 1 de enero: 39 € al mes de por vida.",
-"pt": "Inscritos antes de 1 de janeiro: 39 € por mês para sempre.",
-"ar": "المسجّلون قبل 1 يناير: 45$ شهرياً مدى الحياة.",
-"ru": "Регистрация до 1 января: $45 в месяц навсегда.",
-"he": "נרשמים לפני 1 בינואר: $45 לחודש לכל החיים."
-},
 "Contact": {
 "en": "Contact",
 "es": "Contacto",
@@ -1078,14 +1054,6 @@
 "ar": "للأسئلة الطويلة والفواتير والشراكات.",
 "ru": "Для длинных вопросов, счетов, партнёрств.",
 "he": "לשאלות ארוכות, חשבוניות, שותפויות."
-},
-"Essai, puis on en parle": {
-"en": "Try it, then let's talk",
-"es": "Pruébalo y hablamos",
-"pt": "Experimenta e depois falamos",
-"ar": "جرّب ثم نتحدث",
-"ru": "Попробуйте, потом обсудим",
-"he": "נסה, ואז נדבר"
 },
 "Installez, lancez en mode observation, et envoyez-nous votre journal : on le lit avec vous et on règle les garde-fous ensemble.": {
 "en": "Install, run in observation mode, and send us your log: we read it with you and tune the guard-rails together.",
@@ -1398,5 +1366,77 @@
 "ar": "BE، خذ TP1، أغلق 50٪",
 "ru": "BE, взять TP1, закрыть 50 %",
 "he": "BE, קח TP1, סגור 50%"
+},
+"Mon espace": {
+"en": "My account",
+"es": "Mi espacio",
+"pt": "A minha área",
+"ar": "حسابي",
+"ru": "Мой кабинет",
+"he": "האזור שלי"
+},
+"Commencer · 14 jours : remboursé si ça ne tourne pas": {
+"en": "Get started · 14 days: refunded if it won't run",
+"es": "Empezar · 14 días: reembolso si no funciona",
+"pt": "Começar · 14 dias: reembolso se não correr",
+"ar": "ابدأ · 14 يوماً: استرداد إن لم يعمل",
+"ru": "Начать · 14 дней: возврат, если не запустится",
+"he": "להתחיל · 14 יום: החזר אם זה לא רץ"
+},
+"14 jours : remboursé si ça ne tourne pas": {
+"en": "14 days: refunded if it won't run",
+"es": "14 días: reembolso si no funciona",
+"pt": "14 dias: reembolso se não correr",
+"ar": "14 يوماً: استرداد إن لم يعمل",
+"ru": "14 дней: возврат, если не запустится",
+"he": "14 יום: החזר אם זה לא רץ"
+},
+"Garantie 14 jours : si Relais ne fonctionne pas sur votre installation et que notre support n'a pas réussi à le faire tourner, nous remboursons intégralement. La garantie ne couvre pas les résultats de trading ni les changements d'avis.": {
+"en": "14-day guarantee: if Relais does not work on your setup and our support could not get it running, we refund in full. The guarantee does not cover trading results or a change of mind.",
+"es": "Garantía de 14 días: si Relais no funciona en tu instalación y nuestro soporte no ha conseguido hacerlo funcionar, reembolsamos íntegramente. La garantía no cubre los resultados de trading ni los cambios de opinión.",
+"pt": "Garantia de 14 dias: se o Relais não funcionar na tua instalação e o nosso suporte não tiver conseguido pô-lo a correr, reembolsamos na totalidade. A garantia não cobre os resultados de trading nem as mudanças de ideias.",
+"ar": "ضمان 14 يوماً: إذا لم يعمل Relais على جهازك ولم يتمكن فريق الدعم من تشغيله، نردّ لك المبلغ كاملاً. لا يغطي الضمان نتائج التداول ولا تغيير الرأي.",
+"ru": "Гарантия 14 дней: если Relais не работает на вашей системе и наша поддержка не смогла его запустить, мы возвращаем всю сумму. Гарантия не распространяется на результаты торговли и на передумавших.",
+"he": "אחריות 14 יום: אם Relais לא עובד על ההתקנה שלכם והתמיכה שלנו לא הצליחה להריץ אותו, נחזיר את מלוא הסכום. האחריות אינה מכסה תוצאות מסחר או שינוי דעה."
+},
+"Payant dès le premier jour, prix de lancement bloqué à vie pour les inscrits avant le 1er janvier 2027.": {
+"en": "Paid from day one, launch price locked for life for members who join before 1 January 2027.",
+"es": "De pago desde el primer día, precio de lanzamiento bloqueado de por vida para los inscritos antes del 1 de enero de 2027.",
+"pt": "Pago desde o primeiro dia, preço de lançamento bloqueado para sempre para quem se inscrever antes de 1 de janeiro de 2027.",
+"ar": "مدفوع من اليوم الأول، وسعر الإطلاق مثبّت مدى الحياة للمسجّلين قبل 1 يناير 2027.",
+"ru": "Платно с первого дня, стартовая цена закрепляется навсегда для тех, кто подключится до 1 января 2027.",
+"he": "בתשלום מהיום הראשון, מחיר ההשקה נעול לכל החיים לנרשמים לפני 1 בינואר 2027."
+},
+"On installe avec vous": {
+"en": "We set it up with you",
+"es": "Lo instalamos contigo",
+"pt": "Instalamos contigo",
+"ar": "نثبّته معك",
+"ru": "Настраиваем вместе с вами",
+"he": "מתקינים יחד אתכם"
+},
+"Dès le premier jour, lancez en mode observation et envoyez-nous votre journal : on le lit avec vous et on règle les garde-fous ensemble. Si Relais ne tourne pas sur votre installation malgré notre support, on vous rembourse dans les 14 jours.": {
+"en": "From day one, run in observation mode and send us your journal: we read it with you and tune the guard-rails together. If Relais won't run on your setup despite our support, we refund you within 14 days.",
+"es": "Desde el primer día, lanza el modo observación y envíanos tu diario: lo leemos contigo y ajustamos las protecciones juntos. Si Relais no funciona en tu instalación pese a nuestro soporte, te reembolsamos en 14 días.",
+"pt": "Desde o primeiro dia, lança em modo observação e envia-nos o teu diário: lemo-lo contigo e afinamos as proteções juntos. Se o Relais não correr na tua instalação apesar do nosso suporte, reembolsamos-te em 14 dias.",
+"ar": "من اليوم الأول، شغّله في وضع المراقبة وأرسل لنا سجلّك: نقرأه معك ونضبط الضوابط معاً. إذا لم يعمل Relais على جهازك رغم دعمنا، نردّ لك المبلغ خلال 14 يوماً.",
+"ru": "С первого дня запустите режим наблюдения и пришлите нам журнал: мы прочитаем его вместе с вами и настроим ограничители. Если Relais не запустится на вашей системе несмотря на нашу поддержку, мы вернём деньги в течение 14 дней.",
+"he": "מהיום הראשון, הריצו במצב תצפית ושלחו לנו את היומן: נקרא אותו יחד ונכוון את המגבלות ביחד. אם Relais לא רץ על ההתקנה שלכם למרות התמיכה שלנו, נחזיר לכם את הכסף תוך 14 יום."
+},
+"Comment fonctionne le remboursement ?": {
+"en": "How does the refund work?",
+"es": "¿Cómo funciona el reembolso?",
+"pt": "Como funciona o reembolso?",
+"ar": "كيف يعمل الاسترداد؟",
+"ru": "Как работает возврат?",
+"he": "איך עובד ההחזר?"
+},
+"Dans les 14 jours suivant le premier paiement, si Relais ne tourne pas sur votre installation et que notre support n'a pas réussi à le faire fonctionner, un message au support suffit : remboursement intégral. La garantie ne couvre pas les résultats de trading ni les changements d'avis.": {
+"en": "Within 14 days of the first payment, if Relais does not run on your setup and our support could not get it working, one message to support is enough: full refund. The guarantee does not cover trading results or a change of mind.",
+"es": "En los 14 días siguientes al primer pago, si Relais no funciona en tu instalación y nuestro soporte no ha conseguido hacerlo funcionar, basta un mensaje al soporte: reembolso íntegro. La garantía no cubre los resultados de trading ni los cambios de opinión.",
+"pt": "Nos 14 dias após o primeiro pagamento, se o Relais não correr na tua instalação e o nosso suporte não tiver conseguido pô-lo a funcionar, basta uma mensagem ao suporte: reembolso total. A garantia não cobre os resultados de trading nem as mudanças de ideias.",
+"ar": "خلال 14 يوماً من الدفعة الأولى، إذا لم يعمل Relais على جهازك ولم يتمكن فريق الدعم من تشغيله، تكفي رسالة واحدة للدعم: استرداد كامل. لا يغطي الضمان نتائج التداول ولا تغيير الرأي.",
+"ru": "В течение 14 дней после первого платежа, если Relais не работает на вашей системе и наша поддержка не смогла его запустить, достаточно одного сообщения в поддержку: полный возврат. Гарантия не распространяется на результаты торговли и на передумавших.",
+"he": "תוך 14 יום מהתשלום הראשון, אם Relais לא רץ על ההתקנה שלכם והתמיכה שלנו לא הצליחה להפעיל אותו, מספיקה הודעה אחת לתמיכה: החזר מלא. האחריות אינה מכסה תוצאות מסחר או שינוי דעה."
 }
 }
