@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Relais : vos signaux Telegram exécutés sur MetaTrader 5, avec les règles de votre prop firm en garde-fou.">
+<link rel="icon" href="logo/relais-logo-512.png">
+<style>:root{color-scheme:dark}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Relais</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one committed dark neon look. Canvas of drifting signal messages behind everything, a live tape in the hero, an interactive parser box. */
+:root{
+  --bg:#07061a; --bg-2:#0e0d2b; --panel:rgba(20,18,60,.72); --line:rgba(140,120,255,.22);
+  --fg:#f4f2ff; --fg-2:#b7b1e6;
+  --violet:#8b5cf6; --cyan:#22d3ee; --pink:#f472b6; --lime:#a3e635; --amber:#fbbf24; --red:#fb7185;
+  --display:"Unbounded",ui-sans-serif,system-ui,sans-serif;
+  --body:"Manrope",ui-sans-serif,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;margin:0;padding-inline:16px;padding-block:0;overflow-x:hidden;position:relative}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.wrap{max-width:1080px;margin:0 auto;position:relative;z-index:1}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(1.7rem,4.1vw,2.9rem);line-height:1.08;font-weight:900;letter-spacing:-.02em}
+h2{font-size:clamp(1.4rem,3.2vw,2.1rem);font-weight:700}
+h3{font-size:1.05rem;font-weight:700}
+p{margin:0}
+.grad{background:linear-gradient(92deg,var(--cyan),var(--violet) 45%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font-family:var(--mono);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+.muted{color:var(--fg-2)}
+section{padding-block:3rem}
+.grid{display:grid;gap:1.25rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(92deg,var(--cyan),var(--violet));color:#07061a;font-weight:700;padding:.9rem 1.4rem;border-radius:999px;text-decoration:none;border:0;font-family:var(--body);font-size:1rem;cursor:pointer;box-shadow:0 0 0 0 rgba(34,211,238,.5);transition:transform .15s,box-shadow .3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px -10px rgba(139,92,246,.9)}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line);box-shadow:none}
+.btn:focus-visible,textarea:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+header{display:flex;justify-content:space-between;align-items:center;padding-block:1.2rem}
+.logo{font-family:var(--display);font-weight:900;font-size:1.25rem;display:flex;align-items:center;gap:.55rem}
+.logo i{width:14px;height:14px;border-radius:50%;background:conic-gradient(var(--cyan),var(--violet),var(--pink),var(--cyan));display:inline-block;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+nav{display:flex;gap:1.2rem;font-size:.95rem;align-items:center}
+nav a{color:var(--fg-2);text-decoration:none}
+nav a:hover{color:var(--fg)}
+@media (max-width:640px){nav a{display:none}}
+
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:2.5rem;align-items:center;padding-block:3.5rem 2.5rem}
+@media (max-width:880px){.hero{grid-template-columns:1fr}}
+.hero p.lead{font-size:1.15rem;color:var(--fg-2);max-width:34rem;margin-top:1.2rem}
+.hero .cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}
+.hero .fine{font-size:.85rem;color:var(--fg-2);margin-top:.9rem}
+.pill{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--line);border-radius:999px;padding:.35rem .8rem;font-family:var(--mono);font-size:.74rem;color:var(--fg-2);background:rgba(7,6,26,.5)}
+.pill b{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+
+.glass{background:var(--panel);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 40px 80px -50px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
+.tape{padding:1.1rem;display:grid;gap:.9rem;min-width:0}
+.tape .row{display:grid;grid-template-columns:30px 1fr;gap:.7rem;align-items:start}
+.tape .dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:.68rem;font-weight:500;color:#07061a}
+.dot.tg{background:var(--cyan);box-shadow:0 0 18px rgba(34,211,238,.6)} .dot.ai{background:var(--violet);box-shadow:0 0 18px rgba(139,92,246,.7);color:#fff} .dot.mt{background:var(--lime);box-shadow:0 0 18px rgba(163,230,53,.6)} .dot.gd{background:var(--amber);box-shadow:0 0 18px rgba(251,191,36,.6)}
+.bubble{background:rgba(7,6,26,.65);border:1px solid var(--line);border-radius:12px;padding:.65rem .8rem;font-family:var(--mono);font-size:.85rem;line-height:1.5;min-height:2.6rem;white-space:pre-wrap;word-break:break-word}
+.bubble .k{color:var(--fg-2)} .bubble .v{color:var(--fg)} .bubble .ok{color:var(--lime)} .bubble .bad{color:var(--red)}
+.caret{display:inline-block;width:.55em;height:1em;background:var(--cyan);vertical-align:-.15em;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.lbl{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-2);margin-bottom:.3rem}
+.prog{height:3px;background:var(--line);border-radius:3px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink));transition:width .6s linear}
+
+/* interactive parser */
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;align-items:start}
+@media (max-width:880px){.lab{grid-template-columns:1fr}}
+.lab .box{padding:1.3rem;display:grid;gap:.8rem;min-width:0}
+textarea{width:100%;min-height:96px;resize:vertical;padding:.9rem;border-radius:12px;border:1px solid var(--line);background:rgba(7,6,26,.7);color:var(--fg);font:500 .92rem/1.5 var(--mono)}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:rgba(7,6,26,.5);color:var(--fg-2);border-radius:999px;padding:.35rem .75rem;font-family:var(--mono);font-size:.74rem;cursor:pointer}
+.chip:hover{color:var(--fg);border-color:var(--cyan)}
+.fields{display:grid;gap:.5rem;font-family:var(--mono);font-size:.88rem}
+.fields div{display:grid;grid-template-columns:120px 1fr;gap:.6rem;padding:.5rem .7rem;border-radius:10px;background:rgba(7,6,26,.55);border:1px solid var(--line);transform:translateX(10px);opacity:0;animation:slide .35s forwards}
+.fields div:nth-child(2){animation-delay:.08s}.fields div:nth-child(3){animation-delay:.16s}.fields div:nth-child(4){animation-delay:.24s}.fields div:nth-child(5){animation-delay:.32s}.fields div:nth-child(6){animation-delay:.4s}.fields div:nth-child(7){animation-delay:.48s}
+@keyframes slide{to{transform:none;opacity:1}}
+.fields .k{color:var(--fg-2)} .fields .v{color:var(--fg)}
+.verdict{display:flex;align-items:center;gap:.6rem;font-family:var(--display);font-weight:700;font-size:1rem;padding:.8rem 1rem;border-radius:12px}
+.verdict.ok{background:rgba(163,230,53,.12);color:var(--lime);border:1px solid rgba(163,230,53,.35)}
+.verdict.bad{background:rgba(251,113,133,.12);color:var(--red);border:1px solid rgba(251,113,133,.35)}
+.verdict.no{background:rgba(183,177,230,.1);color:var(--fg-2);border:1px solid var(--line)}
+
+/* features */
+.feat{grid-template-columns:repeat(2,1fr)}
+@media (max-width:880px){.feat{grid-template-columns:1fr}}
+.card{padding:1.4rem;min-width:0;display:grid;gap:.6rem;align-content:start;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:rgba(34,211,238,.5)}
+.card .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-family:var(--mono);font-size:.8rem;font-weight:500;color:#07061a}
+.ic.a{background:var(--cyan)} .ic.b{background:var(--amber)} .ic.c{background:var(--pink)}
+
+/* guards */
+.guards{grid-template-columns:1.1fr 1fr;align-items:start}
+@media (max-width:880px){.guards{grid-template-columns:1fr}}
+.rule{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line)}
+.rule:last-child{border-bottom:0}
+.rule b{font-weight:700}
+.rule .val{font-family:var(--mono);color:var(--amber);font-variant-numeric:tabular-nums}
+.sw{width:44px;height:26px;border-radius:13px;background:var(--line);position:relative;flex:none;border:0;cursor:pointer;padding:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--fg-2);transition:transform .2s,background .2s}
+.sw[aria-checked="true"]{background:var(--lime)} .sw[aria-checked="true"]::after{transform:translateX(18px);background:#07061a}
+.log{padding:.9rem;font-family:var(--mono);font-size:.82rem;display:grid;gap:.4rem;min-width:0}
+.log div{display:flex;gap:.6rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.log .t{color:var(--fg-2)} .log .ok{color:var(--lime)} .log .bad{color:var(--red)}
+
+.steps{grid-template-columns:repeat(3,1fr);counter-reset:s}
+@media (max-width:880px){.steps{grid-template-columns:1fr}}
+.step{display:grid;gap:.5rem}
+.step::before{counter-increment:s;content:counter(s);font-family:var(--display);font-weight:900;font-size:2.4rem;line-height:1;background:linear-gradient(92deg,var(--cyan),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.price{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+@media (max-width:880px){.price{grid-template-columns:1fr}}
+.price .big{font-family:var(--display);font-size:3rem;font-weight:900;letter-spacing:-.03em}
+.price .big small{font-size:1rem;font-weight:500;color:var(--fg-2);font-family:var(--body)}
+.price ul{margin:0;padding-left:1.1rem;color:var(--fg-2);display:grid;gap:.3rem}
+form{display:grid;gap:.6rem}
+input[type=number]{width:100%;padding:.6rem .7rem;border-radius:10px;border:1px solid var(--line);background:rgba(7,6,26,.7);color:var(--fg);font:inherit;font-family:var(--mono)}
+input[type=email]{width:100%;padding:.85rem .9rem;border-radius:12px;border:1px solid var(--line);background:rgba(7,6,26,.7);color:var(--fg);font:inherit}
+.note{font-size:.85rem;color:var(--fg-2)}
+.addr{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.addr code{font-family:var(--mono);background:rgba(7,6,26,.7);border:1px solid var(--line);padding:.35rem .55rem;border-radius:8px;user-select:all}
+
+details{border-bottom:1px solid var(--line);padding-block:.9rem}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::after{content:"+";font-family:var(--mono);color:var(--cyan)}
+details[open] summary::after{content:"–"}
+details p{margin-top:.6rem;color:var(--fg-2);max-width:62ch}
+footer{padding-block:2.5rem;border-top:1px solid var(--line);color:var(--fg-2);font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+
+.fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:5;display:flex;align-items:center;gap:.6rem;background:linear-gradient(92deg,var(--cyan),var(--violet));color:#07061a;font-weight:700;padding:.75rem 1.1rem;border-radius:999px;text-decoration:none;box-shadow:0 14px 40px -10px rgba(139,92,246,.9);transition:transform .15s}
+.fab:hover{transform:translateY(-2px)}
+.fab-dot{width:10px;height:10px;border-radius:50%;background:#07061a;box-shadow:0 0 0 4px rgba(7,6,26,.25);animation:pulse 1.6s ease-in-out infinite}
+[dir=rtl] .fab{right:auto;left:18px}
+@media (max-width:640px){.fab-txt{display:none}.fab{padding:.8rem}}
+a.card:hover{transform:translateY(-4px)}
+
+.live{padding:1.1rem 1.3rem;display:grid;gap:.8rem;margin-top:.5rem}
+.live-h{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.live-g{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem}
+@media (max-width:880px){.live-g{grid-template-columns:repeat(2,1fr)}}
+.live-v{font-family:var(--display);font-weight:700;font-size:1.5rem;font-variant-numeric:tabular-nums}
+
+.scene{display:grid;grid-template-columns:220px 1fr;gap:.9rem;align-items:stretch;margin-top:1rem}
+@media (max-width:720px){.scene{grid-template-columns:1fr}}
+.phone{background:#0b0a22;border:2px solid rgba(140,120,255,.35);border-radius:28px;padding:.8rem;min-height:320px;display:flex;flex-direction:column;gap:.5rem;box-shadow:0 30px 60px -30px #000,inset 0 0 0 1px rgba(255,255,255,.05);min-width:0}
+.ph-top{display:flex;gap:.6rem;align-items:center;padding:.3rem .2rem .5rem;border-bottom:1px solid var(--line)}
+.ph-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--pink));display:grid;place-items:center;font-family:var(--mono);font-size:.75rem;color:#07061a;font-weight:500}
+.ph-name{font-weight:700;font-size:.95rem}.ph-sub{font-size:.75rem;color:var(--fg-2)}
+.ph-body{display:flex;flex-direction:column;gap:.5rem;flex:1;justify-content:flex-end;min-height:0}
+.msg{background:#1a1750;border-radius:14px 14px 14px 4px;padding:.45rem .6rem;font-family:var(--mono);font-size:.74rem;line-height:1.45;max-width:95%;white-space:pre-wrap;word-break:break-word;animation:pop .3s ease}
+.msg time{display:block;text-align:right;font-size:.65rem;color:var(--fg-2);margin-top:.2rem}
+.typing{display:inline-flex;gap:4px;padding:.5rem .7rem;background:#1a1750;border-radius:14px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--fg-2);animation:tdot 1s infinite}.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes tdot{50%{opacity:.2;transform:translateY(-2px)}}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}}
+.beam{position:relative;height:140px;display:grid;place-items:center}
+.beam canvas{width:100%;height:100%}
+.beam-lbl{position:absolute;font-family:var(--display);font-weight:700;font-size:.8rem;color:var(--cyan);background:var(--bg);padding:.2rem .6rem;border:1px solid var(--line);border-radius:999px}
+.monitor{background:#0b0a22;border:2px solid rgba(140,120,255,.35);border-radius:14px;padding:.6rem;position:relative;min-height:320px;display:flex;flex-direction:column;gap:.5rem;box-shadow:0 30px 60px -30px #000;min-width:0}
+.mon-top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;color:var(--fg-2);padding:.2rem .3rem;border-bottom:1px solid var(--line)}
+#chart{width:100%;height:270px;flex:1;border-radius:8px;background:#07061a}
+.toasts{position:absolute;right:14px;top:44px;display:grid;gap:.4rem;max-width:70%}
+.toast{background:rgba(7,6,26,.92);border:1px solid var(--line);border-left:4px solid var(--lime);border-radius:10px;padding:.5rem .7rem;font-family:var(--mono);font-size:.78rem;animation:pop .3s ease;box-shadow:0 10px 30px -10px #000}
+.toast.bad{border-left-color:var(--red)}.toast.info{border-left-color:var(--cyan)}
+.rv{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
+.js .rv.pre{opacity:.001;transform:translateY(14px)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv.pre{opacity:1;transform:none}.fields div{opacity:1;transform:none}}
+</style>
+
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="wrap">
+<header>
+  <div class="logo"><i></i>Relais</div>
+  <span></span><select id="lang" aria-label="Langue" style="background:rgba(7,6,26,.6);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:.35rem .7rem;font:inherit;font-size:.85rem;margin-inline-start:.5rem"><option value="fr">FR</option><option value="en">EN</option><option value="es">ES</option><option value="pt">PT</option><option value="ar">AR</option><option value="ru">RU</option><option value="he">HE</option></select>
+  <nav><a href="#essai">Essayer</a><a href="#admins">Admins</a><a href="#gardefous">Garde-fous</a><a href="#tarif">Tarif</a><a href="#compare">Comparer</a><a href="#contact">Contact</a><a href="#faq">FAQ</a></nav>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="pill"><b></b>Copieur Telegram → MetaTrader 5</span>
+    <h1 style="margin-top:1rem">Vos signaux Telegram, <span class="grad">exécutés sur MT5</span>, sans jamais casser les règles de votre prop firm.</h1>
+    <p class="lead">Relais lit n'importe quel canal, en français ou en anglais, même mal écrit, et passe l'ordre sur votre compte en moins d'une seconde. Il refuse tout seul ce qui vous ferait perdre votre compte financé.</p>
+    <div class="cta">
+      <a class="btn" href="#tarif">Essayer 7 jours gratuits</a>
+      <a class="btn ghost" href="#essai">Tester avec mon message</a>
+    </div>
+    <p class="fine">Aucun signal fourni. Relais exécute les ordres des canaux que vous choisissez, sur votre compte, selon vos réglages.</p>
+  </div>
+  <div class="glass tape" id="tape" aria-label="Démonstration animée">
+    <div class="row"><div class="dot tg">TG</div><div><div class="lbl">Message du canal</div><div class="bubble" id="tgMsg"> </div></div></div>
+    <div class="row"><div class="dot ai">IA</div><div><div class="lbl">Lecture</div><div class="bubble" id="aiMsg"> </div><div class="prog" style="margin-top:.5rem"><i id="aiProg"></i></div></div></div>
+    <div class="row"><div class="dot gd">GF</div><div><div class="lbl">Garde-fous</div><div class="bubble" id="gdMsg"> </div></div></div>
+    <div class="row"><div class="dot mt">MT</div><div><div class="lbl">Ordre MT5</div><div class="bubble" id="mtMsg"> </div></div></div>
+  </div>
+</section>
+
+<div class="glass live" id="live" aria-label="Démo en direct sur compte fictif">
+  <div class="live-h"><span class="pill"><b></b><span class="live-t">En direct · compte démo</span></span><span class="muted live-upd" id="liveUpd">mis à jour à l'instant</span></div>
+  <div class="live-g">
+    <div><div class="lbl">Messages lus aujourd'hui</div><div class="live-v" id="lvRead">—</div></div>
+    <div><div class="lbl">Ordres exécutés</div><div class="live-v" id="lvExec">—</div></div>
+    <div><div class="lbl">Refusés par les garde-fous</div><div class="live-v" id="lvRef">—</div></div>
+    <div><div class="lbl">Canaux suivis</div><div class="live-v" id="lvCh">—</div></div>
+    <div><div class="lbl">Dernier message</div><div class="live-v mono" id="lvLast" style="font-size:.95rem;font-family:var(--mono)">—</div></div>
+  </div>
+  <p class="note live-n">Compte de démonstration : solde fictif, exécution réelle sur un courtier démo. Ce bandeau montre comment Relais tourne, pas un résultat de trading.</p>
+</div>
+<section id="scenario">
+  <p class="eyebrow">Scénario</p>
+  <h2 style="margin-top:.6rem">Du message au marché, en moins d'une seconde.</h2>
+  <div class="chips" style="margin-top:1rem" id="scTabs">
+    <button type="button" class="chip sctab" data-sc="normal" aria-pressed="true">Exemple normal</button>
+    <button type="button" class="chip sctab" data-sc="guard" aria-pressed="false">Garde-fou qui bloque</button>
+    <button type="button" class="chip sctab" data-sc="manage" aria-pressed="false">TP1, TP2, TP3 touchés</button>
+    <button type="button" class="chip sctab" data-sc="mixed" aria-pressed="false">BE, prenez TP1, clôturez 50 %</button>
+  </div>
+  <div class="scene">
+    <div class="phone" aria-label="Téléphone : canal Telegram">
+      <div class="ph-top"><span class="ph-av">OR</span><div><div class="ph-name">Canal Or Privé</div><div class="ph-sub">1 248 abonnés</div></div></div>
+      <div class="ph-body" id="phBody"></div>
+    </div>
+    <div class="monitor" aria-label="Ordinateur : MetaTrader 5">
+      <div class="mon-top"><span>MetaTrader 5 · XAUUSD · M1</span><span id="monAcc">Compte démo</span></div>
+      <canvas id="chart"></canvas>
+      <div class="toasts" id="toasts"></div>
+    </div>
+  </div>
+  <p class="note" style="margin-top:.6rem">Scénario rejoué en boucle à partir de vrais messages ; le graphique est simulé.</p>
+</section>
+
+
+<section id="essai">
+  <p class="eyebrow">À vous</p>
+  <h2 style="margin-top:.6rem">Collez un message de votre canal. Regardez ce que Relais en fait.</h2>
+  <p class="muted" style="margin-top:.5rem;max-width:60ch">Démonstration dans votre navigateur, rien n'est envoyé. La version installée utilise une lecture par IA, plus tolérante encore que celle-ci.</p>
+  <div class="lab" style="margin-top:1.2rem">
+    <div class="glass box">
+      <label for="msg" class="lbl">Message</label>
+      <textarea id="msg" spellcheck="false">BUY GOLD NOW !! SL 66</textarea>
+      <div class="chips" id="chips"></div>
+      <button class="btn" type="button" id="parse">Lire le message</button>
+    </div>
+    <div class="glass box">
+      <div class="lbl">Ce que Relais comprend</div>
+      <div class="fields" id="fields"></div>
+      <div class="verdict no" id="verdict">—</div>
+    </div>
+  </div>
+
+  <div class="lab" style="margin-top:1rem">
+    <div class="glass box">
+      <div class="lbl">Calculateur de lot</div>
+      <h3>Votre lot, calculé depuis votre risque</h3>
+      <div class="grid" style="grid-template-columns:1fr 1fr 1fr;gap:.6rem">
+        <label><span class="lbl">Capital</span><input type="number" id="lcCap" value="10000" min="100" step="100"></label>
+        <label><span class="lbl">Risque par trade (%)</span><input type="number" id="lcRisk" value="1" min="0.1" max="5" step="0.1"></label>
+        <label><span class="lbl">Stop (pips)</span><input type="number" id="lcStop" value="20" min="1" step="1"></label>
+      </div>
+      <p class="note">Or (XAUUSD) : 1 pip = 0,10 $ ; 1 lot = 100 onces, soit 10 $ par pip.</p>
+    </div>
+    <div class="glass box">
+      <div class="lbl">Résultat</div>
+      <div class="big" id="lcLot" style="font-family:var(--display);font-size:2.6rem;font-weight:900">0.50 lot</div>
+      <div class="fields" id="lcRows"></div>
+      <p class="note">C'est le calcul que Relais fait à chaque signal : votre perte maximale reste la même, quelle que soit la distance du stop.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Pourquoi Relais</p>
+  <h2 style="margin-top:.6rem">Les copieurs existants lisent un format. <span class="grad">Relais lit un message.</span></h2>
+  <div class="grid feat" style="margin-top:2rem">
+    <div class="glass card rv pre"><span class="ic a">TG</span><h3>N'importe quel canal</h3><p class="muted">« BUY GOLD NOW !! SL 66 », « Vente XAUUSD, entrée 4 073, SL 4 085, TP1 25 % : 4 061 », trois lignes avec des emojis : l'IA comprend le sens, pas la mise en forme. Changez de canal, rien à reconfigurer.</p></div>
+    <div class="glass card rv pre"><span class="ic a">%</span><h3>Le lot se calcule tout seul</h3><p class="muted">Vous fixez un risque par trade, par exemple 1 % du compte. À chaque signal, Relais mesure la distance du stop et en déduit le lot : un stop serré donne un lot plus gros, un stop large un lot plus petit. Même perte maximale à chaque fois.</p></div>
+    <div class="glass card rv pre"><span class="ic b">GF</span><h3>Garde-fous prop firm</h3><p class="muted">Perte journalière, drawdown total, nombre de positions, stops consécutifs, fenêtres d'actualités, clôture avant le week-end. Chaque refus est écrit dans votre journal avec sa raison.</p></div>
+    <div class="glass card rv pre"><span class="ic c">OK</span><h3>Vous gardez la main</h3><p class="muted">Un message incertain n'est jamais exécuté. Un « NOW » vieux de deux minutes non plus. Vous voyez chaque décision, et vous pouvez tout couper d'un bouton.</p></div>
+  </div>
+</section>
+
+<section id="tarif">
+  <p class="eyebrow">Tarif</p>
+  <h2 style="margin-top:.6rem">Un prix, tout compris.</h2>
+  <div class="price" style="margin-top:2rem">
+    <div class="glass card">
+      <div class="chips" style="margin-bottom:.6rem"><button type="button" class="chip pbtn" data-p="m" aria-pressed="true">Mensuel</button><button type="button" class="chip pbtn" data-p="y" aria-pressed="false">Annuel · 2 mois offerts</button></div>
+      <div class="big" id="priceM">39 €<small> / mois</small></div><div class="big" id="priceY" hidden>390 €<small> / an</small></div><p class="note" style="color:var(--amber)">Prix de lancement, garanti à vie si vous vous inscrivez avant le 1er janvier 2027. Ensuite : 59 € par mois.</p>
+      <ul>
+        <li>Essai gratuit de 7 jours, sans carte</li>
+        <li>Relais Track offert aux admins de canaux</li>
+        <li>Parrainage : un mois offert par filleul</li>
+        <li>Canaux illimités, un compte MT5</li>
+        <li>Lecture IA des messages incluse</li>
+        <li>Garde-fous et journal</li>
+        <li>Résiliable en un clic</li>
+      </ul>
+    </div>
+    <div class="glass card">
+      <h3>Rejoindre la liste d'attente</h3>
+      <p class="muted">Inscrits avant le 1er janvier : 39 € par mois à vie.</p>
+      <form id="wl">
+        <label for="email" class="lbl">Votre e-mail</label>
+        <input type="email" id="email" name="email" placeholder="vous@exemple.fr" required autocomplete="email">
+        <label for="promo" class="lbl">Code promo (facultatif)</label>
+        <input type="text" id="promo" name="promo" placeholder="ex. LANCEMENT" autocomplete="off" style="width:100%;padding:.85rem .9rem;border-radius:12px;border:1px solid var(--line);background:rgba(7,6,26,.7);color:var(--fg);font:inherit;text-transform:uppercase">
+        <p class="note" id="promoNote" hidden></p>
+        <button class="btn" type="submit">Me prévenir à l'ouverture</button>
+      </form>
+      <p class="note" id="wlNote">Ou écrivez-nous directement :</p>
+      <div class="addr"><code id="mail">relais.copier@gmail.com</code><button class="btn ghost" type="button" id="copy" style="padding:.45rem .8rem;font-size:.9rem">Copier</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="admins">
+  <p class="eyebrow">Pour les admins de canaux</p>
+  <h2 style="margin-top:.6rem">Relais Track : votre bilan du jour, posté tout seul dans votre canal.</h2>
+  <div class="grid guards" style="margin-top:2rem">
+    <div>
+      <p class="muted" style="max-width:56ch">Vous ajoutez le robot Relais Track à votre canal et vous le reliez à votre compte MT5. Chaque soir il poste une carte : trades du jour, RR, série en cours, pips, bilan de la semaine. Calculé depuis le compte réel, pas depuis vos messages. Vos abonnés voient des chiffres vérifiés, vous n'avez plus rien à compiler à la main.</p>
+      <ul style="margin:1rem 0 0;padding-left:1.1rem;color:var(--fg-2);display:grid;gap:.35rem">
+        <li>Gratuit pour les admins, sans limite de durée</li>
+        <li>Passe par l'API officielle des bots Telegram : aucun compte à risque</li>
+        <li>Chaque carte porte votre lien Relais : <b style="color:var(--fg)">25 % récurrents</b> sur chaque abonné qui l'utilise, tant qu'il reste</li>
+        <li>Vous choisissez ce qui s'affiche ; rien n'est publié sans votre réglage</li>
+      </ul>
+    </div>
+    <div class="glass card" style="font-family:var(--mono);font-size:.86rem;gap:.5rem">
+      <div class="lbl">Carte du jour (exemple)</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:1.05rem">Canal Or Privé · mercredi 8 oct.</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:.3rem">
+        <div style="background:rgba(7,6,26,.6);border:1px solid var(--line);border-radius:10px;padding:.6rem"><div class="lbl">Trades</div><div style="font-size:1.3rem;font-weight:500">4</div></div>
+        <div style="background:rgba(7,6,26,.6);border:1px solid var(--line);border-radius:10px;padding:.6rem"><div class="lbl">RR du jour</div><div style="font-size:1.3rem;font-weight:500;color:var(--lime)">+2,4 R</div></div>
+        <div style="background:rgba(7,6,26,.6);border:1px solid var(--line);border-radius:10px;padding:.6rem"><div class="lbl">Pips</div><div style="font-size:1.3rem;font-weight:500;color:var(--lime)">+118</div></div>
+      </div>
+      <div style="display:grid;gap:.25rem;margin-top:.3rem">
+        <div><span class="k" style="color:var(--fg-2)">09:31</span> BUY XAUUSD · <span style="color:var(--lime)">TP2 +1,5 R</span></div>
+        <div><span class="k" style="color:var(--fg-2)">11:02</span> SELL XAUUSD · <span style="color:var(--red)">SL −1 R</span></div>
+        <div><span class="k" style="color:var(--fg-2)">14:17</span> BUY XAUUSD · <span style="color:var(--lime)">TP1 +1 R</span></div>
+        <div><span class="k" style="color:var(--fg-2)">15:40</span> SELL XAUUSD · <span style="color:var(--lime)">BE +0,9 R</span></div>
+      </div>
+      <div style="border-top:1px solid var(--line);padding-top:.5rem;color:var(--fg-2)">Semaine : 11 trades · 64 % gagnants · +6,1 R · série : 3 ✓</div>
+      <div style="color:var(--fg-2);font-size:.76rem">Chiffres lus sur le compte MT5 relié · exécuté avec Relais · résultats passés, aucune garantie</div>
+    </div>
+  </div>
+</section>
+
+<section id="gardefous">
+  <p class="eyebrow">Garde-fous</p>
+  <h2 style="margin-top:.6rem">Des garde-fous adaptés à votre plan de trading. Réglez-les une fois, Relais les tient à votre place.</h2>
+  <div class="grid guards" style="margin-top:2rem">
+    <div class="glass card">
+      <div class="rule"><div><b>Risque par trade</b><br><span class="muted">le lot est calculé depuis la distance du stop</span></div><span class="val">1,0 %</span></div>
+      <div class="rule"><div><b>Perte journalière max</b><br><span class="muted">en % du solde de départ du jour</span></div><span class="val">4,0 %</span></div>
+      <div class="rule"><div><b>Drawdown total max</b></div><span class="val">8,0 %</span></div>
+      <div class="rule"><div><b>Positions ouvertes en même temps</b></div><span class="val">1</span></div>
+      <div class="rule"><div><b>Arrêt après</b><br><span class="muted">stops consécutifs dans la journée</span></div><span class="val">2</span></div>
+      <div class="rule"><div><b>Clôture avant le week-end</b><br><span class="muted">vendredi 21:00, heure du serveur</span></div><button class="sw" role="switch" aria-checked="true" aria-label="Clôture avant le week-end" data-guard="we"></button></div>
+      <div class="rule"><div><b>Ignorer les signaux périmés</b><br><span class="muted">un « NOW » de plus de 90 secondes</span></div><button class="sw" role="switch" aria-checked="true" aria-label="Ignorer les signaux périmés" data-guard="age"></button></div>
+    </div>
+    <div>
+      <div class="lbl">Journal (exemple)</div>
+      <div class="glass log" id="log">
+        <div><span class="t">09:31:04</span><span class="ok">EXÉCUTÉ</span><span>BUY XAUUSD 0.30 · SL 20 p · TP 60/90/100</span></div>
+        <div><span class="t">11:02:48</span><span class="bad">REFUSÉ</span><span>déjà 1 position ouverte</span></div>
+        <div><span class="t">14:17:12</span><span class="bad">REFUSÉ</span><span>lecture incertaine (0,61 &lt; 0,70)</span></div>
+        <div><span class="t">15:40:33</span><span class="ok">EXÉCUTÉ</span><span>SELL EURUSD 0.50 · SL 1.0880 · TP 1.0820</span></div>
+        <div><span class="t">16:05:01</span><span class="bad">REFUSÉ</span><span>2 stops aujourd'hui : journée terminée</span></div>
+        <div id="logWe"><span class="t">ven 21:02</span><span class="bad">REFUSÉ</span><span>vendredi soir : pas de position avant le week-end</span></div>
+        <div id="logAge"><span class="t">10:12:40</span><span class="bad">REFUSÉ</span><span>signal trop ancien (134 s)</span></div>
+      </div>
+      <p class="note" style="margin-top:.8rem">Valeurs d'exemple. Les règles exactes de chaque firme changent : vous les saisissez, Relais les applique.</p>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <p class="eyebrow">Mise en route</p>
+  <h2 style="margin-top:.6rem">Trois étapes, vingt minutes.</h2>
+  <div class="grid steps" style="margin-top:2rem">
+    <div class="step rv pre"><h3>Installez Relais sur votre VPS ou votre PC Windows</h3><p class="muted">Un installeur, un clic. Il pose l'EA dans MetaTrader 5 et ouvre la page de réglages.</p></div>
+    <div class="step rv pre"><h3>Connectez votre Telegram et cochez vos canaux</h3><p class="muted">Vous vous connectez vous-même, chez vous. Relais ne voit que les canaux que vous cochez.</p></div>
+    <div class="step rv pre"><h3>Réglez vos limites et laissez tourner</h3><p class="muted">Mode observation d'abord si vous voulez : Relais lit et journalise sans rien exécuter, jusqu'à ce que vous passiez en réel.</p></div>
+  </div>
+</section>
+
+
+
+<section id="compare">
+  <p class="eyebrow">Comparaison</p>
+  <h2 style="margin-top:.6rem">Ce que les avis reprochent aux copieurs classiques. Et ce que fait Relais.</h2>
+  <div class="glass" style="margin-top:2rem;overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse;font-size:.95rem;min-width:620px">
+    <thead><tr style="text-align:start"><th style="padding:1rem;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-2)">Point</th><th style="padding:1rem;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-2)">Copieurs classiques</th><th style="padding:1rem;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)">Relais</th></tr></thead>
+    <tbody>
+      <tr><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line)"><b>Lecture des messages</b></td><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line);color:var(--fg-2)">Des règles par format, à régler canal par canal</td><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line)">IA : n'importe quel format, rien à régler</td></tr>
+      <tr><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line)"><b>Règles prop firm</b></td><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line);color:var(--fg-2)">À surveiller soi-même</td><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line)">Garde-fous intégrés, refus expliqués</td></tr>
+      <tr><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line)"><b>Journal</b></td><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line);color:var(--fg-2)">On ne sait pas ce qui a été lu ni pourquoi rien n'est parti</td><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line)">Chaque message, chaque décision, chaque raison</td></tr>
+      <tr><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line)"><b>Frais cachés</b></td><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line);color:var(--fg-2)">Abonnement tiers à payer en plus pour relier MT5</td><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line)">Un prix, tout compris</td></tr>
+      <tr><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line)"><b>Licence « à vie »</b></td><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line);color:var(--fg-2)">Parfois coupée sans préavis</td><td style="padding:.9rem 1rem;border-bottom:1px solid var(--line)">Pas de licence à vie : un abonnement résiliable en un clic</td></tr>
+      <tr><td style="padding:.9rem 1rem"><b>Vos identifiants</b></td><td style="padding:.9rem 1rem;color:var(--fg-2)">Souvent confiés à un serveur tiers</td><td style="padding:.9rem 1rem">Restent sur votre machine</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note" style="margin-top:.8rem">Colonne « copieurs classiques » : reproches relevés dans les avis publics (Trustpilot, forums) en 2025-2026, sans viser un produit en particulier.</p>
+</section>
+
+<section id="contact">
+  <p class="eyebrow">Contact</p>
+  <h2 style="margin-top:.6rem">Une question ? Un humain répond, en direct.</h2>
+  <div class="grid feat" style="margin-top:2rem">
+    <a class="glass card" href="https://t.me/RelaisCopier" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="ic a">TG</span><h3>Telegram</h3><p class="muted">Le plus rapide : on répond depuis le téléphone, en général dans l'heure.</p><p class="mono" style="color:var(--cyan);font-family:var(--mono);font-size:.9rem">@RelaisCopier</p></a>
+    <div class="glass card"><span class="ic b">@</span><h3>E-mail</h3><p class="muted">Pour les questions longues, les factures, les partenariats.</p><div class="addr"><code>relais.copier@gmail.com</code><button class="btn ghost copy-mail" type="button" style="padding:.45rem .8rem;font-size:.9rem">Copier</button></div></div>
+    <div class="glass card"><span class="ic c">7j</span><h3>Essai, puis on en parle</h3><p class="muted">Installez, lancez en mode observation, et envoyez-nous votre journal : on le lit avec vous et on règle les garde-fous ensemble.</p></div>
+  </div>
+</section>
+
+<section id="faq">
+  <p class="eyebrow">Questions</p>
+  <h2 style="margin-top:.6rem">Ce qu'on nous demande.</h2>
+  <div style="margin-top:1.5rem">
+    <details><summary>Est-ce que Relais fournit des signaux ?</summary><p>Non. Relais est un logiciel : il exécute, sur votre compte, les ordres des canaux que vous avez choisis vous-même. Nous ne recommandons aucun canal et nous ne promettons aucun résultat.</p></details>
+    <details><summary>Ma prop firm autorise-t-elle les copieurs ?</summary><p>La plupart autorisent un robot sur votre propre compte, mais interdisent la copie entre personnes et le trading à haute fréquence. Lisez les règles de votre firme ; Relais ne les contourne pas, il vous aide à les respecter.</p></details>
+    <details><summary>Que se passe-t-il si le message est ambigu ?</summary><p>Rien. Si la lecture n'atteint pas le niveau de confiance que vous avez fixé, l'ordre n'est pas passé et le message est écrit dans le journal avec la raison.</p></details>
+    <details><summary>Mes identifiants Telegram et MT5 passent-ils par vous ?</summary><p>Non. Vous vous connectez vous-même sur votre machine. Relais n'envoie que le texte des messages à lire, jamais vos identifiants.</p></details>
+    <details><summary>Quels marchés ?</summary><p>Tout ce que votre courtier MT5 propose : or, forex, indices, crypto. Les noms de symboles s'adaptent à votre courtier.</p></details>
+  </div>
+</section>
+
+<footer><span>Relais · logiciel d'exécution, pas un service de conseil en investissement.</span><span>Le trading comporte un risque de perte en capital.</span></footer>
+<a class="fab" href="https://t.me/RelaisCopier" target="_blank" rel="noopener" aria-label="Discuter sur Telegram"><span class="fab-dot"></span><span class="fab-txt">Parler à quelqu'un</span></a>
+</div>
+
+<script>
+document.documentElement.classList.add('js');
+var REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* ---------- contenu de démo par langue ---------- */
+var DEMO={
+ fr:{sky:['BUY GOLD NOW !! SL 66','SELL XAUUSD · Zone 4036-4039 · SL 4045','🔥 EURUSD SELL NOW @ 1.0850','NAS100 BUY LIMIT 18250 · SL 18180','TP1 atteint +60 pips ✅','Prenez des profits et soyez tous à BE','BTC long 62 300 – 62 000 · stop 61 400','Achat GOLD – Entrée : 4 030 · SL 4 020','Fermez tout, news dans 5 min','Vente XAUUSD · TP1 25 % : 4 061','US30 SELL NOW · SL 42 180','XAUUSD BUY GO NOW — SL 25 pips'],
+  ex:['BUY GOLD NOW !! SL 66','🔥 EURUSD SELL NOW @ 1.0850\nSL: 1.0880\nTP1: 1.0820\nTP2: 1.0790','Vente GOLD – XAUUSD\nEntree : 4 073\nStop Loss : 4 085\nTP1 25 % : 4 061\nTP2 25 % : 4 021','NAS100 BUY LIMIT 18250\nSL 18180\nTP 18400','Prenez des profits et soyez tous à BE','Bonne journée à tous, +350 pips cette semaine 🚀'],
+  sc:['BUY GOLD NOWWW !! SL 66','Vente GOLD – XAUUSD (Charles)\nEntree : 4 073\nStop Loss : 4 085\nTP1 25 % : 4 061\nTP2 25 % : 4 021','✅ XAUUSD TP1 +1RR +20 pips\n👉 Prenez des profits et soyez tous à BE',"L'or a l'air haussier aujourd'hui, peut-être acheter plus tard 🤔"],
+  lab:{action:'action',symbol:'symbole',side:'sens',entry:'entrée',stop:'stop',conf:'confiance',market:'marché',limit:'limite',zone:'zone',short:'abrégé',rebuilt:'→ reconstruit avec le prix live',daily:'perte du jour',pos:'positions',age:'âge du signal',linked:'position liée',nothing:'rien à vérifier',instr:'consigne',reason:'raison',notorder:'pas un ordre',noorder:'— aucun ordre —',refused:'REFUSÉ · déjà 1 position ouverte\n→ écrit dans le journal, rien envoyé',modified:'MODIFIÉ · SL → 4268.4 (entrée + 2 pips)\nticket #9145423711',missing:'absent → refus',uncertain:'? (incertain)',ex:'Exemple ',v_manage:'Consigne de gestion : appliquée à la position liée',v_ignore:"Ignoré : ce n'est pas un ordre exécutable",v_bad:'Refusé : lecture incertaine',v_ok:'Exécutable : passe aux garde-fous, puis MT5',noside:"aucun sens d'ordre",nostop:'aucun stop ni entrée'}},
+ en:{sky:['BUY GOLD NOW !! SL 66','SELL XAUUSD · Zone 4036-4039 · SL 4045','🔥 EURUSD SELL NOW @ 1.0850','NAS100 BUY LIMIT 18250 · SL 18180','TP1 HIT +60 pips ✅','Take profits and move to BE','BTC long 62 300 – 62 000 · stop 61 400','BUY GOLD – Entry: 4030 · SL 4020','Close all, news in 5 min','SELL XAUUSD · TP1 25%: 4061','US30 SELL NOW · SL 42180','XAUUSD BUY GO NOW — SL 25 pips'],
+  ex:['BUY GOLD NOW !! SL 66','🔥 EURUSD SELL NOW @ 1.0850\nSL: 1.0880\nTP1: 1.0820\nTP2: 1.0790','SELL GOLD – XAUUSD\nEntry: 4073\nStop Loss: 4085\nTP1 25%: 4061\nTP2 25%: 4021','NAS100 BUY LIMIT 18250\nSL 18180\nTP 18400','Take profits and move everyone to BE','Good morning all, +350 pips this week 🚀'],
+  sc:['BUY GOLD NOWWW !! SL 66','SELL GOLD – XAUUSD\nEntry: 4073\nStop Loss: 4085\nTP1 25%: 4061\nTP2 25%: 4021','✅ XAUUSD TP1 +1RR +20 pips\n👉 Take profits and move to BE','Gold looks bullish today, maybe buy later 🤔'],
+  lab:{action:'action',symbol:'symbol',side:'side',entry:'entry',stop:'stop',conf:'confidence',market:'market',limit:'limit',zone:'zone',short:'short form',rebuilt:'→ rebuilt from live price',daily:'daily loss',pos:'positions',age:'signal age',linked:'linked position',nothing:'nothing to check',instr:'instruction',reason:'reason',notorder:'not an order',noorder:'— no order —',refused:'REFUSED · already 1 open position\n→ logged, nothing sent',modified:'MODIFIED · SL → 4268.4 (entry + 2 pips)\nticket #9145423711',missing:'missing → refused',uncertain:'? (uncertain)',ex:'Example ',v_manage:'Management instruction: applied to the linked position',v_ignore:'Ignored: not an executable order',v_bad:'Refused: uncertain reading',v_ok:'Executable: goes to the guard-rails, then MT5',noside:'no order side',nostop:'no stop or entry'}},
+ es:{sky:['COMPRA ORO AHORA !! SL 66','VENTA XAUUSD · Zona 4036-4039 · SL 4045','🔥 EURUSD VENTA AHORA @ 1.0850','NAS100 COMPRA LIMIT 18250 · SL 18180','TP1 alcanzado +60 pips ✅','Tomad beneficios y poned BE','BTC largo 62 300 – 62 000 · stop 61 400','COMPRA ORO – Entrada: 4030 · SL 4020','Cerrad todo, noticias en 5 min','VENTA XAUUSD · TP1 25 %: 4061','US30 VENTA AHORA · SL 42180','XAUUSD COMPRA YA — SL 25 pips'],
+  ex:['COMPRA ORO AHORA !! SL 66','🔥 EURUSD VENTA AHORA @ 1.0850\nSL: 1.0880\nTP1: 1.0820\nTP2: 1.0790','VENTA ORO – XAUUSD\nEntrada: 4073\nStop Loss: 4085\nTP1 25 %: 4061\nTP2 25 %: 4021','NAS100 COMPRA LIMIT 18250\nSL 18180\nTP 18400','Tomad beneficios y poned todos BE','Buenos días a todos, +350 pips esta semana 🚀'],
+  sc:['COMPRA ORO AHORAAA !! SL 66','VENTA ORO – XAUUSD\nEntrada: 4073\nStop Loss: 4085\nTP1 25 %: 4061\nTP2 25 %: 4021','✅ XAUUSD TP1 +1RR +20 pips\n👉 Tomad beneficios y poned BE','El oro parece alcista hoy, quizá comprar más tarde 🤔'],
+  lab:{action:'acción',symbol:'símbolo',side:'sentido',entry:'entrada',stop:'stop',conf:'confianza',market:'mercado',limit:'límite',zone:'zona',short:'abreviado',rebuilt:'→ reconstruido con el precio en vivo',daily:'pérdida del día',pos:'posiciones',age:'antigüedad',linked:'posición vinculada',nothing:'nada que comprobar',instr:'instrucción',reason:'motivo',notorder:'no es una orden',noorder:'— sin orden —',refused:'RECHAZADO · ya hay 1 posición abierta\n→ registrado, nada enviado',modified:'MODIFICADO · SL → 4268.4 (entrada + 2 pips)\nticket #9145423711',missing:'ausente → rechazo',uncertain:'? (dudoso)',ex:'Ejemplo ',v_manage:'Instrucción de gestión: aplicada a la posición vinculada',v_ignore:'Ignorado: no es una orden ejecutable',v_bad:'Rechazado: lectura dudosa',v_ok:'Ejecutable: pasa a las protecciones y luego a MT5',noside:'sin sentido de orden',nostop:'sin stop ni entrada'}},
+ pt:{sky:['COMPRA OURO AGORA !! SL 66','VENDA XAUUSD · Zona 4036-4039 · SL 4045','🔥 EURUSD VENDA AGORA @ 1.0850','NAS100 COMPRA LIMIT 18250 · SL 18180','TP1 atingido +60 pips ✅','Realizem lucros e coloquem BE','BTC long 62 300 – 62 000 · stop 61 400','COMPRA OURO – Entrada: 4030 · SL 4020','Fechem tudo, notícias em 5 min','VENDA XAUUSD · TP1 25%: 4061','US30 VENDA AGORA · SL 42180','XAUUSD COMPRA JÁ — SL 25 pips'],
+  ex:['COMPRA OURO AGORA !! SL 66','🔥 EURUSD VENDA AGORA @ 1.0850\nSL: 1.0880\nTP1: 1.0820\nTP2: 1.0790','VENDA OURO – XAUUSD\nEntrada: 4073\nStop Loss: 4085\nTP1 25%: 4061\nTP2 25%: 4021','NAS100 COMPRA LIMIT 18250\nSL 18180\nTP 18400','Realizem lucros e coloquem todos BE','Bom dia a todos, +350 pips esta semana 🚀'],
+  sc:['COMPRA OURO AGORAAA !! SL 66','VENDA OURO – XAUUSD\nEntrada: 4073\nStop Loss: 4085\nTP1 25%: 4061\nTP2 25%: 4021','✅ XAUUSD TP1 +1RR +20 pips\n👉 Realizem lucros e coloquem BE','O ouro parece bullish hoje, talvez comprar mais tarde 🤔'],
+  lab:{action:'ação',symbol:'símbolo',side:'sentido',entry:'entrada',stop:'stop',conf:'confiança',market:'mercado',limit:'limite',zone:'zona',short:'abreviado',rebuilt:'→ reconstruído com o preço ao vivo',daily:'perda do dia',pos:'posições',age:'idade do sinal',linked:'posição ligada',nothing:'nada a verificar',instr:'instrução',reason:'motivo',notorder:'não é uma ordem',noorder:'— sem ordem —',refused:'RECUSADO · já há 1 posição aberta\n→ registado, nada enviado',modified:'MODIFICADO · SL → 4268.4 (entrada + 2 pips)\nticket #9145423711',missing:'ausente → recusa',uncertain:'? (duvidoso)',ex:'Exemplo ',v_manage:'Instrução de gestão: aplicada à posição ligada',v_ignore:'Ignorado: não é uma ordem executável',v_bad:'Recusado: leitura duvidosa',v_ok:'Executável: passa às proteções e depois ao MT5',noside:'sem sentido de ordem',nostop:'sem stop nem entrada'}},
+ ar:{sky:['شراء ذهب الآن !! SL 66','بيع XAUUSD · منطقة 4036-4039 · SL 4045','🔥 EURUSD بيع الآن @ 1.0850','NAS100 شراء معلّق 18250 · SL 18180','تحقق TP1 +60 نقطة ✅','خذوا الأرباح وضعوا BE','BTC شراء 62300 – 62000 · ستوب 61400','شراء ذهب – دخول: 4030 · SL 4020','أغلقوا كل شيء، أخبار بعد 5 دقائق','بيع XAUUSD · TP1 25٪: 4061','US30 بيع الآن · SL 42180','XAUUSD شراء الآن — SL 25 نقطة'],
+  ex:['شراء ذهب الآن !! SL 66','🔥 EURUSD بيع الآن @ 1.0850\nSL: 1.0880\nTP1: 1.0820\nTP2: 1.0790','بيع ذهب – XAUUSD\nدخول: 4073\nستوب لوس: 4085\nTP1 25٪: 4061\nTP2 25٪: 4021','NAS100 شراء معلّق 18250\nSL 18180\nTP 18400','خذوا الأرباح وضعوا الجميع على BE','صباح الخير للجميع، +350 نقطة هذا الأسبوع 🚀'],
+  sc:['شراء ذهب الآآآن !! SL 66','بيع ذهب – XAUUSD\nدخول: 4073\nستوب لوس: 4085\nTP1 25٪: 4061\nTP2 25٪: 4021','✅ XAUUSD TP1 +1RR +20 نقطة\n👉 خذوا الأرباح وضعوا BE','الذهب يبدو صاعداً اليوم، ربما نشتري لاحقاً 🤔'],
+  lab:{action:'الإجراء',symbol:'الرمز',side:'الاتجاه',entry:'الدخول',stop:'الستوب',conf:'الثقة',market:'سوق',limit:'معلّق',zone:'منطقة',short:'مختصر',rebuilt:'→ يُعاد بناؤه من السعر الحي',daily:'خسارة اليوم',pos:'الصفقات',age:'عمر الإشارة',linked:'الصفقة المرتبطة',nothing:'لا شيء للتحقق',instr:'التعليمة',reason:'السبب',notorder:'ليست أمراً',noorder:'— لا أمر —',refused:'مرفوض · توجد صفقة مفتوحة بالفعل\n→ سُجِّل، لم يُرسل شيء',modified:'عُدِّل · SL → 4268.4 (الدخول + نقطتان)\nتذكرة #9145423711',missing:'غائب → رفض',uncertain:'؟ (غير مؤكد)',ex:'مثال ',v_manage:'تعليمة إدارة: طُبّقت على الصفقة المرتبطة',v_ignore:'تم التجاهل: ليست أمراً قابلاً للتنفيذ',v_bad:'مرفوض: قراءة غير مؤكدة',v_ok:'قابل للتنفيذ: ينتقل إلى الضوابط ثم MT5',noside:'لا اتجاه للأمر',nostop:'لا ستوب ولا دخول'}},
+ ru:{sky:['ПОКУПКА ЗОЛОТО СЕЙЧАС !! SL 66','ПРОДАЖА XAUUSD · Зона 4036-4039 · SL 4045','🔥 EURUSD ПРОДАЖА СЕЙЧАС @ 1.0850','NAS100 ПОКУПКА ЛИМИТ 18250 · SL 18180','TP1 взят +60 пунктов ✅','Фиксируем прибыль, ставим BE','BTC лонг 62 300 – 62 000 · стоп 61 400','ПОКУПКА ЗОЛОТО – Вход: 4030 · SL 4020','Закрываем всё, новости через 5 мин','ПРОДАЖА XAUUSD · TP1 25 %: 4061','US30 ПРОДАЖА СЕЙЧАС · SL 42180','XAUUSD ПОКУПКА СЕЙЧАС — SL 25 пунктов'],
+  ex:['ПОКУПКА ЗОЛОТО СЕЙЧАС !! SL 66','🔥 EURUSD ПРОДАЖА СЕЙЧАС @ 1.0850\nSL: 1.0880\nTP1: 1.0820\nTP2: 1.0790','ПРОДАЖА ЗОЛОТО – XAUUSD\nВход: 4073\nСтоп лосс: 4085\nTP1 25 %: 4061\nTP2 25 %: 4021','NAS100 ПОКУПКА ЛИМИТ 18250\nSL 18180\nTP 18400','Фиксируем прибыль и все в BE','Всем доброго утра, +350 пунктов за неделю 🚀'],
+  sc:['ПОКУПКА ЗОЛОТО СЕЙЧАААС !! SL 66','ПРОДАЖА ЗОЛОТО – XAUUSD\nВход: 4073\nСтоп лосс: 4085\nTP1 25 %: 4061\nTP2 25 %: 4021','✅ XAUUSD TP1 +1RR +20 пунктов\n👉 Фиксируем прибыль, ставим BE','Золото сегодня выглядит бычьим, может купить позже 🤔'],
+  lab:{action:'действие',symbol:'символ',side:'направление',entry:'вход',stop:'стоп',conf:'уверенность',market:'рынок',limit:'лимит',zone:'зона',short:'сокращённый',rebuilt:'→ восстановлен по живой цене',daily:'убыток дня',pos:'позиции',age:'возраст сигнала',linked:'связанная позиция',nothing:'нечего проверять',instr:'указание',reason:'причина',notorder:'не ордер',noorder:'— нет ордера —',refused:'ОТКЛОНЕНО · уже 1 открытая позиция\n→ записано в журнал, ничего не отправлено',modified:'ИЗМЕНЕНО · SL → 4268.4 (вход + 2 пункта)\nтикет #9145423711',missing:'отсутствует → отказ',uncertain:'? (неясно)',ex:'Пример ',v_manage:'Указание по управлению: применено к связанной позиции',v_ignore:'Проигнорировано: не исполняемый ордер',v_bad:'Отклонено: неуверенное чтение',v_ok:'Исполнимо: идёт к ограничителям, затем в MT5',noside:'нет направления ордера',nostop:'нет стопа и входа'}},
+ he:{sky:['קנייה זהב עכשיו !! SL 66','מכירה XAUUSD · אזור 4036-4039 · SL 4045','🔥 EURUSD מכירה עכשיו @ 1.0850','NAS100 קנייה לימיט 18250 · SL 18180','TP1 הושג +60 פיפס ✅','קחו רווחים ועברו ל-BE','BTC לונג 62300 – 62000 · סטופ 61400','קנייה זהב – כניסה: 4030 · SL 4020','סגרו הכול, חדשות בעוד 5 דק׳','מכירה XAUUSD · TP1 25%: 4061','US30 מכירה עכשיו · SL 42180','XAUUSD קנייה עכשיו — SL 25 פיפס'],
+  ex:['קנייה זהב עכשיו !! SL 66','🔥 EURUSD מכירה עכשיו @ 1.0850\nSL: 1.0880\nTP1: 1.0820\nTP2: 1.0790','מכירה זהב – XAUUSD\nכניסה: 4073\nסטופ לוס: 4085\nTP1 25%: 4061\nTP2 25%: 4021','NAS100 קנייה לימיט 18250\nSL 18180\nTP 18400','קחו רווחים וכולם ל-BE','בוקר טוב לכולם, +350 פיפס השבוע 🚀'],
+  sc:['קנייה זהב עכשיוווו !! SL 66','מכירה זהב – XAUUSD\nכניסה: 4073\nסטופ לוס: 4085\nTP1 25%: 4061\nTP2 25%: 4021','✅ XAUUSD TP1 +1RR +20 פיפס\n👉 קחו רווחים ועברו ל-BE','הזהב נראה שורי היום, אולי לקנות אחר כך 🤔'],
+  lab:{action:'פעולה',symbol:'סימבול',side:'כיוון',entry:'כניסה',stop:'סטופ',conf:'ביטחון',market:'שוק',limit:'לימיט',zone:'אזור',short:'מקוצר',rebuilt:'→ משוחזר מהמחיר החי',daily:'הפסד היום',pos:'פוזיציות',age:'גיל האיתות',linked:'פוזיציה מקושרת',nothing:'אין מה לבדוק',instr:'הוראה',reason:'סיבה',notorder:'לא פקודה',noorder:'— אין פקודה —',refused:'נדחה · כבר יש פוזיציה פתוחה\n→ נרשם ביומן, לא נשלח דבר',modified:'שונה · SL → 4268.4 (כניסה + 2 פיפס)\nכרטיס #9145423711',missing:'חסר → דחייה',uncertain:'? (לא ודאי)',ex:'דוגמה ',v_manage:'הוראת ניהול: הוחלה על הפוזיציה המקושרת',v_ignore:'התעלמות: לא פקודה ניתנת לביצוע',v_bad:'נדחה: קריאה לא ודאית',v_ok:'ניתן לביצוע: עובר למגבלות ואז ל-MT5',noside:'אין כיוון פקודה',nostop:'אין סטופ ואין כניסה'}}
+};
+function demo(){return DEMO[window.RELAIS_LANG]||DEMO.fr}
+/* ---------- i18n : dictionnaire FR -> autres langues, appliqué aux nœuds texte et attributs ---------- */
+(function(){
+  var D={"Copieur Telegram → MetaTrader 5": {"en": "Telegram → MetaTrader 5 copier", "es": "Copiador Telegram → MetaTrader 5", "pt": "Copiador Telegram → MetaTrader 5", "ar": "ناسخ إشارات Telegram → MetaTrader 5", "ru": "Копировщик Telegram → MetaTrader 5", "he": "מעתיק איתותים Telegram → MetaTrader 5"}, "Vos signaux Telegram,": {"en": "Your Telegram signals,", "es": "Tus señales de Telegram,", "pt": "Os teus sinais do Telegram,", "ar": "إشاراتك على Telegram،", "ru": "Ваши сигналы из Telegram,", "he": "האיתותים שלך מטלגרם,"}, "exécutés sur MT5": {"en": "executed on MT5", "es": "ejecutadas en MT5", "pt": "executados no MT5", "ar": "تُنفَّذ على MT5", "ru": "исполняются на MT5", "he": "מבוצעים ב-MT5"}, ", sans jamais casser les règles de votre prop firm.": {"en": ", without ever breaking your prop firm's rules.", "es": ", sin romper nunca las reglas de tu prop firm.", "pt": ", sem nunca quebrar as regras da tua prop firm.", "ar": "، دون خرق قواعد شركة التمويل أبداً.", "ru": ", никогда не нарушая правила вашей проп-фирмы.", "he": ", בלי לשבור אף פעם את כללי חברת הפרופ שלך."}, "Relais lit n'importe quel canal, en français ou en anglais, même mal écrit, et passe l'ordre sur votre compte en moins d'une seconde. Il refuse tout seul ce qui vous ferait perdre votre compte financé.": {"en": "Relais reads any channel, in any language, even badly written, and places the order on your account in under a second. It refuses on its own anything that would cost you your funded account.", "es": "Relais lee cualquier canal, en cualquier idioma, incluso mal escrito, y coloca la orden en tu cuenta en menos de un segundo. Rechaza por sí solo todo lo que te haría perder tu cuenta fondeada.", "pt": "O Relais lê qualquer canal, em qualquer língua, mesmo mal escrito, e coloca a ordem na tua conta em menos de um segundo. Recusa sozinho tudo o que te faria perder a conta financiada.", "ar": "يقرأ Relais أي قناة، بأي لغة، حتى لو كانت الكتابة سيئة، وينفّذ الأمر على حسابك في أقل من ثانية. ويرفض تلقائياً كل ما قد يُفقدك حسابك الممول.", "ru": "Relais читает любой канал, на любом языке, даже написанный небрежно, и выставляет ордер на ваш счёт меньше чем за секунду. Он сам отклоняет всё, что лишило бы вас финансируемого счёта.", "he": "Relais קורא כל ערוץ, בכל שפה, גם כשהוא כתוב גרוע, ומבצע את הפקודה בחשבון שלך בפחות משנייה. הוא דוחה לבד כל מה שיגרום לך לאבד את החשבון הממומן."}, "Essayer 7 jours gratuits": {"en": "Start 7-day free trial", "es": "Probar 7 días gratis", "pt": "Experimentar 7 dias grátis", "ar": "جرّب 7 أيام مجاناً", "ru": "7 дней бесплатно", "he": "7 ימי ניסיון חינם"}, "Tester avec mon message": {"en": "Test with my message", "es": "Probar con mi mensaje", "pt": "Testar com a minha mensagem", "ar": "جرّب برسالتك", "ru": "Проверить на моём сообщении", "he": "לבדוק עם ההודעה שלי"}, "Aucun signal fourni. Relais exécute les ordres des canaux que vous choisissez, sur votre compte, selon vos réglages.": {"en": "No signals provided. Relais executes orders from the channels you choose, on your account, with your settings.", "es": "No proporcionamos señales. Relais ejecuta las órdenes de los canales que tú eliges, en tu cuenta, con tus ajustes.", "pt": "Não fornecemos sinais. O Relais executa as ordens dos canais que escolhes, na tua conta, com as tuas definições.", "ar": "لا نقدّم إشارات. ينفّذ Relais أوامر القنوات التي تختارها، على حسابك، وفق إعداداتك.", "ru": "Мы не даём сигналов. Relais исполняет ордера из каналов, которые вы выбрали, на вашем счёте, по вашим настройкам.", "he": "אנחנו לא מספקים איתותים. Relais מבצע פקודות מהערוצים שבחרת, בחשבון שלך, לפי ההגדרות שלך."}, "Message du canal": {"en": "Channel message", "es": "Mensaje del canal", "pt": "Mensagem do canal", "ar": "رسالة القناة", "ru": "Сообщение канала", "he": "הודעת הערוץ"}, "Lecture": {"en": "Reading", "es": "Lectura", "pt": "Leitura", "ar": "القراءة", "ru": "Чтение", "he": "קריאה"}, "Garde-fous": {"en": "Guard-rails", "es": "Protecciones", "pt": "Proteções", "ar": "الضوابط", "ru": "Ограничители", "he": "מגבלות בטיחות"}, "Ordre MT5": {"en": "MT5 order", "es": "Orden MT5", "pt": "Ordem MT5", "ar": "أمر MT5", "ru": "Ордер MT5", "he": "פקודת MT5"}, "Essayer": {"en": "Try it", "es": "Probar", "pt": "Testar", "ar": "جرّب", "ru": "Попробовать", "he": "לנסות"}, "Admins": {"en": "Admins", "es": "Admins", "pt": "Admins", "ar": "المشرفون", "ru": "Админам", "he": "מנהלים"}, "Tarif": {"en": "Pricing", "es": "Precio", "pt": "Preço", "ar": "السعر", "ru": "Цена", "he": "מחיר"}, "Comparer": {"en": "Compare", "es": "Comparar", "pt": "Comparar", "ar": "مقارنة", "ru": "Сравнить", "he": "השוואה"}, "À vous": {"en": "Your turn", "es": "Tu turno", "pt": "A tua vez", "ar": "دورك", "ru": "Ваша очередь", "he": "תורך"}, "Collez un message de votre canal. Regardez ce que Relais en fait.": {"en": "Paste a message from your channel. See what Relais makes of it.", "es": "Pega un mensaje de tu canal. Mira qué hace Relais con él.", "pt": "Cola uma mensagem do teu canal. Vê o que o Relais faz com ela.", "ar": "الصق رسالة من قناتك وشاهد ما يفعله Relais بها.", "ru": "Вставьте сообщение из вашего канала и посмотрите, что с ним сделает Relais.", "he": "הדבק הודעה מהערוץ שלך ותראה מה Relais עושה איתה."}, "Démonstration dans votre navigateur, rien n'est envoyé. La version installée utilise une lecture par IA, plus tolérante encore que celle-ci.": {"en": "Runs in your browser, nothing is sent. The installed version uses AI reading, even more tolerant than this one.", "es": "Funciona en tu navegador, no se envía nada. La versión instalada usa lectura por IA, aún más tolerante que esta.", "pt": "Corre no teu navegador, nada é enviado. A versão instalada usa leitura por IA, ainda mais tolerante do que esta.", "ar": "يعمل في متصفحك، ولا يُرسل شيء. النسخة المثبتة تستخدم قراءة بالذكاء الاصطناعي، أكثر تسامحاً من هذه.", "ru": "Работает в вашем браузере, ничего не отправляется. Установленная версия читает с помощью ИИ и ещё терпимее к формату.", "he": "רץ בדפדפן שלך, שום דבר לא נשלח. הגרסה המותקנת משתמשת בקריאת AI, סלחנית עוד יותר."}, "Message": {"en": "Message", "es": "Mensaje", "pt": "Mensagem", "ar": "الرسالة", "ru": "Сообщение", "he": "הודעה"}, "Lire le message": {"en": "Read the message", "es": "Leer el mensaje", "pt": "Ler a mensagem", "ar": "اقرأ الرسالة", "ru": "Прочитать сообщение", "he": "קרא את ההודעה"}, "Ce que Relais comprend": {"en": "What Relais understands", "es": "Lo que Relais entiende", "pt": "O que o Relais entende", "ar": "ما يفهمه Relais", "ru": "Что понял Relais", "he": "מה Relais מבין"}, "Pourquoi Relais": {"en": "Why Relais", "es": "Por qué Relais", "pt": "Porquê Relais", "ar": "لماذا Relais", "ru": "Почему Relais", "he": "למה Relais"}, "Les copieurs existants lisent un format.": {"en": "Existing copiers read a format.", "es": "Los copiadores actuales leen un formato.", "pt": "Os copiadores atuais leem um formato.", "ar": "الناسخات الحالية تقرأ تنسيقاً.", "ru": "Обычные копировщики читают формат.", "he": "מעתיקים קיימים קוראים פורמט."}, "Relais lit un message.": {"en": "Relais reads a message.", "es": "Relais lee un mensaje.", "pt": "O Relais lê uma mensagem.", "ar": "Relais يقرأ رسالة.", "ru": "Relais читает сообщение.", "he": "Relais קורא הודעה."}, "N'importe quel canal": {"en": "Any channel", "es": "Cualquier canal", "pt": "Qualquer canal", "ar": "أي قناة", "ru": "Любой канал", "he": "כל ערוץ"}, "« BUY GOLD NOW !! SL 66 », « Vente XAUUSD, entrée 4 073, SL 4 085, TP1 25 % : 4 061 », trois lignes avec des emojis : l'IA comprend le sens, pas la mise en forme. Changez de canal, rien à reconfigurer.": {"en": "“BUY GOLD NOW !! SL 66”, “Sell XAUUSD, entry 4073, SL 4085, TP1 25%: 4061”, three lines of emojis: the AI gets the meaning, not the layout. Switch channels, nothing to reconfigure.", "es": "«BUY GOLD NOW !! SL 66», «Venta XAUUSD, entrada 4073, SL 4085, TP1 25 %: 4061», tres líneas con emojis: la IA entiende el sentido, no el formato. Cambia de canal, nada que reconfigurar.", "pt": "«BUY GOLD NOW !! SL 66», «Venda XAUUSD, entrada 4073, SL 4085, TP1 25%: 4061», três linhas com emojis: a IA percebe o sentido, não o formato. Muda de canal, nada a reconfigurar.", "ar": "«BUY GOLD NOW !! SL 66»، «بيع XAUUSD، دخول 4073، SL 4085، TP1 25٪: 4061»، ثلاثة أسطر برموز تعبيرية: يفهم الذكاء الاصطناعي المعنى لا الشكل. غيّر القناة، لا شيء يُعاد ضبطه.", "ru": "«BUY GOLD NOW !! SL 66», «Продажа XAUUSD, вход 4073, SL 4085, TP1 25 %: 4061», три строки с эмодзи: ИИ понимает смысл, а не оформление. Смените канал, ничего настраивать не нужно.", "he": "«BUY GOLD NOW !! SL 66», «מכירה XAUUSD, כניסה 4073, SL 4085, TP1 25%: 4061», שלוש שורות עם אימוג'ים: ה-AI מבין את המשמעות, לא את העיצוב. מחליפים ערוץ, אין מה להגדיר מחדש."}, "Garde-fous prop firm": {"en": "Prop-firm guard-rails", "es": "Protecciones para prop firms", "pt": "Proteções para prop firms", "ar": "ضوابط شركات التمويل", "ru": "Ограничители для проп-фирм", "he": "מגבלות לחברות פרופ"}, "Perte journalière, drawdown total, nombre de positions, stops consécutifs, fenêtres d'actualités, clôture avant le week-end. Chaque refus est écrit dans votre journal avec sa raison.": {"en": "Daily loss, total drawdown, open positions, consecutive stops, news windows, flat before the weekend. Every refusal is written to your log with its reason.", "es": "Pérdida diaria, drawdown total, posiciones abiertas, stops consecutivos, ventanas de noticias, cierre antes del fin de semana. Cada rechazo queda en tu registro con su motivo.", "pt": "Perda diária, drawdown total, posições abertas, stops consecutivos, janelas de notícias, fechar antes do fim de semana. Cada recusa fica no teu registo com o motivo.", "ar": "الخسارة اليومية، إجمالي التراجع، عدد الصفقات المفتوحة، الوقفات المتتالية، نوافذ الأخبار، الإغلاق قبل عطلة الأسبوع. كل رفض يُسجَّل في سجلك مع سببه.", "ru": "Дневной убыток, общая просадка, число позиций, стопы подряд, окна новостей, закрытие перед выходными. Каждый отказ записывается в журнал с причиной.", "he": "הפסד יומי, דרואודאון כולל, מספר פוזיציות, סטופים רצופים, חלונות חדשות, סגירה לפני סוף השבוע. כל סירוב נרשם ביומן עם הסיבה."}, "Vous gardez la main": {"en": "You stay in control", "es": "Tú mantienes el control", "pt": "Tu ficas no controlo", "ar": "أنت المتحكم", "ru": "Контроль остаётся у вас", "he": "השליטה נשארת אצלך"}, "Un message incertain n'est jamais exécuté. Un « NOW » vieux de deux minutes non plus. Vous voyez chaque décision, et vous pouvez tout couper d'un bouton.": {"en": "An uncertain message is never executed. Neither is a two-minute-old “NOW”. You see every decision, and one button stops everything.", "es": "Un mensaje dudoso nunca se ejecuta. Un «NOW» de hace dos minutos tampoco. Ves cada decisión y puedes pararlo todo con un botón.", "pt": "Uma mensagem duvidosa nunca é executada. Um «NOW» com dois minutos também não. Vês cada decisão e paras tudo com um botão.", "ar": "الرسالة غير المؤكدة لا تُنفَّذ أبداً، ولا «NOW» عمره دقيقتان. ترى كل قرار، وزر واحد يوقف كل شيء.", "ru": "Неоднозначное сообщение никогда не исполняется. «NOW» двухминутной давности тоже. Вы видите каждое решение, одна кнопка останавливает всё.", "he": "הודעה לא ודאית לעולם לא מבוצעת. גם לא «NOW» בן שתי דקות. אתה רואה כל החלטה, וכפתור אחד עוצר הכול."}, "Réglez vos limites une fois. Relais les tient à votre place.": {"en": "Set your limits once. Relais holds them for you.", "es": "Fija tus límites una vez. Relais los mantiene por ti.", "pt": "Define os teus limites uma vez. O Relais mantém-nos por ti.", "ar": "اضبط حدودك مرة واحدة. Relais يلتزم بها عنك.", "ru": "Задайте лимиты один раз. Relais будет держать их за вас.", "he": "קבע את המגבלות פעם אחת. Relais שומר עליהן בשבילך."}, "Perte journalière max": {"en": "Max daily loss", "es": "Pérdida diaria máx.", "pt": "Perda diária máx.", "ar": "أقصى خسارة يومية", "ru": "Макс. дневной убыток", "he": "הפסד יומי מקסימלי"}, "en % du solde de départ du jour": {"en": "% of the day's starting balance", "es": "% del saldo inicial del día", "pt": "% do saldo inicial do dia", "ar": "٪ من رصيد بداية اليوم", "ru": "% от баланса на начало дня", "he": "% מהיתרה בתחילת היום"}, "Drawdown total max": {"en": "Max total drawdown", "es": "Drawdown total máx.", "pt": "Drawdown total máx.", "ar": "أقصى تراجع إجمالي", "ru": "Макс. общая просадка", "he": "דרואודאון כולל מקסימלי"}, "Positions ouvertes en même temps": {"en": "Open positions at once", "es": "Posiciones abiertas a la vez", "pt": "Posições abertas ao mesmo tempo", "ar": "الصفقات المفتوحة في آن واحد", "ru": "Открытых позиций одновременно", "he": "פוזיציות פתוחות בו-זמנית"}, "Arrêt après": {"en": "Stop after", "es": "Parar tras", "pt": "Parar após", "ar": "التوقف بعد", "ru": "Остановка после", "he": "עצירה אחרי"}, "stops consécutifs dans la journée": {"en": "consecutive stops in a day", "es": "stops consecutivos en el día", "pt": "stops consecutivos no dia", "ar": "وقفات متتالية في اليوم", "ru": "стопов подряд за день", "he": "סטופים רצופים ביום"}, "Clôture avant le week-end": {"en": "Flat before the weekend", "es": "Cerrar antes del fin de semana", "pt": "Fechar antes do fim de semana", "ar": "الإغلاق قبل عطلة الأسبوع", "ru": "Закрытие перед выходными", "he": "סגירה לפני סוף השבוע"}, "vendredi 21:00, heure du serveur": {"en": "Friday 21:00 server time", "es": "viernes 21:00, hora del servidor", "pt": "sexta 21:00, hora do servidor", "ar": "الجمعة 21:00 بتوقيت الخادم", "ru": "пятница 21:00 по серверу", "he": "שישי 21:00 שעון שרת"}, "Ignorer les signaux périmés": {"en": "Ignore stale signals", "es": "Ignorar señales caducadas", "pt": "Ignorar sinais expirados", "ar": "تجاهل الإشارات القديمة", "ru": "Игнорировать устаревшие сигналы", "he": "התעלמות מאיתותים ישנים"}, "un « NOW » de plus de 90 secondes": {"en": "a “NOW” older than 90 seconds", "es": "un «NOW» de más de 90 segundos", "pt": "um «NOW» com mais de 90 segundos", "ar": "«NOW» أقدم من 90 ثانية", "ru": "«NOW» старше 90 секунд", "he": "«NOW» בן יותר מ-90 שניות"}, "Journal (exemple)": {"en": "Log (example)", "es": "Registro (ejemplo)", "pt": "Registo (exemplo)", "ar": "السجل (مثال)", "ru": "Журнал (пример)", "he": "יומן (דוגמה)"}, "EXÉCUTÉ": {"en": "EXECUTED", "es": "EJECUTADO", "pt": "EXECUTADO", "ar": "نُفِّذ", "ru": "ИСПОЛНЕНО", "he": "בוצע"}, "REFUSÉ": {"en": "REFUSED", "es": "RECHAZADO", "pt": "RECUSADO", "ar": "مرفوض", "ru": "ОТКЛОНЕНО", "he": "נדחה"}, "déjà 1 position ouverte": {"en": "already 1 open position", "es": "ya hay 1 posición abierta", "pt": "já há 1 posição aberta", "ar": "توجد صفقة مفتوحة بالفعل", "ru": "уже 1 открытая позиция", "he": "כבר יש פוזיציה פתוחה"}, "lecture incertaine (0,61 < 0,70)": {"en": "uncertain reading (0.61 < 0.70)", "es": "lectura dudosa (0,61 < 0,70)", "pt": "leitura duvidosa (0,61 < 0,70)", "ar": "قراءة غير مؤكدة (0.61 < 0.70)", "ru": "неуверенное чтение (0,61 < 0,70)", "he": "קריאה לא ודאית (0.61 < 0.70)"}, "2 stops aujourd'hui : journée terminée": {"en": "2 stops today: day is over", "es": "2 stops hoy: día terminado", "pt": "2 stops hoje: dia terminado", "ar": "وقفتان اليوم: انتهى اليوم", "ru": "2 стопа сегодня: день закончен", "he": "2 סטופים היום: היום נגמר"}, "vendredi soir : pas de position avant le week-end": {"en": "Friday night: no position before the weekend", "es": "viernes noche: sin posiciones antes del fin de semana", "pt": "sexta à noite: sem posições antes do fim de semana", "ar": "ليلة الجمعة: لا صفقات قبل العطلة", "ru": "вечер пятницы: без позиций на выходные", "he": "שישי בערב: אין פוזיציה לפני סוף השבוע"}, "signal trop ancien (134 s)": {"en": "signal too old (134 s)", "es": "señal demasiado antigua (134 s)", "pt": "sinal demasiado antigo (134 s)", "ar": "إشارة قديمة جداً (134 ث)", "ru": "сигнал слишком старый (134 с)", "he": "איתות ישן מדי (134 שנ')"}, "Valeurs d'exemple. Les règles exactes de chaque firme changent : vous les saisissez, Relais les applique.": {"en": "Example values. Each firm's exact rules differ: you enter them, Relais applies them.", "es": "Valores de ejemplo. Las reglas exactas de cada firma cambian: tú las introduces, Relais las aplica.", "pt": "Valores de exemplo. As regras exatas de cada firma variam: tu introduze-las, o Relais aplica-as.", "ar": "قيم للتوضيح. قواعد كل شركة تختلف: أنت تُدخلها وRelais يطبّقها.", "ru": "Примерные значения. Точные правила у каждой фирмы свои: вы их вводите, Relais применяет.", "he": "ערכים לדוגמה. הכללים המדויקים של כל חברה שונים: אתה מזין אותם, Relais מיישם."}, "Mise en route": {"en": "Setup", "es": "Puesta en marcha", "pt": "Arranque", "ar": "البدء", "ru": "Запуск", "he": "התחלה"}, "Trois étapes, vingt minutes.": {"en": "Three steps, twenty minutes.", "es": "Tres pasos, veinte minutos.", "pt": "Três passos, vinte minutos.", "ar": "ثلاث خطوات، عشرون دقيقة.", "ru": "Три шага, двадцать минут.", "he": "שלושה שלבים, עשרים דקות."}, "Installez Relais sur votre VPS ou votre PC Windows": {"en": "Install Relais on your VPS or Windows PC", "es": "Instala Relais en tu VPS o PC Windows", "pt": "Instala o Relais no teu VPS ou PC Windows", "ar": "ثبّت Relais على VPS أو جهاز Windows", "ru": "Установите Relais на VPS или ПК с Windows", "he": "התקן את Relais על ה-VPS או מחשב Windows"}, "Un installeur, un clic. Il pose l'EA dans MetaTrader 5 et ouvre la page de réglages.": {"en": "One installer, one click. It drops the EA into MetaTrader 5 and opens the settings page.", "es": "Un instalador, un clic. Coloca el EA en MetaTrader 5 y abre la página de ajustes.", "pt": "Um instalador, um clique. Coloca o EA no MetaTrader 5 e abre a página de definições.", "ar": "مثبّت واحد، نقرة واحدة. يضع الـEA في MetaTrader 5 ويفتح صفحة الإعدادات.", "ru": "Один установщик, один клик. Ставит EA в MetaTrader 5 и открывает настройки.", "he": "מתקין אחד, קליק אחד. מציב את ה-EA ב-MetaTrader 5 ופותח את דף ההגדרות."}, "Connectez votre Telegram et cochez vos canaux": {"en": "Connect your Telegram and tick your channels", "es": "Conecta tu Telegram y marca tus canales", "pt": "Liga o teu Telegram e marca os teus canais", "ar": "اربط Telegram وحدّد قنواتك", "ru": "Подключите Telegram и отметьте каналы", "he": "חבר את הטלגרם וסמן את הערוצים"}, "Vous vous connectez vous-même, chez vous. Relais ne voit que les canaux que vous cochez.": {"en": "You log in yourself, on your machine. Relais only sees the channels you tick.", "es": "Inicias sesión tú mismo, en tu máquina. Relais solo ve los canales que marcas.", "pt": "Fazes login tu mesmo, na tua máquina. O Relais só vê os canais que marcas.", "ar": "تسجّل الدخول بنفسك على جهازك. لا يرى Relais سوى القنوات التي تحدّدها.", "ru": "Вы входите сами, на своей машине. Relais видит только отмеченные каналы.", "he": "אתה מתחבר בעצמך, במחשב שלך. Relais רואה רק את הערוצים שסימנת."}, "Réglez vos limites et laissez tourner": {"en": "Set your limits and let it run", "es": "Fija tus límites y déjalo funcionar", "pt": "Define os limites e deixa correr", "ar": "اضبط حدودك ودعه يعمل", "ru": "Задайте лимиты и пусть работает", "he": "קבע מגבלות ותן לזה לרוץ"}, "Mode observation d'abord si vous voulez : Relais lit et journalise sans rien exécuter, jusqu'à ce que vous passiez en réel.": {"en": "Observation mode first if you like: Relais reads and logs without executing anything, until you go live.", "es": "Modo observación primero si quieres: Relais lee y registra sin ejecutar nada, hasta que pases a real.", "pt": "Modo observação primeiro, se quiseres: o Relais lê e regista sem executar nada, até passares a real.", "ar": "وضع المراقبة أولاً إن شئت: يقرأ Relais ويسجّل دون تنفيذ، حتى تنتقل إلى الحقيقي.", "ru": "Сначала режим наблюдения, если хотите: Relais читает и пишет в журнал, ничего не исполняя, пока вы не включите реальный режим.", "he": "קודם מצב תצפית אם תרצה: Relais קורא ורושם בלי לבצע, עד שתעבור לאמיתי."}, "Pour les admins de canaux": {"en": "For channel admins", "es": "Para admins de canales", "pt": "Para admins de canais", "ar": "لمشرفي القنوات", "ru": "Админам каналов", "he": "למנהלי ערוצים"}, "Relais Track : votre bilan du jour, posté tout seul dans votre canal.": {"en": "Relais Track: your daily recap, posted to your channel by itself.", "es": "Relais Track: tu resumen del día, publicado solo en tu canal.", "pt": "Relais Track: o teu resumo do dia, publicado sozinho no teu canal.", "ar": "Relais Track: ملخص يومك، يُنشر تلقائياً في قناتك.", "ru": "Relais Track: итоги дня, которые сами публикуются в вашем канале.", "he": "Relais Track: סיכום היום שלך, מתפרסם לבד בערוץ שלך."}, "Vous ajoutez le robot Relais Track à votre canal et vous le reliez à votre compte MT5. Chaque soir il poste une carte : trades du jour, RR, série en cours, pips, bilan de la semaine. Calculé depuis le compte réel, pas depuis vos messages. Vos abonnés voient des chiffres vérifiés, vous n'avez plus rien à compiler à la main.": {"en": "Add the Relais Track bot to your channel and link it to your MT5 account. Every evening it posts a card: today's trades, R, current streak, pips, the week's tally. Computed from the real account, not from your messages. Your subscribers see verified numbers; you never compile anything by hand again.", "es": "Añade el bot Relais Track a tu canal y vincúlalo a tu cuenta MT5. Cada noche publica una tarjeta: operaciones del día, R, racha, pips, balance semanal. Calculado desde la cuenta real, no desde tus mensajes. Tus suscriptores ven cifras verificadas y tú no vuelves a compilar nada a mano.", "pt": "Adiciona o bot Relais Track ao teu canal e liga-o à tua conta MT5. Todas as noites publica um cartão: trades do dia, R, sequência, pips, balanço da semana. Calculado a partir da conta real, não das tuas mensagens. Os teus subscritores veem números verificados e tu nunca mais compilas nada à mão.", "ar": "أضف بوت Relais Track إلى قناتك واربطه بحساب MT5. كل مساء ينشر بطاقة: صفقات اليوم، R، السلسلة الحالية، النقاط، حصيلة الأسبوع. محسوبة من الحساب الحقيقي لا من رسائلك. يرى مشتركوك أرقاماً موثّقة، ولا تجمع شيئاً يدوياً بعد الآن.", "ru": "Добавьте бота Relais Track в канал и привяжите к счёту MT5. Каждый вечер он публикует карточку: сделки дня, R, текущая серия, пункты, итог недели. Считается по реальному счёту, а не по вашим сообщениям. Подписчики видят проверенные цифры, вам больше ничего не нужно сводить вручную.", "he": "הוסף את הבוט Relais Track לערוץ וחבר אותו לחשבון ה-MT5. כל ערב הוא מפרסם כרטיס: עסקאות היום, R, רצף נוכחי, פיפס, סיכום שבועי. מחושב מהחשבון האמיתי, לא מההודעות שלך. המנויים רואים מספרים מאומתים, ואתה לא מרכז יותר כלום ביד."}, "Gratuit pour les admins, sans limite de durée": {"en": "Free for admins, no time limit", "es": "Gratis para admins, sin límite de tiempo", "pt": "Grátis para admins, sem limite de tempo", "ar": "مجاني للمشرفين، بلا حد زمني", "ru": "Бесплатно для админов, без ограничения срока", "he": "חינם למנהלים, ללא הגבלת זמן"}, "Passe par l'API officielle des bots Telegram : aucun compte à risque": {"en": "Uses the official Telegram Bot API: no account at risk", "es": "Usa la API oficial de bots de Telegram: ninguna cuenta en riesgo", "pt": "Usa a API oficial de bots do Telegram: nenhuma conta em risco", "ar": "يستخدم واجهة بوتات Telegram الرسمية: لا حساب في خطر", "ru": "Через официальный Bot API Telegram: ни один аккаунт не рискует", "he": "דרך ה-Bot API הרשמי של טלגרם: אף חשבון לא בסיכון"}, "Chaque carte porte votre lien Relais :": {"en": "Every card carries your Relais link:", "es": "Cada tarjeta lleva tu enlace Relais:", "pt": "Cada cartão leva o teu link Relais:", "ar": "كل بطاقة تحمل رابط Relais الخاص بك:", "ru": "На каждой карточке ваша ссылка Relais:", "he": "כל כרטיס נושא את קישור ה-Relais שלך:"}, "25 % récurrents": {"en": "25% recurring", "es": "25 % recurrente", "pt": "25% recorrente", "ar": "25٪ متكررة", "ru": "25 % регулярно", "he": "25% חוזר"}, "sur chaque abonné qui l'utilise, tant qu'il reste": {"en": "on every subscriber who uses it, for as long as they stay", "es": "por cada suscriptor que lo use, mientras siga", "pt": "por cada subscritor que o use, enquanto ficar", "ar": "على كل مشترك يستخدمه، ما دام مشتركاً", "ru": "с каждого подписчика, пока он остаётся", "he": "על כל מנוי שמשתמש, כל עוד הוא נשאר"}, "Vous choisissez ce qui s'affiche ; rien n'est publié sans votre réglage": {"en": "You choose what shows; nothing is posted without your settings", "es": "Tú eliges qué se muestra; nada se publica sin tu ajuste", "pt": "Tu escolhes o que aparece; nada é publicado sem a tua definição", "ar": "أنت تختار ما يظهر؛ لا يُنشر شيء دون إعدادك", "ru": "Вы решаете, что показывать; без ваших настроек ничего не публикуется", "he": "אתה בוחר מה מוצג; שום דבר לא מתפרסם בלי ההגדרה שלך"}, "Carte du jour (exemple)": {"en": "Daily card (example)", "es": "Tarjeta del día (ejemplo)", "pt": "Cartão do dia (exemplo)", "ar": "بطاقة اليوم (مثال)", "ru": "Карточка дня (пример)", "he": "כרטיס היום (דוגמה)"}, "Canal Or Privé · mercredi 8 oct.": {"en": "Private Gold Channel · Wed 8 Oct", "es": "Canal Oro Privado · mié. 8 oct.", "pt": "Canal Ouro Privado · qua. 8 out.", "ar": "قناة الذهب الخاصة · الأربعاء 8 أكتوبر", "ru": "Закрытый канал по золоту · ср 8 окт.", "he": "ערוץ זהב פרטי · ד' 8 אוק'"}, "RR du jour": {"en": "R today", "es": "R del día", "pt": "R do dia", "ar": "R اليوم", "ru": "R за день", "he": "R היום"}, "Semaine : 11 trades · 64 % gagnants · +6,1 R · série : 3 ✓": {"en": "Week: 11 trades · 64% winners · +6.1 R · streak: 3 ✓", "es": "Semana: 11 operaciones · 64 % ganadoras · +6,1 R · racha: 3 ✓", "pt": "Semana: 11 trades · 64% ganhos · +6,1 R · sequência: 3 ✓", "ar": "الأسبوع: 11 صفقة · 64٪ رابحة · +6.1 R · السلسلة: 3 ✓", "ru": "Неделя: 11 сделок · 64 % прибыльных · +6,1 R · серия: 3 ✓", "he": "שבוע: 11 עסקאות · 64% מנצחות · +6.1 R · רצף: 3 ✓"}, "Chiffres lus sur le compte MT5 relié · exécuté avec Relais · résultats passés, aucune garantie": {"en": "Figures read from the linked MT5 account · executed with Relais · past results, no guarantee", "es": "Cifras leídas de la cuenta MT5 vinculada · ejecutado con Relais · resultados pasados, sin garantía", "pt": "Números lidos da conta MT5 ligada · executado com Relais · resultados passados, sem garantia", "ar": "أرقام مقروءة من حساب MT5 المرتبط · نُفِّذ عبر Relais · نتائج سابقة، لا ضمان", "ru": "Цифры из привязанного счёта MT5 · исполнено через Relais · прошлые результаты, без гарантий", "he": "נתונים שנקראו מחשבון ה-MT5 המקושר · בוצע עם Relais · תוצאות עבר, ללא ערובה"}, "Un prix, tout compris.": {"en": "One price, all included.", "es": "Un precio, todo incluido.", "pt": "Um preço, tudo incluído.", "ar": "سعر واحد، كل شيء مشمول.", "ru": "Одна цена, всё включено.", "he": "מחיר אחד, הכול כלול."}, "/ mois": {"en": "/ month", "es": "/ mes", "pt": "/ mês", "ar": "/ شهر", "ru": "/ месяц", "he": "/ חודש"}, "Essai gratuit de 7 jours, sans carte": {"en": "7-day free trial, no card", "es": "7 días gratis, sin tarjeta", "pt": "7 dias grátis, sem cartão", "ar": "7 أيام مجانية، دون بطاقة", "ru": "7 дней бесплатно, без карты", "he": "7 ימי ניסיון, בלי כרטיס"}, "Relais Track offert aux admins de canaux": {"en": "Relais Track free for channel admins", "es": "Relais Track gratis para admins de canales", "pt": "Relais Track grátis para admins de canais", "ar": "Relais Track مجاني لمشرفي القنوات", "ru": "Relais Track бесплатно для админов каналов", "he": "Relais Track חינם למנהלי ערוצים"}, "Parrainage : un mois offert par filleul": {"en": "Referral: one free month per referred user", "es": "Referidos: un mes gratis por cada referido", "pt": "Indicações: um mês grátis por cada indicado", "ar": "الإحالة: شهر مجاني عن كل مُحال", "ru": "Реферал: месяц бесплатно за каждого приглашённого", "he": "הפניה: חודש חינם על כל מופנה"}, "Canaux illimités, un compte MT5": {"en": "Unlimited channels, one MT5 account", "es": "Canales ilimitados, una cuenta MT5", "pt": "Canais ilimitados, uma conta MT5", "ar": "قنوات غير محدودة، حساب MT5 واحد", "ru": "Каналы без ограничений, один счёт MT5", "he": "ערוצים ללא הגבלה, חשבון MT5 אחד"}, "Lecture IA des messages incluse": {"en": "AI message reading included", "es": "Lectura por IA incluida", "pt": "Leitura por IA incluída", "ar": "قراءة الرسائل بالذكاء الاصطناعي مشمولة", "ru": "Чтение сообщений ИИ включено", "he": "קריאת AI של ההודעות כלולה"}, "Garde-fous et journal": {"en": "Guard-rails and log", "es": "Protecciones y registro", "pt": "Proteções e registo", "ar": "ضوابط وسجل", "ru": "Ограничители и журнал", "he": "מגבלות ויומן"}, "Résiliable en un clic": {"en": "Cancel in one click", "es": "Cancelable en un clic", "pt": "Cancelável num clique", "ar": "إلغاء بنقرة واحدة", "ru": "Отмена в один клик", "he": "ביטול בקליק"}, "Rejoindre la liste d'attente": {"en": "Join the waiting list", "es": "Unirme a la lista de espera", "pt": "Entrar na lista de espera", "ar": "انضم إلى قائمة الانتظار", "ru": "В список ожидания", "he": "הצטרף לרשימת ההמתנה"}, "Votre e-mail": {"en": "Your email", "es": "Tu correo", "pt": "O teu e-mail", "ar": "بريدك الإلكتروني", "ru": "Ваш e-mail", "he": "האימייל שלך"}, "Code promo (facultatif)": {"en": "Promo code (optional)", "es": "Código promo (opcional)", "pt": "Código promo (opcional)", "ar": "رمز ترويجي (اختياري)", "ru": "Промокод (необязательно)", "he": "קוד קופון (לא חובה)"}, "Me prévenir à l'ouverture": {"en": "Notify me at launch", "es": "Avisarme en el lanzamiento", "pt": "Avisar-me no lançamento", "ar": "أبلغني عند الإطلاق", "ru": "Сообщить при запуске", "he": "עדכנו אותי בהשקה"}, "Ou écrivez-nous directement :": {"en": "Or write to us directly:", "es": "O escríbenos directamente:", "pt": "Ou escreve-nos diretamente:", "ar": "أو راسلنا مباشرة:", "ru": "Или напишите нам напрямую:", "he": "או כתבו לנו ישירות:"}, "Copier": {"en": "Copy", "es": "Copiar", "pt": "Copiar", "ar": "نسخ", "ru": "Копировать", "he": "העתק"}, "Comparaison": {"en": "Comparison", "es": "Comparación", "pt": "Comparação", "ar": "مقارنة", "ru": "Сравнение", "he": "השוואה"}, "Ce que les avis reprochent aux copieurs classiques. Et ce que fait Relais.": {"en": "What reviews hold against classic copiers. And what Relais does.", "es": "Lo que las reseñas reprochan a los copiadores clásicos. Y lo que hace Relais.", "pt": "O que as avaliações criticam nos copiadores clássicos. E o que o Relais faz.", "ar": "ما تعيبه المراجعات على الناسخات التقليدية. وما يفعله Relais.", "ru": "За что ругают обычные копировщики. И что делает Relais.", "he": "מה הביקורות מוצאות במעתיקים הקלאסיים. ומה Relais עושה."}, "Point": {"en": "Point", "es": "Punto", "pt": "Ponto", "ar": "النقطة", "ru": "Пункт", "he": "נקודה"}, "Copieurs classiques": {"en": "Classic copiers", "es": "Copiadores clásicos", "pt": "Copiadores clássicos", "ar": "الناسخات التقليدية", "ru": "Обычные копировщики", "he": "מעתיקים קלאסיים"}, "Lecture des messages": {"en": "Message reading", "es": "Lectura de mensajes", "pt": "Leitura de mensagens", "ar": "قراءة الرسائل", "ru": "Чтение сообщений", "he": "קריאת הודעות"}, "Des règles par format, à régler canal par canal": {"en": "Rules per format, set up channel by channel", "es": "Reglas por formato, configuradas canal a canal", "pt": "Regras por formato, configuradas canal a canal", "ar": "قواعد لكل تنسيق، تُضبط قناةً قناة", "ru": "Правила под каждый формат, настройка канал за каналом", "he": "כללים לכל פורמט, הגדרה ערוץ-ערוץ"}, "IA : n'importe quel format, rien à régler": {"en": "AI: any format, nothing to set up", "es": "IA: cualquier formato, nada que configurar", "pt": "IA: qualquer formato, nada a configurar", "ar": "ذكاء اصطناعي: أي تنسيق، لا إعداد", "ru": "ИИ: любой формат, ничего настраивать", "he": "AI: כל פורמט, אין מה להגדיר"}, "Règles prop firm": {"en": "Prop-firm rules", "es": "Reglas de la prop firm", "pt": "Regras da prop firm", "ar": "قواعد شركة التمويل", "ru": "Правила проп-фирмы", "he": "כללי חברת הפרופ"}, "À surveiller soi-même": {"en": "Watch them yourself", "es": "A vigilar por tu cuenta", "pt": "A vigiar por ti", "ar": "تراقبها بنفسك", "ru": "Следить самому", "he": "לעקוב לבד"}, "Garde-fous intégrés, refus expliqués": {"en": "Built-in guard-rails, refusals explained", "es": "Protecciones integradas, rechazos explicados", "pt": "Proteções integradas, recusas explicadas", "ar": "ضوابط مدمجة، رفض مُعلَّل", "ru": "Встроенные ограничители, объяснённые отказы", "he": "מגבלות מובנות, סירובים מוסברים"}, "Journal": {"en": "Log", "es": "Registro", "pt": "Registo", "ar": "السجل", "ru": "Журнал", "he": "יומן"}, "On ne sait pas ce qui a été lu ni pourquoi rien n'est parti": {"en": "No way to know what was read or why nothing fired", "es": "No se sabe qué se leyó ni por qué no salió nada", "pt": "Não se sabe o que foi lido nem porque nada saiu", "ar": "لا تعرف ما قُرئ ولا لماذا لم يُرسل شيء", "ru": "Неизвестно, что прочитано и почему ничего не отправлено", "he": "אין לדעת מה נקרא ולמה כלום לא יצא"}, "Chaque message, chaque décision, chaque raison": {"en": "Every message, every decision, every reason", "es": "Cada mensaje, cada decisión, cada motivo", "pt": "Cada mensagem, cada decisão, cada motivo", "ar": "كل رسالة، كل قرار، كل سبب", "ru": "Каждое сообщение, решение и причина", "he": "כל הודעה, כל החלטה, כל סיבה"}, "Frais cachés": {"en": "Hidden fees", "es": "Costes ocultos", "pt": "Custos escondidos", "ar": "رسوم خفية", "ru": "Скрытые платежи", "he": "עלויות נסתרות"}, "Abonnement tiers à payer en plus pour relier MT5": {"en": "Extra third-party subscription to connect MT5", "es": "Suscripción de terceros extra para conectar MT5", "pt": "Subscrição extra de terceiros para ligar o MT5", "ar": "اشتراك خارجي إضافي لربط MT5", "ru": "Доп. подписка на сторонний сервис для связи с MT5", "he": "מנוי צד שלישי נוסף לחיבור MT5"}, "Un prix, tout compris": {"en": "One price, all included", "es": "Un precio, todo incluido", "pt": "Um preço, tudo incluído", "ar": "سعر واحد شامل", "ru": "Одна цена, всё включено", "he": "מחיר אחד, הכול כלול"}, "Licence « à vie »": {"en": "“Lifetime” licence", "es": "Licencia «de por vida»", "pt": "Licença «vitalícia»", "ar": "ترخيص «مدى الحياة»", "ru": "«Пожизненная» лицензия", "he": "רישיון «לכל החיים»"}, "Parfois coupée sans préavis": {"en": "Sometimes cut without notice", "es": "A veces cortada sin aviso", "pt": "Às vezes cortada sem aviso", "ar": "تُقطع أحياناً دون إشعار", "ru": "Иногда отключают без предупреждения", "he": "לפעמים מנותק בלי התראה"}, "Pas de licence à vie : un abonnement résiliable en un clic": {"en": "No lifetime licence: a subscription you cancel in one click", "es": "Sin licencia de por vida: una suscripción cancelable en un clic", "pt": "Sem licença vitalícia: uma subscrição cancelável num clique", "ar": "لا ترخيص مدى الحياة: اشتراك تلغيه بنقرة", "ru": "Без пожизненной лицензии: подписка, отменяемая в один клик", "he": "בלי רישיון לכל החיים: מנוי שמבטלים בקליק"}, "Vos identifiants": {"en": "Your credentials", "es": "Tus credenciales", "pt": "As tuas credenciais", "ar": "بيانات دخولك", "ru": "Ваши учётные данные", "he": "פרטי ההתחברות שלך"}, "Souvent confiés à un serveur tiers": {"en": "Often handed to a third-party server", "es": "A menudo confiadas a un servidor de terceros", "pt": "Muitas vezes entregues a um servidor de terceiros", "ar": "غالباً تُسلَّم لخادم خارجي", "ru": "Часто передаются на сторонний сервер", "he": "לעיתים קרובות נמסרים לשרת צד שלישי"}, "Restent sur votre machine": {"en": "Stay on your machine", "es": "Se quedan en tu máquina", "pt": "Ficam na tua máquina", "ar": "تبقى على جهازك", "ru": "Остаются на вашей машине", "he": "נשארים במחשב שלך"}, "Colonne « copieurs classiques » : reproches relevés dans les avis publics (Trustpilot, forums) en 2025-2026, sans viser un produit en particulier.": {"en": "“Classic copiers” column: complaints collected from public reviews (Trustpilot, forums) in 2025-2026, not aimed at any one product.", "es": "Columna «copiadores clásicos»: quejas recogidas en reseñas públicas (Trustpilot, foros) en 2025-2026, sin señalar a ningún producto.", "pt": "Coluna «copiadores clássicos»: queixas recolhidas em avaliações públicas (Trustpilot, fóruns) em 2025-2026, sem visar nenhum produto.", "ar": "عمود «الناسخات التقليدية»: شكاوى مأخوذة من مراجعات عامة (Trustpilot، منتديات) في 2025-2026، دون استهداف منتج بعينه.", "ru": "Колонка «обычные копировщики»: претензии из публичных отзывов (Trustpilot, форумы) 2025-2026, без привязки к конкретному продукту.", "he": "עמודת «מעתיקים קלאסיים»: תלונות שנאספו מביקורות ציבוריות (Trustpilot, פורומים) ב-2025-2026, בלי לכוון למוצר מסוים."}, "Questions": {"en": "Questions", "es": "Preguntas", "pt": "Perguntas", "ar": "أسئلة", "ru": "Вопросы", "he": "שאלות"}, "Ce qu'on nous demande.": {"en": "What people ask us.", "es": "Lo que nos preguntan.", "pt": "O que nos perguntam.", "ar": "ما يسألنا الناس عنه.", "ru": "О чём нас спрашивают.", "he": "מה שואלים אותנו."}, "Est-ce que Relais fournit des signaux ?": {"en": "Does Relais provide signals?", "es": "¿Relais proporciona señales?", "pt": "O Relais fornece sinais?", "ar": "هل يقدّم Relais إشارات؟", "ru": "Даёт ли Relais сигналы?", "he": "האם Relais מספק איתותים?"}, "Non. Relais est un logiciel : il exécute, sur votre compte, les ordres des canaux que vous avez choisis vous-même. Nous ne recommandons aucun canal et nous ne promettons aucun résultat.": {"en": "No. Relais is software: it executes, on your account, the orders of channels you picked yourself. We recommend no channel and promise no result.", "es": "No. Relais es un software: ejecuta, en tu cuenta, las órdenes de los canales que tú mismo elegiste. No recomendamos ningún canal ni prometemos ningún resultado.", "pt": "Não. O Relais é um software: executa, na tua conta, as ordens dos canais que tu próprio escolheste. Não recomendamos nenhum canal nem prometemos resultados.", "ar": "لا. Relais برنامج: ينفّذ على حسابك أوامر القنوات التي اخترتها بنفسك. لا نوصي بأي قناة ولا نعد بأي نتيجة.", "ru": "Нет. Relais — программа: она исполняет на вашем счёте ордера каналов, которые вы выбрали сами. Мы не рекомендуем каналы и не обещаем результатов.", "he": "לא. Relais הוא תוכנה: הוא מבצע בחשבון שלך פקודות מערוצים שבחרת בעצמך. אנחנו לא ממליצים על ערוץ ולא מבטיחים תוצאה."}, "Ma prop firm autorise-t-elle les copieurs ?": {"en": "Does my prop firm allow copiers?", "es": "¿Mi prop firm permite copiadores?", "pt": "A minha prop firm permite copiadores?", "ar": "هل تسمح شركة التمويل بالناسخات؟", "ru": "Разрешает ли моя проп-фирма копировщики?", "he": "האם חברת הפרופ שלי מאפשרת מעתיקים?"}, "La plupart autorisent un robot sur votre propre compte, mais interdisent la copie entre personnes et le trading à haute fréquence. Lisez les règles de votre firme ; Relais ne les contourne pas, il vous aide à les respecter.": {"en": "Most allow a robot on your own account but ban copying between people and high-frequency trading; some explicitly ban Telegram-driven EAs. Read your firm's rules; Relais does not bypass them, it helps you keep them.", "es": "La mayoría permite un robot en tu propia cuenta, pero prohíbe copiar entre personas y el trading de alta frecuencia; algunas prohíben expresamente los EA basados en Telegram. Lee las reglas de tu firma; Relais no las elude, te ayuda a cumplirlas.", "pt": "A maioria permite um robô na tua própria conta, mas proíbe copiar entre pessoas e trading de alta frequência; algumas proíbem expressamente EAs baseados em Telegram. Lê as regras da tua firma; o Relais não as contorna, ajuda-te a cumpri-las.", "ar": "معظمها يسمح بروبوت على حسابك الخاص لكنه يمنع النسخ بين الأشخاص والتداول عالي التردد؛ وبعضها يمنع صراحةً الـEA المعتمدة على Telegram. اقرأ قواعد شركتك؛ Relais لا يتحايل عليها بل يساعدك على الالتزام بها.", "ru": "Большинство разрешают робота на вашем собственном счёте, но запрещают копирование между людьми и высокочастотную торговлю; некоторые прямо запрещают EA на базе Telegram. Читайте правила своей фирмы; Relais их не обходит, а помогает соблюдать.", "he": "רובן מאפשרות רובוט בחשבון שלך אבל אוסרות העתקה בין אנשים ומסחר בתדירות גבוהה; חלקן אוסרות במפורש EA מבוסס טלגרם. קרא את כללי החברה שלך; Relais לא עוקף אותם, הוא עוזר לך לעמוד בהם."}, "Que se passe-t-il si le message est ambigu ?": {"en": "What happens if the message is ambiguous?", "es": "¿Qué pasa si el mensaje es ambiguo?", "pt": "O que acontece se a mensagem for ambígua?", "ar": "ماذا يحدث إذا كانت الرسالة غامضة؟", "ru": "Что, если сообщение неоднозначно?", "he": "מה קורה אם ההודעה דו-משמעית?"}, "Rien. Si la lecture n'atteint pas le niveau de confiance que vous avez fixé, l'ordre n'est pas passé et le message est écrit dans le journal avec la raison.": {"en": "Nothing. If the reading does not reach the confidence level you set, no order is placed and the message is logged with the reason.", "es": "Nada. Si la lectura no alcanza el nivel de confianza que fijaste, no se coloca la orden y el mensaje queda en el registro con el motivo.", "pt": "Nada. Se a leitura não atingir o nível de confiança que definiste, nenhuma ordem é colocada e a mensagem fica no registo com o motivo.", "ar": "لا شيء. إذا لم تبلغ القراءة مستوى الثقة الذي حدّدته، لا يُرسل أمر وتُسجَّل الرسالة مع السبب.", "ru": "Ничего. Если уверенность чтения ниже заданного вами порога, ордер не выставляется, а сообщение записывается в журнал с причиной.", "he": "כלום. אם הקריאה לא מגיעה לרמת הביטחון שקבעת, לא מבוצעת פקודה וההודעה נרשמת ביומן עם הסיבה."}, "Mes identifiants Telegram et MT5 passent-ils par vous ?": {"en": "Do my Telegram and MT5 credentials go through you?", "es": "¿Mis credenciales de Telegram y MT5 pasan por vosotros?", "pt": "As minhas credenciais de Telegram e MT5 passam por vocês?", "ar": "هل تمر بيانات دخولي إلى Telegram وMT5 عبركم؟", "ru": "Проходят ли мои данные Telegram и MT5 через вас?", "he": "האם פרטי הטלגרם וה-MT5 שלי עוברים דרככם?"}, "Non. Vous vous connectez vous-même sur votre machine. Relais n'envoie que le texte des messages à lire, jamais vos identifiants.": {"en": "No. You log in yourself on your machine. Relais only sends the text of messages to be read, never your credentials.", "es": "No. Inicias sesión tú mismo en tu máquina. Relais solo envía el texto de los mensajes a leer, nunca tus credenciales.", "pt": "Não. Fazes login tu mesmo na tua máquina. O Relais só envia o texto das mensagens a ler, nunca as tuas credenciais.", "ar": "لا. تسجّل الدخول بنفسك على جهازك. لا يرسل Relais سوى نص الرسائل لقراءتها، وليس بيانات دخولك أبداً.", "ru": "Нет. Вы входите сами на своей машине. Relais отправляет только текст сообщений для чтения, никогда ваши данные.", "he": "לא. אתה מתחבר בעצמך במחשב שלך. Relais שולח רק את טקסט ההודעות לקריאה, לעולם לא את פרטי ההתחברות."}, "Quels marchés ?": {"en": "Which markets?", "es": "¿Qué mercados?", "pt": "Que mercados?", "ar": "أي أسواق؟", "ru": "Какие рынки?", "he": "אילו שווקים?"}, "Tout ce que votre courtier MT5 propose : or, forex, indices, crypto. Les noms de symboles s'adaptent à votre courtier.": {"en": "Anything your MT5 broker offers: gold, forex, indices, crypto. Symbol names adapt to your broker.", "es": "Todo lo que ofrezca tu bróker MT5: oro, forex, índices, cripto. Los símbolos se adaptan a tu bróker.", "pt": "Tudo o que o teu broker MT5 oferecer: ouro, forex, índices, cripto. Os símbolos adaptam-se ao teu broker.", "ar": "كل ما يقدّمه وسيطك على MT5: الذهب، الفوركس، المؤشرات، العملات الرقمية. تتكيّف أسماء الرموز مع وسيطك.", "ru": "Всё, что даёт ваш брокер MT5: золото, форекс, индексы, крипто. Названия символов подстраиваются под брокера.", "he": "כל מה שהברוקר MT5 שלך מציע: זהב, פורקס, מדדים, קריפטו. שמות הסימבולים מותאמים לברוקר."}, "Relais · logiciel d'exécution, pas un service de conseil en investissement.": {"en": "Relais · execution software, not investment advice.", "es": "Relais · software de ejecución, no asesoramiento de inversión.", "pt": "Relais · software de execução, não aconselhamento de investimento.", "ar": "Relais · برنامج تنفيذ، وليس خدمة استشارات استثمارية.", "ru": "Relais · программа исполнения, не инвестиционная консультация.", "he": "Relais · תוכנת ביצוע, לא ייעוץ השקעות."}, "Le trading comporte un risque de perte en capital.": {"en": "Trading carries a risk of capital loss.", "es": "Operar conlleva riesgo de pérdida de capital.", "pt": "Negociar implica risco de perda de capital.", "ar": "ينطوي التداول على مخاطر خسارة رأس المال.", "ru": "Торговля сопряжена с риском потери капитала.", "he": "מסחר כרוך בסיכון להפסד הון."}, "vous@exemple.fr": {"en": "you@example.com", "es": "tu@ejemplo.es", "pt": "tu@exemplo.pt", "ar": "you@example.com", "ru": "you@example.com", "he": "you@example.com"}, "ex. LANCEMENT": {"en": "e.g. LAUNCH", "es": "ej. LAUNCH", "pt": "ex. LAUNCH", "ar": "مثال: LAUNCH", "ru": "напр. LAUNCH", "he": "למשל LAUNCH"}, "39 €": {"en": "$45", "es": "39 €", "pt": "39 €", "ar": "$45", "ru": "$45", "he": "$45"}, "Prix de lancement, garanti à vie si vous vous inscrivez avant le 1er janvier 2027. Ensuite : 59 € par mois.": {"en": "Launch price, locked for life if you sign up before 1 January 2027. After that: $69 per month.", "es": "Precio de lanzamiento, garantizado de por vida si te inscribes antes del 1 de enero de 2027. Después: 59 € al mes.", "pt": "Preço de lançamento, garantido para sempre se te inscreveres antes de 1 de janeiro de 2027. Depois: 59 € por mês.", "ar": "سعر الإطلاق، مضمون مدى الحياة إذا سجّلت قبل 1 يناير 2027. بعدها: 69$ شهرياً.", "ru": "Стартовая цена, закрепляется навсегда при регистрации до 1 января 2027. Потом: $69 в месяц.", "he": "מחיר השקה, מובטח לכל החיים אם נרשמים לפני 1 בינואר 2027. אחר כך: $69 לחודש."}, "Inscrits avant le 1er janvier : 39 € par mois à vie.": {"en": "Sign up before 1 January: $45 a month for life.", "es": "Inscritos antes del 1 de enero: 39 € al mes de por vida.", "pt": "Inscritos antes de 1 de janeiro: 39 € por mês para sempre.", "ar": "المسجّلون قبل 1 يناير: 45$ شهرياً مدى الحياة.", "ru": "Регистрация до 1 января: $45 в месяц навсегда.", "he": "נרשמים לפני 1 בינואר: $45 לחודש לכל החיים."}, "Contact": {"en": "Contact", "es": "Contacto", "pt": "Contacto", "ar": "اتصل بنا", "ru": "Контакты", "he": "צור קשר"}, "Une question ? Un humain répond, en direct.": {"en": "A question? A human answers, live.", "es": "¿Una pregunta? Una persona responde, en directo.", "pt": "Uma pergunta? Uma pessoa responde, em direto.", "ar": "سؤال؟ إنسان يجيبك مباشرة.", "ru": "Вопрос? Отвечает живой человек, сразу.", "he": "שאלה? בן אדם עונה, בזמן אמת."}, "Le plus rapide : on répond depuis le téléphone, en général dans l'heure.": {"en": "Fastest: we answer from the phone, usually within the hour.", "es": "Lo más rápido: respondemos desde el móvil, normalmente en menos de una hora.", "pt": "O mais rápido: respondemos do telemóvel, normalmente dentro de uma hora.", "ar": "الأسرع: نرد من الهاتف، عادةً خلال ساعة.", "ru": "Быстрее всего: отвечаем с телефона, обычно в течение часа.", "he": "הכי מהיר: עונים מהטלפון, בדרך כלל תוך שעה."}, "E-mail": {"en": "Email", "es": "Correo", "pt": "E-mail", "ar": "البريد الإلكتروني", "ru": "E-mail", "he": "אימייל"}, "Pour les questions longues, les factures, les partenariats.": {"en": "For long questions, invoices, partnerships.", "es": "Para preguntas largas, facturas, colaboraciones.", "pt": "Para perguntas longas, faturas, parcerias.", "ar": "للأسئلة الطويلة والفواتير والشراكات.", "ru": "Для длинных вопросов, счетов, партнёрств.", "he": "לשאלות ארוכות, חשבוניות, שותפויות."}, "Essai, puis on en parle": {"en": "Try it, then let's talk", "es": "Pruébalo y hablamos", "pt": "Experimenta e depois falamos", "ar": "جرّب ثم نتحدث", "ru": "Попробуйте, потом обсудим", "he": "נסה, ואז נדבר"}, "Installez, lancez en mode observation, et envoyez-nous votre journal : on le lit avec vous et on règle les garde-fous ensemble.": {"en": "Install, run in observation mode, and send us your log: we read it with you and tune the guard-rails together.", "es": "Instala, lánzalo en modo observación y envíanos tu registro: lo leemos contigo y ajustamos las protecciones juntos.", "pt": "Instala, corre em modo observação e envia-nos o teu registo: lemo-lo contigo e afinamos as proteções juntos.", "ar": "ثبّت، شغّل وضع المراقبة، وأرسل لنا سجلك: نقرأه معك ونضبط الضوابط سوياً.", "ru": "Установите, запустите в режиме наблюдения и пришлите журнал: разберём его вместе и настроим ограничители.", "he": "התקן, הרץ במצב תצפית ושלח לנו את היומן: נקרא אותו איתך ונכוון את המגבלות יחד."}, "Parler à quelqu'un": {"en": "Talk to someone", "es": "Hablar con alguien", "pt": "Falar com alguém", "ar": "تحدّث مع شخص", "ru": "Написать человеку", "he": "לדבר עם מישהו"}, "Discuter sur Telegram": {"en": "Chat on Telegram", "es": "Chatear por Telegram", "pt": "Conversar no Telegram", "ar": "الدردشة على Telegram", "ru": "Написать в Telegram", "he": "לשוחח בטלגרם"}, "En direct · compte démo": {"en": "Live · demo account", "es": "En directo · cuenta demo", "pt": "Ao vivo · conta demo", "ar": "مباشر · حساب تجريبي", "ru": "В прямом эфире · демо-счёт", "he": "בשידור חי · חשבון דמו"}, "Messages lus aujourd'hui": {"en": "Messages read today", "es": "Mensajes leídos hoy", "pt": "Mensagens lidas hoje", "ar": "رسائل مقروءة اليوم", "ru": "Сообщений прочитано сегодня", "he": "הודעות שנקראו היום"}, "Ordres exécutés": {"en": "Orders executed", "es": "Órdenes ejecutadas", "pt": "Ordens executadas", "ar": "أوامر منفّذة", "ru": "Ордеров исполнено", "he": "פקודות שבוצעו"}, "Refusés par les garde-fous": {"en": "Refused by guard-rails", "es": "Rechazados por las protecciones", "pt": "Recusados pelas proteções", "ar": "مرفوضة بالضوابط", "ru": "Отклонено ограничителями", "he": "נדחו על ידי המגבלות"}, "Canaux suivis": {"en": "Channels followed", "es": "Canales seguidos", "pt": "Canais seguidos", "ar": "قنوات متابَعة", "ru": "Каналов отслеживается", "he": "ערוצים במעקב"}, "Dernier message": {"en": "Last message", "es": "Último mensaje", "pt": "Última mensagem", "ar": "آخر رسالة", "ru": "Последнее сообщение", "he": "הודעה אחרונה"}, "Compte de démonstration : solde fictif, exécution réelle sur un courtier démo. Ce bandeau montre comment Relais tourne, pas un résultat de trading.": {"en": "Demo account: fictitious balance, real execution on a demo broker. This strip shows how Relais runs, not a trading result.", "es": "Cuenta de demostración: saldo ficticio, ejecución real en un bróker demo. Esta banda muestra cómo funciona Relais, no un resultado de trading.", "pt": "Conta de demonstração: saldo fictício, execução real num broker demo. Esta faixa mostra como o Relais corre, não um resultado de trading.", "ar": "حساب تجريبي: رصيد وهمي، تنفيذ حقيقي لدى وسيط تجريبي. يعرض هذا الشريط كيف يعمل Relais، وليس نتيجة تداول.", "ru": "Демо-счёт: условный баланс, реальное исполнение у демо-брокера. Эта полоса показывает, как работает Relais, а не торговый результат.", "he": "חשבון דמו: יתרה פיקטיבית, ביצוע אמיתי אצל ברוקר דמו. הפס הזה מראה איך Relais רץ, לא תוצאת מסחר."}, "Mensuel": {"en": "Monthly", "es": "Mensual", "pt": "Mensal", "ar": "شهري", "ru": "Помесячно", "he": "חודשי"}, "Annuel · 2 mois offerts": {"en": "Yearly · 2 months free", "es": "Anual · 2 meses gratis", "pt": "Anual · 2 meses grátis", "ar": "سنوي · شهران مجاناً", "ru": "Годовой · 2 месяца бесплатно", "he": "שנתי · חודשיים חינם"}, "390 €": {"en": "$450", "es": "390 €", "pt": "390 €", "ar": "$450", "ru": "$450", "he": "$450"}, "/ an": {"en": "/ year", "es": "/ año", "pt": "/ ano", "ar": "/ سنة", "ru": "/ год", "he": "/ שנה"}, "Scénario": {"en": "Scenario", "es": "Escenario", "pt": "Cenário", "ar": "سيناريو", "ru": "Сценарий", "he": "תרחיש"}, "Du message au marché, en moins d'une seconde.": {"en": "From message to market, in under a second.", "es": "Del mensaje al mercado, en menos de un segundo.", "pt": "Da mensagem ao mercado, em menos de um segundo.", "ar": "من الرسالة إلى السوق في أقل من ثانية.", "ru": "От сообщения до рынка меньше чем за секунду.", "he": "מההודעה לשוק, בפחות משנייה."}, "Scénario rejoué en boucle à partir de vrais messages ; le graphique est simulé.": {"en": "Scenario replayed in a loop from real messages; the chart is simulated.", "es": "Escenario repetido en bucle a partir de mensajes reales; el gráfico es simulado.", "pt": "Cenário repetido em ciclo a partir de mensagens reais; o gráfico é simulado.", "ar": "سيناريو يُعاد في حلقة من رسائل حقيقية؛ الرسم البياني محاكاة.", "ru": "Сценарий повторяется по кругу на реальных сообщениях; график смоделирован.", "he": "תרחיש שמתנגן בלולאה מהודעות אמיתיות; הגרף מדומה."}, "Canal Or Privé": {"en": "Private Gold Channel", "es": "Canal Oro Privado", "pt": "Canal Ouro Privado", "ar": "قناة الذهب الخاصة", "ru": "Закрытый канал по золоту", "he": "ערוץ זהב פרטי"}, "1 248 abonnés": {"en": "1,248 subscribers", "es": "1.248 suscriptores", "pt": "1.248 subscritores", "ar": "1248 مشتركاً", "ru": "1 248 подписчиков", "he": "1,248 מנויים"}, "Compte démo": {"en": "Demo account", "es": "Cuenta demo", "pt": "Conta demo", "ar": "حساب تجريبي", "ru": "Демо-счёт", "he": "חשבון דמו"}, "Exemple normal": {"en": "Normal example", "es": "Ejemplo normal", "pt": "Exemplo normal", "ar": "مثال عادي", "ru": "Обычный пример", "he": "דוגמה רגילה"}, "Garde-fou qui bloque": {"en": "Guard-rail blocking", "es": "Protección que bloquea", "pt": "Proteção que bloqueia", "ar": "ضابط يمنع", "ru": "Ограничитель блокирует", "he": "מגבלה שחוסמת"}, "Gestion de position": {"en": "Position management", "es": "Gestión de la posición", "pt": "Gestão da posição", "ar": "إدارة الصفقة", "ru": "Управление позицией", "he": "ניהול פוזיציה"}, "Risque par trade": {"en": "Risk per trade", "es": "Riesgo por operación", "pt": "Risco por trade", "ar": "المخاطرة لكل صفقة", "ru": "Риск на сделку", "he": "סיכון לעסקה"}, "le lot est calculé depuis la distance du stop": {"en": "lot size is computed from the stop distance", "es": "el lote se calcula a partir de la distancia del stop", "pt": "o lote é calculado a partir da distância do stop", "ar": "يُحسب حجم العقد من مسافة الستوب", "ru": "лот считается по расстоянию до стопа", "he": "גודל הלוט מחושב ממרחק הסטופ"}, "Le lot se calcule tout seul": {"en": "Lot size works itself out", "es": "El lote se calcula solo", "pt": "O lote calcula-se sozinho", "ar": "حجم العقد يُحسب تلقائياً", "ru": "Лот считается сам", "he": "הלוט מחושב לבד"}, "Vous fixez un risque par trade, par exemple 1 % du compte. À chaque signal, Relais mesure la distance du stop et en déduit le lot : un stop serré donne un lot plus gros, un stop large un lot plus petit. Même perte maximale à chaque fois.": {"en": "You set a risk per trade, say 1% of the account. On every signal, Relais measures the stop distance and derives the lot: a tight stop gives a bigger lot, a wide stop a smaller one. Same maximum loss every time.", "es": "Fijas un riesgo por operación, por ejemplo el 1 % de la cuenta. En cada señal, Relais mide la distancia del stop y deduce el lote: un stop ajustado da un lote mayor, un stop amplio uno menor. La misma pérdida máxima cada vez.", "pt": "Defines um risco por trade, por exemplo 1% da conta. A cada sinal, o Relais mede a distância do stop e deduz o lote: um stop curto dá um lote maior, um stop largo um lote menor. A mesma perda máxima de cada vez.", "ar": "تحدد مخاطرة لكل صفقة، مثلاً 1٪ من الحساب. مع كل إشارة يقيس Relais مسافة الستوب ويستنتج حجم العقد: ستوب ضيق يعطي عقداً أكبر، وستوب واسع عقداً أصغر. نفس الخسارة القصوى في كل مرة.", "ru": "Вы задаёте риск на сделку, например 1 % счёта. На каждом сигнале Relais измеряет расстояние до стопа и выводит лот: узкий стоп даёт больший лот, широкий — меньший. Максимальный убыток всегда один и тот же.", "he": "אתה קובע סיכון לעסקה, למשל 1% מהחשבון. בכל איתות Relais מודד את מרחק הסטופ וגוזר ממנו את הלוט: סטופ צמוד נותן לוט גדול יותר, סטופ רחב לוט קטן יותר. אותו הפסד מקסימלי בכל פעם."}, "lot = 1 % du compte / 20 pips de stop": {"en": "lot = 1% of account / 20-pip stop", "es": "lote = 1 % de la cuenta / stop de 20 pips", "pt": "lote = 1% da conta / stop de 20 pips", "ar": "العقد = 1٪ من الحساب / ستوب 20 نقطة", "ru": "лот = 1 % счёта / стоп 20 пунктов", "he": "לוט = 1% מהחשבון / סטופ 20 פיפס"}, "TP1, TP2, TP3 touchés": {"en": "TP1, TP2, TP3 hit", "es": "TP1, TP2, TP3 alcanzados", "pt": "TP1, TP2, TP3 atingidos", "ar": "تحقق TP1 وTP2 وTP3", "ru": "TP1, TP2, TP3 достигнуты", "he": "TP1, TP2, TP3 הושגו"}, "Calculateur de lot": {"en": "Lot calculator", "es": "Calculadora de lote", "pt": "Calculadora de lote", "ar": "حاسبة حجم العقد", "ru": "Калькулятор лота", "he": "מחשבון לוט"}, "Votre lot, calculé depuis votre risque": {"en": "Your lot, computed from your risk", "es": "Tu lote, calculado desde tu riesgo", "pt": "O teu lote, calculado a partir do teu risco", "ar": "حجم عقدك محسوب من مخاطرتك", "ru": "Ваш лот, рассчитанный из риска", "he": "הלוט שלך, מחושב מהסיכון"}, "Capital": {"en": "Capital", "es": "Capital", "pt": "Capital", "ar": "رأس المال", "ru": "Капитал", "he": "הון"}, "Risque par trade (%)": {"en": "Risk per trade (%)", "es": "Riesgo por operación (%)", "pt": "Risco por trade (%)", "ar": "المخاطرة لكل صفقة (٪)", "ru": "Риск на сделку (%)", "he": "סיכון לעסקה (%)"}, "Stop (pips)": {"en": "Stop (pips)", "es": "Stop (pips)", "pt": "Stop (pips)", "ar": "الستوب (نقاط)", "ru": "Стоп (пункты)", "he": "סטופ (פיפס)"}, "Or (XAUUSD) : 1 pip = 0,10 $ ; 1 lot = 100 onces, soit 10 $ par pip.": {"en": "Gold (XAUUSD): 1 pip = $0.10; 1 lot = 100 oz, i.e. $10 per pip.", "es": "Oro (XAUUSD): 1 pip = 0,10 $; 1 lote = 100 onzas, es decir 10 $ por pip.", "pt": "Ouro (XAUUSD): 1 pip = 0,10 $; 1 lote = 100 onças, ou seja 10 $ por pip.", "ar": "الذهب (XAUUSD): النقطة = 0.10$؛ العقد = 100 أونصة أي 10$ لكل نقطة.", "ru": "Золото (XAUUSD): 1 пункт = $0,10; 1 лот = 100 унций, то есть $10 за пункт.", "he": "זהב (XAUUSD): פיפ = $0.10; לוט = 100 אונקיות, כלומר $10 לפיפ."}, "Résultat": {"en": "Result", "es": "Resultado", "pt": "Resultado", "ar": "النتيجة", "ru": "Результат", "he": "תוצאה"}, "C'est le calcul que Relais fait à chaque signal : votre perte maximale reste la même, quelle que soit la distance du stop.": {"en": "This is the calculation Relais does on every signal: your maximum loss stays the same whatever the stop distance.", "es": "Es el cálculo que Relais hace en cada señal: tu pérdida máxima es la misma sea cual sea la distancia del stop.", "pt": "É o cálculo que o Relais faz em cada sinal: a tua perda máxima fica igual, seja qual for a distância do stop.", "ar": "هذا ما يحسبه Relais مع كل إشارة: خسارتك القصوى تبقى نفسها مهما كانت مسافة الستوب.", "ru": "Этот расчёт Relais делает на каждом сигнале: максимальный убыток один и тот же при любом расстоянии до стопа.", "he": "זה החישוב ש-Relais עושה בכל איתות: ההפסד המקסימלי שלך נשאר זהה בכל מרחק סטופ."}, "Des garde-fous adaptés à votre plan de trading. Réglez-les une fois, Relais les tient à votre place.": {"en": "Guard-rails that fit your trading plan. Set them once, Relais holds them for you.", "es": "Protecciones adaptadas a tu plan de trading. Fíjalas una vez, Relais las mantiene por ti.", "pt": "Proteções adaptadas ao teu plano de trading. Define-as uma vez, o Relais mantém-nas por ti.", "ar": "ضوابط تناسب خطة تداولك. اضبطها مرة واحدة وRelais يلتزم بها عنك.", "ru": "Ограничители под ваш торговый план. Задайте один раз, Relais будет их держать.", "he": "מגבלות שמתאימות לתוכנית המסחר שלך. קבע פעם אחת, Relais שומר עליהן."}, "BE, prenez TP1, clôturez 50 %": {"en": "BE, take TP1, close 50%", "es": "BE, tomar TP1, cerrar 50 %", "pt": "BE, tomar TP1, fechar 50%", "ar": "BE، خذ TP1، أغلق 50٪", "ru": "BE, взять TP1, закрыть 50 %", "he": "BE, קח TP1, סגור 50%"}};
+  var norm=function(t){return t.replace(/\s+/g,' ').trim()};
+  var nodes=[];(function walk(n){if(n.nodeType===3){var k=norm(n.nodeValue);if(k&&D[k])nodes.push({n:n,k:k,orig:n.nodeValue})}else if(n.nodeType===1&&n.tagName!=='SCRIPT'&&n.tagName!=='STYLE'&&n.id!=='tape'&&n.id!=='fields'&&n.id!=='verdict'){for(var c=n.firstChild;c;c=c.nextSibling)walk(c)}})(document.body);
+  var attrs=[];document.querySelectorAll('[placeholder],[aria-label]').forEach(function(el){['placeholder','aria-label'].forEach(function(a){var v=el.getAttribute(a);if(v&&D[norm(v)])attrs.push({el:el,a:a,k:norm(v)})})});
+  var codesBy={fr:{LANCEMENT:'1er mois à 9 €',ADMIN:'3 mois à 9 € pour les admins de canaux'},en:{LAUNCH:'first month at $9',ADMIN:'3 months at $9 for channel admins'}};
+  function apply(l){
+    document.documentElement.lang=l;document.documentElement.dir=(l==='ar'||l==='he')?'rtl':'ltr';
+    nodes.forEach(function(x){var t=l==='fr'?x.k:(D[x.k][l]||D[x.k].en||x.k);x.n.nodeValue=x.orig.replace(norm(x.orig),t)});
+    attrs.forEach(function(x){x.el.setAttribute(x.a,l==='fr'?x.k:(D[x.k][l]||D[x.k].en||x.k))});
+    try{localStorage.setItem('relais-lang',l)}catch(e){}
+    var sel=document.getElementById('lang');if(sel.value!==l)sel.value=l;
+    window.RELAIS_LANG=l;window.dispatchEvent(new Event('relais-lang'));
+  }
+  var l='fr';try{l=localStorage.getItem('relais-lang')||''}catch(e){}
+  if(!l){var nl=(navigator.language||'fr').slice(0,2).toLowerCase();l=['fr','en','es','pt','ar','ru','he'].indexOf(nl)>=0?nl:'en'}
+  document.getElementById('lang').addEventListener('change',function(){apply(this.value)});
+  apply(l);
+})();
+
+
+
+/* ---------- Sky: drifting message bubbles + aurora blobs + flow particles ---------- */
+(function(){
+  var c=document.getElementById('sky'),x=c.getContext('2d'),W,H,DPR=Math.min(devicePixelRatio||1,2);
+  var msgs=demo().sky;window.addEventListener('relais-lang',function(){msgs=demo().sky;bubbles.forEach(function(b,i){b.t=msgs[i%msgs.length]})});
+  var bubbles=[],parts=[],blobs=[{x:.15,y:.25,r:.45,c:[139,92,246]},{x:.85,y:.2,r:.4,c:[34,211,238]},{x:.6,y:.85,r:.5,c:[244,114,182]}];
+  function size(){W=innerWidth;H=innerHeight;c.width=W*DPR;c.height=H*DPR;c.style.width=W+'px';c.style.height=H+'px';x.setTransform(DPR,0,0,DPR,0,0)}
+  function mk(i){return{t:msgs[i%msgs.length],x:Math.random()*W,y:Math.random()*H,vx:-(.12+Math.random()*.25),vy:(Math.random()-.5)*.08,a:.16+Math.random()*.22,s:.78+Math.random()*.3,hue:[ [34,211,238],[139,92,246],[244,114,182],[251,191,36] ][i%4]}}
+  size();addEventListener('resize',size);
+  var N=W<700?9:16;for(var i=0;i<N;i++)bubbles.push(mk(i));
+  for(var j=0;j<(W<700?20:45);j++)parts.push({p:Math.random(),y:Math.random(),sp:.0008+Math.random()*.0016,sz:1+Math.random()*2});
+  var t=0;
+  function draw(){
+    t+=1;x.clearRect(0,0,W,H);
+    // aurora blobs
+    blobs.forEach(function(b,i){var bx=(b.x+Math.sin(t/600+i)*.06)*W,by=(b.y+Math.cos(t/700+i*2)*.06)*H,r=b.r*Math.max(W,H);var g=x.createRadialGradient(bx,by,0,bx,by,r);g.addColorStop(0,'rgba('+b.c+',.22)');g.addColorStop(1,'rgba('+b.c+',0)');x.fillStyle=g;x.fillRect(0,0,W,H)});
+    // flow particles left->right on a gentle curve
+    x.save();parts.forEach(function(p){p.p+=p.sp;if(p.p>1)p.p=0;var px=p.p*W,py=H*(.35+p.y*.4)+Math.sin(p.p*6+p.y*10)*18;x.fillStyle='rgba(34,211,238,'+(0.15+0.5*Math.sin(p.p*Math.PI))+')';x.beginPath();x.arc(px,py,p.sz,0,6.283);x.fill()});x.restore();
+    // bubbles
+    x.font='500 13px "JetBrains Mono", monospace';
+    bubbles.forEach(function(b){b.x+=b.vx;b.y+=b.vy;if(b.x<-320){b.x=W+40;b.y=Math.random()*H}
+      var w=x.measureText(b.t).width*b.s+24,h=30*b.s;x.save();x.globalAlpha=b.a;x.translate(b.x,b.y);x.scale(b.s,b.s);
+      x.fillStyle='rgba(14,13,43,.9)';x.strokeStyle='rgba('+b.hue+',.55)';x.lineWidth=1;rr(x,0,0,w/b.s,h/b.s,10);x.fill();x.stroke();
+      x.fillStyle='rgba('+b.hue+',.95)';x.fillText(b.t,12,19);x.restore()});
+    if(!REDUCE)requestAnimationFrame(draw);
+  }
+  function rr(x,X,Y,w,h,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath()}
+  draw();
+})();
+
+/* ---------- reveal ---------- */
+(function(){var els=document.querySelectorAll('.rv.pre');if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.remove('pre')});return}
+var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.remove('pre');io.unobserve(x.target)}})},{threshold:.15});els.forEach(function(e){io.observe(e)})})();
+
+/* ---------- live tape ---------- */
+(function(){
+  function scenes(){var d=demo(),L=d.lab,m=d.sc;return [
+    {tg:m[0],ai:[[L.action,'open'],[L.symbol,'XAUUSD'],[L.side,'BUY'],[L.entry,L.market],[L.stop,L.short+' 66 → 4266.0'],[L.conf,'0.94']],gd:[[L.daily,'0.8% / 4%','ok'],[L.pos,'0 / 1','ok'],[L.age,'3 s','ok']],mt:'BUY XAUUSD 0.30 lot @ 4268.2\nlot = 1 % du compte / 20 pips de stop\nSL 4266.0 · TP 4274.2 / 4277.2 / 4278.2',okmt:true},
+    {tg:m[1],ai:[[L.action,'open'],[L.symbol,'XAUUSD'],[L.side,'SELL'],[L.entry,L.limit+' 4073'],[L.stop,'4085'],['TP','4061 (25%), 4021 (25%)'],[L.conf,'0.97']],gd:[[L.daily,'0.8% / 4%','ok'],[L.pos,'1 / 1','bad']],mt:L.refused,okmt:false},
+    {tg:m[2],ai:[[L.action,'manage'],[L.instr,'breakeven'],[L.conf,'0.91']],gd:[[L.linked,'#9145423711','ok']],mt:L.modified,okmt:true},
+    {tg:m[3],ai:[[L.action,'ignore'],[L.reason,L.notorder],[L.conf,'0.88']],gd:[[L.nothing,'','ok']],mt:L.noorder,okmt:false}]}
+  var tg=document.getElementById('tgMsg'),ai=document.getElementById('aiMsg'),gd=document.getElementById('gdMsg'),mt=document.getElementById('mtMsg'),pr=document.getElementById('aiProg');
+  var i=0,timer=null;
+  function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+  function type(el,text,cb){el.textContent='';if(REDUCE){el.textContent=text;cb&&cb();return}var k=0;(function step(){k++;el.innerHTML=esc(text.slice(0,k))+'<span class="caret"></span>';if(k<text.length){timer=setTimeout(step,22)}else{el.textContent=text;cb&&cb()}})()}
+  function kv(el,rows){el.innerHTML=rows.map(function(r){var c=r[2]?(r[2]==='ok'?'ok':'bad'):'v';return '<span class="k">'+esc(r[0])+'</span> <span class="'+c+'">'+esc(r[1])+'</span>'+(r[2]?' <span class="'+c+'">'+(r[2]==='ok'?'✓':'✕')+'</span>':'')}).join('\n')}
+  function run(){clearTimeout(timer);var sc=scenes(),s=sc[i%sc.length];i++;ai.textContent=' ';gd.textContent=' ';mt.textContent=' ';pr.style.width='0';
+    type(tg,s.tg,function(){pr.style.width='100%';timer=setTimeout(function(){kv(ai,s.ai);timer=setTimeout(function(){kv(gd,s.gd);timer=setTimeout(function(){mt.innerHTML='<span class="'+(s.okmt?'ok':'bad')+'">'+esc(s.mt)+'</span>';timer=setTimeout(run,REDUCE?2500:4200)},700)},700)},REDUCE?10:700)})}
+  run();document.addEventListener('visibilitychange',function(){if(document.hidden){clearTimeout(timer)}else{run()}});
+  window.addEventListener('relais-lang',function(){i=0;run()});
+})();
+
+/* ---------- interactive parser (browser demo, rule-based, multilingual) ---------- */
+(function(){
+  var chips=document.getElementById('chips'),ta=document.getElementById('msg'),out=document.getElementById('fields'),vd=document.getElementById('verdict');
+  function buildChips(){var d=demo();chips.innerHTML='';d.ex.forEach(function(e,i){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=d.lab.ex+(i+1);b.addEventListener('click',function(){ta.value=e;parse()});chips.appendChild(b)});ta.value=d.ex[0]}
+  function num(s){return parseFloat(String(s).replace(/\s/g,'').replace(',','.'))}
+  var BUY=/\b(BUY|ACHAT|LONG|COMPRA|COMPRAR|ПОКУПКА|ЛОНГ|КУПИТЬ)\b|شراء|קנייה|קנה|לונג/i,SELL=/\b(SELL|VENTE|SHORT|VENTA|VENDA|VENDER|ПРОДАЖА|ШОРТ|ПРОДАТЬ)\b|بيع|מכירה|מכור|שורט/i;
+  var NOW=/\bNOW+\b|\bGO\b|MAINTENANT|AHORA+|AGORA+|СЕЙЧАС|الآن|الآآ|עכשיו/i;
+  var MANAGE=/\bBE\b|BREAK\s*EVEN|SÉCURIS|SECURIS|FERMEZ|CLOSE ALL|FERMER|CERRAD|FECHEM|ЗАКРЫВА|ФИКСИР|أغلقوا|خذوا الأرباح|סגרו|קחו רווחים/i;
+  var SLRE=/(?:SL|STOP(?:\s*LOSS)?|СТОП(?:\s*ЛОСС)?|ستوب(?:\s*لوس)?|סטופ(?:\s*לוס)?)\s*[:=@-]?\s*([\d\s]+(?:[.,]\d+)?)\s*(PIPS?|נקודة|نقطة|пункт\w*|פיפס)?/i;
+  var ENTRY=/(?:ENTR[EÉ]E|ENTRY|ENTRADA|ВХОД|دخول|כניסה|ZONE D'ENTR[EÉ]E|@|LIMIT|LÍMITE|ЛИМИТ|معلّق|לימיט)\s*[:=]?\s*([\d\s]+(?:[.,]\d+)?)(?:\s*[-–]\s*([\d\s]+(?:[.,]\d+)?))?/i;
+  var SYM=/\b(XAU\s*\/?\s*USD|GOLD|OR|ORO|OURO|ЗОЛОТО|XAG\s*\/?\s*USD|NAS100|US100|US30|BTC(?:USD)?|[A-Z]{3}\/?[A-Z]{3})\b|ذهب|זהב/i;
+  function parse(){
+    var L=demo().lab,t=ta.value,u=t.toUpperCase(),rows=[],conf=0.9;
+    var side=BUY.test(t)?'BUY':SELL.test(t)?'SELL':null;
+    var sm=t.match(SYM),sym=sm?sm[0]:null;
+    if(sym){sym=sym.toUpperCase().replace(/[\s\/]/g,'');if(/GOLD|^OR$|ORO|OURO|ЗОЛОТО|ذهب|זהב/.test(sym))sym='XAUUSD';if(sym==='NAS100')sym='US100';if(sym==='BTC')sym='BTCUSD'}
+    var manage=MANAGE.test(t);
+    var sl=t.match(SLRE),entry=t.match(ENTRY);
+    var tps=[];t.replace(/TP\s*(\d?)\s*(\d{1,3})?\s*[%٪]?\s*[:=]?\s*([\d\s]+(?:[.,]\d+)?)/gi,function(m,n,pct,p){tps.push({p:num(p),pct:pct?parseInt(pct,10):null});return m});
+    var now=NOW.test(t);
+    out.innerHTML='';
+    if(manage&&!side){rows=[[L.action,'manage'],[L.instr,/CLOSE ALL|FERMEZ TOUT|CERRAD TODO|FECHEM TUDO|ЗАКРЫВАЕМ ВСЁ|أغلقوا كل|סגרו הכול/i.test(t)?'close_all':'breakeven'],[L.conf,'0.91']];set(rows,'ok',L.v_manage)}
+    else if(!side||(!sl&&!entry)){rows=[[L.action,'ignore'],[L.reason,!side?L.noside:L.nostop],[L.conf,'0.88']];set(rows,'no',L.v_ignore)}
+    else{
+      rows.push([L.action,'open']);rows.push([L.symbol,sym||L.uncertain]);rows.push([L.side,side]);
+      rows.push([L.entry,now?L.market:entry?(entry[2]?L.zone+' '+entry[1].trim()+' – '+entry[2].trim():L.limit+' '+entry[1].trim()):L.market]);
+      if(sl){var v=num(sl[1]);rows.push([L.stop,sl[2]?v+' pips':v<1000&&sym==='XAUUSD'?L.short+' '+v+' '+L.rebuilt:String(v)])}else{rows.push([L.stop,L.missing]);conf=0.5}
+      if(tps.length)rows.push(['TP',tps.map(function(x){return x.p+(x.pct?' ('+x.pct+'%)':'')}).join(', ')]);
+      if(!sym)conf-=0.25;rows.push([L.conf,conf.toFixed(2)]);
+      if(conf<0.7)set(rows,'bad',L.v_bad+' ('+conf.toFixed(2)+' < 0.70)');else set(rows,'ok',L.v_ok);
+    }
+  }
+  function set(rows,cls,txt){out.innerHTML=rows.map(function(r){return '<div><span class="k">'+r[0]+'</span><span class="v">'+r[1]+'</span></div>'}).join('');vd.className='verdict '+cls;vd.textContent=txt}
+  document.getElementById('parse').addEventListener('click',parse);
+  ta.addEventListener('keydown',function(e){if((e.metaKey||e.ctrlKey)&&e.key==='Enter')parse()});
+  buildChips();parse();
+  window.addEventListener('relais-lang',function(){buildChips();parse()});
+})();
+
+
+/* ---------- bandeau démo : lit stats/live.json (écrit par le robot de démo), repli sur un exemple ---------- */
+(function(){
+  function show(d){var set=function(id,v){document.getElementById(id).textContent=v};set('lvRead',d.read);set('lvExec',d.executed);set('lvRef',d.refused);set('lvCh',d.channels);set('lvLast',d.last||'—');
+    var u=document.getElementById('liveUpd');if(d.updated){var m=Math.round((Date.now()-new Date(d.updated).getTime())/60000);u.textContent=(m<1?'mis à jour à l\'instant':'mis à jour il y a '+m+' min')}}
+  var ex={read:47,executed:6,refused:11,channels:3,last:'SELL XAUUSD · 15:40 · exécuté',updated:new Date().toISOString()};
+  fetch('stats/live.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():ex}).then(show).catch(function(){show(ex)});
+})();
+document.querySelectorAll('.pbtn').forEach(function(b){b.addEventListener('click',function(){var y=b.dataset.p==='y';document.querySelectorAll('.pbtn').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');x.style.borderColor=x===b?'var(--cyan)':''});document.getElementById('priceM').hidden=y;document.getElementById('priceY').hidden=!y})});
+
+/* ---------- scénario : TP posés sur le graphique et exécutés quand le prix les touche ; BE sur message ---------- */
+(function(){
+  var body=document.getElementById('phBody'),toasts=document.getElementById('toasts'),ch=document.getElementById('chart');if(!ch)return;var cx=ch.getContext('2d');
+  var T={fr:{buy:'BUY GOLD NOW !! SL 64',sell:'SELL GOLD NOW !! SL 83',det:'🎯 TP1 : {1}\nTP2 : {2}\nTP3 : {3}',be:'Mettez-vous à BE 🔒',close:'Clôturez le reste 🏁',take1:'Prenez votre TP1 maintenant ✅',half:'Clôturez 50 % 🔪',t_take1:'TP1 pris sur ordre · 0.10 lot · +',t_half:'50 % fermés · 0.10 lot · +',
+             x_buy:'Exécuté · BUY 0.30 lot (1 % de risque) @ ',x_sell:'Exécuté · SELL 0.30 lot (1 % de risque) @ ',tps:'TP1 · TP2 · TP3 posés sur le compte',t_be:'Stop déplacé à BE',hit:' touché · 0.10 lot fermé · +',t_close:'Reste clôturé · +',
+             r_daily:'Refusé · perte du jour 4,1 % ≥ 4 %',r_stops:'Refusé · 2 stops aujourd\'hui : journée terminée',r_pos:'Ignoré · aucune position à gérer',acc:'Compte démo',acc_g:'Compte démo · perte du jour 4,1 %',pips:' pips'},
+          en:{buy:'BUY GOLD NOW !! SL 64',sell:'SELL GOLD NOW !! SL 83',det:'🎯 TP1: {1}\nTP2: {2}\nTP3: {3}',be:'Move to BE 🔒',close:'Close the rest 🏁',take1:'Take your TP1 now ✅',half:'Close 50% 🔪',t_take1:'TP1 taken on command · 0.10 lot · +',t_half:'50% closed · 0.10 lot · +',
+             x_buy:'Executed · BUY 0.30 lot (1% risk) @ ',x_sell:'Executed · SELL 0.30 lot (1% risk) @ ',tps:'TP1 · TP2 · TP3 placed on the account',t_be:'Stop moved to BE',hit:' hit · 0.10 lot closed · +',t_close:'Rest closed · +',
+             r_daily:'Refused · daily loss 4.1% ≥ 4%',r_stops:'Refused · 2 stops today: day is over',r_pos:'Ignored · no position to manage',acc:'Demo account',acc_g:'Demo account · daily loss 4.1%',pips:' pips'}};
+  function L(){return T[window.RELAIS_LANG]||T[window.RELAIS_LANG==='fr'?'fr':'en']}
+  var W,H,candles=[],price=4267.8,entry=null,sl=null,tps=[],side=null,drift=0,timers=[],running=true,current='normal',onTick=null;
+  function size(){var r=ch.getBoundingClientRect();W=ch.width=Math.max(300,Math.floor(r.width*2));H=ch.height=Math.max(200,Math.floor(r.height*2))}
+  size();addEventListener('resize',size);
+  function seed(){candles=[];var p=4265+Math.random();for(var i=0;i<46;i++){var o=p,c=o+Math.sin(i*1.1)*.5+Math.cos(i*.6)*.4+(Math.random()-.5)*.4;candles.push({o:o,c:c,h:Math.max(o,c)+Math.random()*.5,l:Math.min(o,c)-Math.random()*.5});p=c}price=p}
+  function step(){var o=price,c=o+drift+(Math.random()-.5)*.45;candles.push({o:o,c:c,h:Math.max(o,c)+Math.random()*.35,l:Math.min(o,c)-Math.random()*.35});if(candles.length>60)candles.shift();price=c;if(onTick)onTick()}
+  setInterval(function(){if(running)step()},420);
+  function draw(){cx.clearRect(0,0,W,H);var lo=Infinity,hi=-Infinity;candles.forEach(function(k){lo=Math.min(lo,k.l);hi=Math.max(hi,k.h)});[sl,entry].concat(tps.map(function(t){return t.p})).forEach(function(v){if(v!=null){lo=Math.min(lo,v);hi=Math.max(hi,v)}});lo-=.6;hi+=.6;
+    var y=function(v){return H-(v-lo)/(hi-lo)*H},w=W/62;
+    cx.strokeStyle='rgba(140,120,255,.12)';cx.lineWidth=1;for(var g=1;g<6;g++){var gy=H*g/6;cx.beginPath();cx.moveTo(0,gy);cx.lineTo(W,gy);cx.stroke()}
+    candles.forEach(function(k,i){var x=i*w+w/2,up=k.c>=k.o;cx.strokeStyle=cx.fillStyle=up?'#a3e635':'#fb7185';cx.lineWidth=2;cx.beginPath();cx.moveTo(x,y(k.h));cx.lineTo(x,y(k.l));cx.stroke();cx.fillRect(x-w*.3,y(Math.max(k.o,k.c)),w*.6,Math.max(2,Math.abs(y(k.o)-y(k.c))))});
+    function line(v,col,lbl,dim){if(v==null)return;cx.globalAlpha=dim?.35:1;cx.setLineDash([8,6]);cx.strokeStyle=col;cx.lineWidth=2;cx.beginPath();cx.moveTo(0,y(v));cx.lineTo(W,y(v));cx.stroke();cx.setLineDash([]);cx.fillStyle=col;cx.font='500 20px "JetBrains Mono",monospace';cx.fillText(lbl+' '+v.toFixed(1),10,y(v)-6);cx.globalAlpha=1}
+    line(entry,'#22d3ee',side||'');line(sl,'#fb7185',sl===entry?'BE':'SL');tps.forEach(function(t,i){line(t.p,'#a3e635','TP'+(i+1)+(t.hit?' ✓':''),t.hit)});
+    cx.fillStyle='#f4f2ff';cx.font='600 22px "JetBrains Mono",monospace';cx.textAlign='right';cx.fillText(price.toFixed(1),W-10,30);cx.textAlign='left'}
+  (function loop(){draw();requestAnimationFrame(loop)})();
+  function at(ms,fn){timers.push(setTimeout(fn,ms))}
+  function clear(){timers.forEach(clearTimeout);timers=[];onTick=null}
+  function now(){var n=new Date();return('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)}
+  function msg(t,cb){var d=document.createElement('div');d.className='typing';d.innerHTML='<i></i><i></i><i></i>';body.appendChild(d);at(1000,function(){d.remove();var m=document.createElement('div');m.className='msg';m.textContent=t;var tm=document.createElement('time');tm.textContent=now();m.appendChild(tm);body.appendChild(m);while(body.children.length>4)body.removeChild(body.firstChild);cb&&cb()})}
+  function toast(t,cls){var d=document.createElement('div');d.className='toast '+(cls||'');d.textContent=t;toasts.appendChild(d);while(toasts.children.length>3)toasts.removeChild(toasts.firstChild)}
+  function pips(){return Math.round(Math.abs(price-entry)*10)}
+  function open(buy){var l=L();side=buy?'BUY':'SELL';entry=+price.toFixed(1);sl=+(buy?entry-2:entry+2).toFixed(1);drift=buy?.3:-.3;toast((buy?l.x_buy:l.x_sell)+entry.toFixed(1))}
+  function mkTps(buy){return [6,9,12].map(function(d){return{p:+(buy?entry+d*.5:entry-d*.5).toFixed(1),hit:false}})}
+  function detMsg(l,t){return l.det.replace('{1}',t[0].p.toFixed(1)).replace('{2}',t[1].p.toFixed(1)).replace('{3}',t[2].p.toFixed(1))}
+  function flat(){entry=sl=null;tps=[];side=null;drift=0;onTick=null}
+  // les TP s'exécutent quand le prix les touche
+  function watchTps(buy,done){onTick=function(){var l=L();tps.forEach(function(t,i){if(!t.hit&&(buy?price>=t.p:price<=t.p)){t.hit=true;toast('TP'+(i+1)+l.hit+Math.round(Math.abs(t.p-entry)*10)+l.pips)}});if(tps.length&&tps.every(function(t){return t.hit})){onTick=null;done&&done()}}}
+  var SC={
+    normal:function(buy){var l=L();msg(buy?l.buy:l.sell,function(){open(buy);
+      at(2800,function(){var t=mkTps(buy);msg(detMsg(l,t),function(){tps=t;toast(l.tps,'info');drift=buy?.18:-.18;at(1200,function(){watchTps(buy)});
+        at(buy?3200:9000,function(){msg(l.be,function(){sl=entry;toast(l.t_be,'info');drift=buy?.3:-.3;
+          at(11000,function(){msg(l.close,function(){onTick=null;toast(l.t_close+pips()+l.pips);flat();at(3500,function(){start('normal',!buy)})})})})})})})})},
+    guard:function(){var l=L();document.getElementById('monAcc').textContent=l.acc_g;drift=0;
+      msg(l.buy,function(){toast(l.r_daily,'bad');
+        at(4200,function(){msg(l.sell,function(){toast(l.r_stops,'bad');
+          at(4200,function(){msg(l.be,function(){toast(l.r_pos,'bad');at(3500,function(){start('guard',true)})})})})})})},
+    manage:function(){var l=L();msg(l.buy,function(){open(true);
+      at(2200,function(){var t=mkTps(true);msg(detMsg(l,t),function(){tps=t;toast(l.tps,'info');drift=.42;watchTps(true,function(){at(2500,function(){flat();start('manage',true)})});
+        at(6000,function(){msg(l.be,function(){sl=entry;toast(l.t_be,'info')})})})})})},
+    mixed:function(){var l=L();msg(l.buy,function(){open(true);drift=.12;
+      at(2800,function(){var t=mkTps(true);msg(detMsg(l,t),function(){tps=t;toast(l.tps,'info');
+        at(4500,function(){msg(l.be,function(){sl=entry;toast(l.t_be,'info');
+          at(4500,function(){msg(l.take1,function(){tps[0].hit=true;toast(l.t_take1+pips()+l.pips);drift=.25;
+            at(5000,function(){msg(l.half,function(){toast(l.t_half+pips()+l.pips);watchTps(true,function(){at(2500,function(){flat();start('mixed',true)})});
+              at(12000,function(){msg(l.close,function(){onTick=null;toast(l.t_close+pips()+l.pips);flat();at(3500,function(){start('mixed',true)})})})})})})})})})})})})}
+  };
+  function start(name,buy){clear();current=name;body.innerHTML='';toasts.innerHTML='';flat();seed();document.getElementById('monAcc').textContent=L().acc;
+    document.querySelectorAll('.sctab').forEach(function(b){var on=b.dataset.sc===name;b.setAttribute('aria-pressed',on?'true':'false');b.style.borderColor=on?'var(--cyan)':'';b.style.color=on?'var(--fg)':''});
+    SC[name](buy!==false)}
+  document.querySelectorAll('.sctab').forEach(function(b){b.addEventListener('click',function(){start(b.dataset.sc,true)})});
+  start('normal',true);
+  window.addEventListener('relais-lang',function(){start(current,true)});
+  document.addEventListener('visibilitychange',function(){running=!document.hidden});
+})();
+
+/* ---------- calculateur de lot ---------- */
+(function(){
+  var c=document.getElementById('lcCap'),r=document.getElementById('lcRisk'),st=document.getElementById('lcStop'),out=document.getElementById('lcLot'),rows=document.getElementById('lcRows');if(!c)return;
+  var LB={fr:['Perte maximale','Valeur du pip','Lot'],en:['Maximum loss','Pip value','Lot']};
+  function calc(){var cap=+c.value||0,risk=+r.value||0,stop=+st.value||1,loss=cap*risk/100,lot=Math.max(0.01,Math.floor((loss/(stop*10))*100)/100);var l=LB[window.RELAIS_LANG]||LB.en;
+    out.textContent=lot.toFixed(2)+' lot';rows.innerHTML='<div><span class="k">'+l[0]+'</span><span class="v">'+loss.toFixed(0)+' $</span></div><div><span class="k">'+l[1]+'</span><span class="v">'+(lot*10).toFixed(1)+' $ / pip</span></div><div><span class="k">'+l[2]+'</span><span class="v">'+loss.toFixed(0)+' $ / ('+stop+' × 10 $) = '+lot.toFixed(2)+'</span></div>'}
+  [c,r,st].forEach(function(i){i.addEventListener('input',calc)});calc();window.addEventListener('relais-lang',calc);
+})();
+/* ---------- guard switches ---------- */
+document.querySelectorAll('.sw').forEach(function(b){b.addEventListener('click',function(){var on=b.getAttribute('aria-checked')==='true';b.setAttribute('aria-checked',on?'false':'true');var id=b.dataset.guard==='we'?'logWe':'logAge';document.getElementById(id).hidden=on})});
+
+/* ---------- waitlist ---------- */
+(function(){var f=document.getElementById('wl'),n=document.getElementById('wlNote'),e=document.getElementById('email');
+try{var d=localStorage.getItem('relais-email');if(d)e.value=d}catch(x){}
+var pr=document.getElementById('promo'),pn=document.getElementById('promoNote');var codes={LANCEMENT:'1er mois à 9 €',LAUNCH:'first month at $9',ADMIN:'3 mois à 9 € pour les admins de canaux / 3 months at $9 for channel admins'};pr.addEventListener('input',function(){var c=pr.value.trim().toUpperCase();if(!c){pn.hidden=true;return}pn.hidden=false;pn.textContent=codes[c]?'Code valide : '+codes[c]:'Code inconnu, vérifiez l\'orthographe.';pn.style.color=codes[c]?'var(--lime)':'var(--red)'});
+f.addEventListener('submit',function(ev){ev.preventDefault();try{localStorage.setItem('relais-email',e.value)}catch(x){}n.textContent='Noté : '+e.value+'. Pour être sûr d\'être prévenu, envoyez aussi un mot à l\'adresse ci-dessous.'});
+document.querySelectorAll('.copy-mail').forEach(function(b){b.addEventListener('click',function(){var el=b.previousElementSibling,t=el.textContent;function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){b.textContent='Copié'},sel)}else sel()})});
+document.getElementById('copy').addEventListener('click',function(){var el=document.getElementById('mail'),t=el.textContent,btn=this;function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){btn.textContent='Copié'},sel)}else sel()})})();
+</script>
+
+</head>
+</html>
