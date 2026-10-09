@@ -1478,5 +1478,21 @@
   "ar": "Crypto Signals",
   "ru": "Crypto Signals",
   "he": "Crypto Signals"
+ },
+ "Démonstration · chiffres simulés": {
+  "en": "Demo · simulated figures",
+  "es": "Demostración · cifras simuladas",
+  "pt": "Demonstração · números simulados",
+  "ar": "عرض توضيحي · أرقام محاكاة",
+  "ru": "Демонстрация · смоделированные цифры",
+  "he": "הדגמה · נתונים מדומים"
+ },
+ "Démonstration simulée, comme la scène ci-dessus : ce bandeau montre comment Relais travaille au fil d'une journée, pas des résultats de trading.": {
+  "en": "Simulated demo, like the scene above: this strip shows how Relais works through a day, not trading results.",
+  "es": "Demostración simulada, como la escena de arriba: muestra cómo trabaja Relais a lo largo del día, no resultados de trading.",
+  "pt": "Demonstração simulada, como a cena acima: mostra como o Relais trabalha ao longo do dia, não resultados de trading.",
+  "ar": "عرض محاكى، مثل المشهد أعلاه: يوضح كيف يعمل Relais خلال اليوم، وليس نتائج تداول.",
+  "ru": "Смоделированная демонстрация, как сцена выше: показывает, как Relais работает в течение дня, а не результаты торговли.",
+  "he": "הדגמה מדומה, כמו הסצנה למעלה: מראה איך Relais עובד לאורך היום, לא תוצאות מסחר."
  }
 }
