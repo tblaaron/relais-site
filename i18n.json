@@ -1462,5 +1462,21 @@
   "ar": "أول 100 مشترك: 26 € شهرياً مدى الحياة برمز LANCEMENT.",
   "ru": "Первые 100 подписчиков: 26 €/мес навсегда по коду LANCEMENT.",
   "he": "100 המנויים הראשונים: 26 € לחודש לכל החיים עם הקוד LANCEMENT."
+ },
+ "Indices Squad": {
+  "en": "Indices Squad",
+  "es": "Indices Squad",
+  "pt": "Indices Squad",
+  "ar": "Indices Squad",
+  "ru": "Indices Squad",
+  "he": "Indices Squad"
+ },
+ "Crypto Signals": {
+  "en": "Crypto Signals",
+  "es": "Crypto Signals",
+  "pt": "Crypto Signals",
+  "ar": "Crypto Signals",
+  "ru": "Crypto Signals",
+  "he": "Crypto Signals"
  }
 }
