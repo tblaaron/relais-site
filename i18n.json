@@ -1438,5 +1438,21 @@
   "ar": "«BUY GOLD NOW !! SL 66»، «بيع XAUUSD، دخول 4073، SL 4085، TP1 25٪: 4061»، ثلاثة أسطر برموز تعبيرية: يفهم الذكاء الاصطناعي المعنى لا الشكل. غيّر القناة، لا شيء يُعاد ضبطه. الذهب والمؤشرات والعملات والعملات الرقمية: كل أصول وسيطك، وليس الذهب فقط.",
   "ru": "«BUY GOLD NOW !! SL 66», «Продажа XAUUSD, вход 4073, SL 4085, TP1 25 %: 4061», три строки с эмодзи: ИИ понимает смысл, а не оформление. Смените канал, ничего настраивать не нужно. Золото, индексы, валюты, крипто: все активы вашего брокера, а не только золото.",
   "he": "«BUY GOLD NOW !! SL 66», «מכירה XAUUSD, כניסה 4073, SL 4085, TP1 25%: 4061», שלוש שורות עם אימוג'ים: ה-AI מבין את המשמעות, לא את העיצוב. מחליפים ערוץ, אין מה להגדיר מחדש. זהב, מדדים, מטבעות, קריפטו: כל הנכסים אצל הברוקר שלך, לא רק זהב."
+ },
+ "Et si je ne suis pas sur MetaTrader 5 ?": {
+  "en": "What if I'm not on MetaTrader 5?",
+  "es": "¿Y si no estoy en MetaTrader 5?",
+  "pt": "E se eu não estiver no MetaTrader 5?",
+  "ar": "وماذا لو لم أكن على MetaTrader 5؟",
+  "ru": "А если я не на MetaTrader 5?",
+  "he": "ומה אם אני לא על MetaTrader 5?"
+ },
+ "Relais exécute aujourd'hui sur MetaTrader 5. Vous êtes sur MT4, cTrader ou une autre plateforme ? Écrivez-nous avant d'acheter : nous étudions les adaptations sur demande, et vous ne payez que si c'est possible.": {
+  "en": "Relais currently executes on MetaTrader 5. You're on MT4, cTrader or another platform? Write to us before buying: we review adaptations on request, and you only pay if it's feasible.",
+  "es": "Relais ejecuta hoy en MetaTrader 5. ¿Estás en MT4, cTrader u otra plataforma? Escríbenos antes de comprar: estudiamos adaptaciones bajo demanda, y solo pagas si es posible.",
+  "pt": "O Relais executa hoje no MetaTrader 5. Estás no MT4, cTrader ou outra plataforma? Escreve-nos antes de comprar: estudamos adaptações a pedido, e só pagas se for possível.",
+  "ar": "يعمل Relais حالياً على MetaTrader 5. هل تستخدم MT4 أو cTrader أو منصة أخرى؟ راسلنا قبل الشراء: ندرس التكييف عند الطلب، ولا تدفع إلا إذا كان ممكناً.",
+  "ru": "Сегодня Relais исполняет на MetaTrader 5. Вы на MT4, cTrader или другой платформе? Напишите нам до покупки: адаптации рассматриваются по запросу, и вы платите только если это возможно.",
+  "he": "Relais מבצע כיום על MetaTrader 5. אתם על MT4, cTrader או פלטפורמה אחרת? כתבו לנו לפני הרכישה: נבחן התאמות לפי בקשה, ותשלמו רק אם זה אפשרי."
  }
 }
