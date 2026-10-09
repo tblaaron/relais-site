@@ -1454,5 +1454,13 @@
   "ar": "يعمل Relais أصلاً على MetaTrader 5، ونقوم بالتكييف عند الطلب مع المنصات الأخرى (MT4 وcTrader ومنصات شركات التمويل). اشترِ بشكل عادي: إذا لم نشغّل Relais على منصتك خلال 14 يوماً، استرداد كامل — هذا ضماننا.",
   "ru": "Relais нативно работает на MetaTrader 5, и по запросу мы адаптируем его под другие платформы (MT4, cTrader и платформы проп-фирм). Покупайте как обычно: если за 14 дней мы не запустим Relais на вашей платформе — полный возврат, это наша гарантия.",
   "he": "Relais רץ באופן מובנה על MetaTrader 5, ואנחנו מתאימים לפי בקשה לפלטפורמות אחרות (MT4, cTrader ופלטפורמות של חברות פרופ). קנו כרגיל: אם לא נפעיל את Relais על הפלטפורמה שלכם תוך 14 יום — החזר מלא, זו האחריות שלנו."
+ },
+ "Les 100 premiers abonnés : 26 € par mois à vie avec le code LANCEMENT.": {
+  "en": "First 100 subscribers: €26/month for life with code LANCEMENT.",
+  "es": "Los 100 primeros suscriptores: 26 €/mes de por vida con el código LANCEMENT.",
+  "pt": "Os 100 primeiros assinantes: 26 €/mês para sempre com o código LANCEMENT.",
+  "ar": "أول 100 مشترك: 26 € شهرياً مدى الحياة برمز LANCEMENT.",
+  "ru": "Первые 100 подписчиков: 26 €/мес навсегда по коду LANCEMENT.",
+  "he": "100 המנויים הראשונים: 26 € לחודש לכל החיים עם הקוד LANCEMENT."
  }
 }
