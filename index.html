@@ -629,9 +629,11 @@ var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isInter
 /* ---------- bandeau démo : lit stats/live.json (écrit par le robot de démo), repli sur un exemple ---------- */
 (function(){
   function show(d){var set=function(id,v){document.getElementById(id).textContent=v};set('lvRead',d.read);set('lvExec',d.executed);set('lvRef',d.refused);set('lvCh',d.channels);set('lvLast',d.last||'—');
-    var u=document.getElementById('liveUpd');if(d.updated){var m=Math.round((Date.now()-new Date(d.updated).getTime())/60000);u.textContent=(m<1?'mis à jour à l\'instant':'mis à jour il y a '+m+' min')}}
+    var u=document.getElementById('liveUpd');if(d.updated){var m=Math.round((Date.now()-new Date(d.updated).getTime())/60000);u.textContent=(m<1?'mis à jour à l\'instant':(m<=90?'mis à jour il y a '+m+' min':'dernier rapport : '+new Date(d.updated).toLocaleTimeString().slice(0,5)))}}
   var ex={read:47,executed:6,refused:11,channels:3,last:'SELL XAUUSD · 15:40 · exécuté',updated:new Date().toISOString()};
-  fetch('stats/live.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():ex}).then(show).catch(function(){show(ex)});
+  // Les vrais chiffres viennent du serveur ; l'ancien fichier local n'est qu'un repli.
+  fetch('https://app.relais-copier.com/v1/public/demo-stats',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(!d.updated)throw 0;show(d)})
+    .catch(function(){fetch('stats/live.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():ex}).then(show).catch(function(){show(ex)})});
 })();
 document.querySelectorAll('.pbtn').forEach(function(b){b.addEventListener('click',function(){var y=b.dataset.p==='y';document.querySelectorAll('.pbtn').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');x.style.borderColor=x===b?'var(--cyan)':''});document.getElementById('priceM').hidden=y;document.getElementById('priceY').hidden=!y})});
 
