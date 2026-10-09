@@ -185,10 +185,11 @@ a.card:hover{transform:translateY(-4px)}
 .toast.bad{border-left-color:var(--red)}.toast.info{border-left-color:var(--cyan)}
 .rv{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
 .js .rv.pre{opacity:.001;transform:translateY(14px)}
-.ruban{height:2.4rem;overflow:hidden;background:linear-gradient(92deg,rgba(34,211,238,.16),rgba(139,92,246,.2));border-bottom:1px solid var(--line);display:flex;align-items:center;direction:ltr}
+.ruban{position:fixed;top:0;left:0;right:0;z-index:70;height:2.4rem;overflow:hidden;backdrop-filter:blur(8px);background:linear-gradient(92deg,rgba(34,211,238,.16),rgba(139,92,246,.2));border-bottom:1px solid var(--line);display:flex;align-items:center;direction:ltr}
 .ruban-fil{display:flex;gap:3rem;white-space:nowrap;font-size:.88rem;font-weight:600;color:var(--fg);animation:ruban 36s linear infinite;will-change:transform}
 .ruban-fil span{display:inline-block}
 @keyframes ruban{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+body{padding-top:2.4rem}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv.pre{opacity:1;transform:none}.fields div{opacity:1;transform:none}}
 </style>
 
@@ -685,8 +686,10 @@ document.querySelectorAll('.pbtn').forEach(function(b){b.addEventListener('click
     /* ordre : signal → ordre ouvert → TP posés → PAUSE nette (drift quasi nul ≥ 4 s) → message BE → le prix avance → TP un à un ; watchTps ne démarre qu'après le message BE */
     normal:function(buy){var l=L();msg(sig(buy),function(){open(buy);
       at(2800,function(){var t=mkTps(buy);msg(detMsg(l,t),function(){tps=t;toast(l.tps,'info');drift=buy?.02:-.02;
-        at(5200,function(){msg(l.be,function(){sl=entry;toast(l.t_be,'info');drift=buy?.3:-.3;at(1500,function(){watchTps(buy)});
-          at(19000,function(){msg(l.close,function(){onTick=null;toast(l.t_close+pips()+plb());flat();at(3500,function(){start('normal',!buy)})})})})})})})})},
+        at(5200,function(){msg(l.be,function(){sl=entry;toast(l.t_be,'info');drift=buy?.3:-.3;
+          var fini=false;function fin(){if(fini)return;fini=true;msg(l.close,function(){onTick=null;toast(l.t_close+pips()+plb());flat();at(3000,function(){start('normal',!buy)})})}
+          at(1500,function(){watchTps(buy,function(){at(1200,fin)})});
+          at(24000,fin)})})})})})},
     guard:function(){var l=L();document.getElementById('monAcc').textContent=l.acc_g;drift=0;
       msg(l.buy,function(){toast(l.r_daily,'bad');
         at(4200,function(){msg(l.sell,function(){toast(l.r_stops,'bad');
