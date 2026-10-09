@@ -1447,12 +1447,12 @@
   "ru": "А если я не на MetaTrader 5?",
   "he": "ומה אם אני לא על MetaTrader 5?"
  },
- "Relais exécute aujourd'hui sur MetaTrader 5. Vous êtes sur MT4, cTrader ou une autre plateforme ? Écrivez-nous avant d'acheter : nous étudions les adaptations sur demande, et vous ne payez que si c'est possible.": {
-  "en": "Relais currently executes on MetaTrader 5. You're on MT4, cTrader or another platform? Write to us before buying: we review adaptations on request, and you only pay if it's feasible.",
-  "es": "Relais ejecuta hoy en MetaTrader 5. ¿Estás en MT4, cTrader u otra plataforma? Escríbenos antes de comprar: estudiamos adaptaciones bajo demanda, y solo pagas si es posible.",
-  "pt": "O Relais executa hoje no MetaTrader 5. Estás no MT4, cTrader ou outra plataforma? Escreve-nos antes de comprar: estudamos adaptações a pedido, e só pagas se for possível.",
-  "ar": "يعمل Relais حالياً على MetaTrader 5. هل تستخدم MT4 أو cTrader أو منصة أخرى؟ راسلنا قبل الشراء: ندرس التكييف عند الطلب، ولا تدفع إلا إذا كان ممكناً.",
-  "ru": "Сегодня Relais исполняет на MetaTrader 5. Вы на MT4, cTrader или другой платформе? Напишите нам до покупки: адаптации рассматриваются по запросу, и вы платите только если это возможно.",
-  "he": "Relais מבצע כיום על MetaTrader 5. אתם על MT4, cTrader או פלטפורמה אחרת? כתבו לנו לפני הרכישה: נבחן התאמות לפי בקשה, ותשלמו רק אם זה אפשרי."
+ "Relais exécute nativement sur MetaTrader 5, et nous adaptons sur demande aux autres plateformes (MT4, cTrader, et celles des prop firms). Achetez normalement : si nous ne faisons pas tourner Relais sur votre plateforme dans les 14 jours, remboursement intégral, c'est notre garantie.": {
+  "en": "Relais runs natively on MetaTrader 5, and we adapt on request to other platforms (MT4, cTrader, and prop-firm platforms). Buy normally: if we don't get Relais running on your platform within 14 days, full refund — that's our guarantee.",
+  "es": "Relais funciona de forma nativa en MetaTrader 5, y lo adaptamos bajo demanda a otras plataformas (MT4, cTrader y las de las prop firms). Compra con normalidad: si no logramos que Relais funcione en tu plataforma en 14 días, reembolso íntegro, es nuestra garantía.",
+  "pt": "O Relais corre nativamente no MetaTrader 5, e adaptamos a pedido a outras plataformas (MT4, cTrader e as das prop firms). Compra normalmente: se não pusermos o Relais a funcionar na tua plataforma em 14 dias, reembolso integral — é a nossa garantia.",
+  "ar": "يعمل Relais أصلاً على MetaTrader 5، ونقوم بالتكييف عند الطلب مع المنصات الأخرى (MT4 وcTrader ومنصات شركات التمويل). اشترِ بشكل عادي: إذا لم نشغّل Relais على منصتك خلال 14 يوماً، استرداد كامل — هذا ضماننا.",
+  "ru": "Relais нативно работает на MetaTrader 5, и по запросу мы адаптируем его под другие платформы (MT4, cTrader и платформы проп-фирм). Покупайте как обычно: если за 14 дней мы не запустим Relais на вашей платформе — полный возврат, это наша гарантия.",
+  "he": "Relais רץ באופן מובנה על MetaTrader 5, ואנחנו מתאימים לפי בקשה לפלטפורמות אחרות (MT4, cTrader ופלטפורמות של חברות פרופ). קנו כרגיל: אם לא נפעיל את Relais על הפלטפורמה שלכם תוך 14 יום — החזר מלא, זו האחריות שלנו."
  }
 }
