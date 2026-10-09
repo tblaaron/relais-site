@@ -143,7 +143,12 @@ details p{margin-top:.6rem;color:var(--fg-2);max-width:62ch}
 footer{padding-block:2.5rem;border-top:1px solid var(--line);color:var(--fg-2);font-size:.85rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
 
+.fabwrap{position:fixed;right:1.2rem;bottom:1.2rem;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+.fabmenu{display:flex;flex-direction:column;gap:.5rem;background:var(--panel,rgba(20,18,60,.9));border:1px solid rgba(140,120,255,.3);border-radius:14px;padding:.6rem;backdrop-filter:blur(10px)}
+.fabmenu a{color:#f4f2ff;text-decoration:none;padding:.55rem .8rem;border-radius:10px;font-size:.92rem}
+.fabmenu a:hover{background:rgba(140,120,255,.15)}
 .fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:5;display:flex;align-items:center;gap:.6rem;background:linear-gradient(92deg,var(--cyan),var(--violet));color:#07061a;font-weight:700;padding:.75rem 1.1rem;border-radius:999px;text-decoration:none;box-shadow:0 14px 40px -10px rgba(139,92,246,.9);transition:transform .15s}
+.fabwrap .fab{position:static;border:0;cursor:pointer;font:inherit;font-weight:700}
 .fab:hover{transform:translateY(-2px)}
 .fab-dot{width:10px;height:10px;border-radius:50%;background:#07061a;box-shadow:0 0 0 4px rgba(7,6,26,.25);animation:pulse 1.6s ease-in-out infinite}
 [dir=rtl] .fab{right:auto;left:18px}
@@ -448,7 +453,16 @@ a.card:hover{transform:translateY(-4px)}
 </section>
 
 <footer><span>Relais · logiciel d'exécution, pas un service de conseil en investissement.</span><span>Le trading comporte un risque de perte en capital. · <a href="conditions.html" style="color:inherit">Conditions &amp; confidentialité</a> · <a href="mailto:contact@relais-copier.com" style="color:inherit">contact@relais-copier.com</a></span></footer>
-<a class="fab" href="https://t.me/RelaisCopier" target="_blank" rel="noopener" aria-label="Discuter sur Telegram"><span class="fab-dot"></span><span class="fab-txt">Parler à quelqu'un</span></a>
+<div class="fabwrap">
+<div class="fabmenu" id="fabmenu" hidden>
+  <a href="https://t.me/RelaisSupportBot" target="_blank" rel="noopener">💬 Telegram — réponse rapide</a>
+  <a href="mailto:contact@relais-copier.com">✉️ E-mail — contact@relais-copier.com</a>
+</div>
+<button type="button" class="fab" id="fabbtn" aria-haspopup="true" aria-expanded="false"><span class="fab-dot"></span><span class="fab-txt">Parler à quelqu'un</span></button>
+</div>
+<script>(function(){var b=document.getElementById('fabbtn'),m=document.getElementById('fabmenu');
+b.addEventListener('click',function(){var o=m.hidden;m.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false')});
+document.addEventListener('click',function(e){if(!b.contains(e.target)&&!m.contains(e.target)){m.hidden=true;b.setAttribute('aria-expanded','false')}});})();</script>
 </div>
 
 <script>
@@ -505,6 +519,9 @@ function demo(){return DEMO[window.RELAIS_LANG]||DEMO.fr}
   }
   window.RELAIS_T=function(k){var l=window.RELAIS_LANG||'fr';return l==='fr'?k:((D[k]&&(D[k][l]||D[k].en))||k)};
   var l='fr';try{l=localStorage.getItem('relais-lang')||''}catch(e){}
+  // Les pubs pointent vers ?lang=xx : cette langue prime sur tout (et devient le choix mémorisé).
+  var ul=(new URLSearchParams(location.search).get('lang')||'').toLowerCase();
+  if(['fr','en','es','pt','ar','ru','he'].indexOf(ul)>=0){l=ul}
   if(!l){var nl=(navigator.language||'fr').slice(0,2).toLowerCase();l=['fr','en','es','pt','ar','ru','he'].indexOf(nl)>=0?nl:'en'}
   document.getElementById('lang').addEventListener('change',function(){apply(this.value)});
   apply(l);
