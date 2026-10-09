@@ -21,6 +21,11 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+/* Blocs animés à hauteur fixe : sans ça, chaque lettre tapée change la hauteur de la page
+   et Safari fait "remonter" tout le contenu sous les yeux du visiteur. */
+.bubble{min-height:4.2em}
+.ph-body{height:300px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.toasts{min-height:7.5em}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;margin:0;padding-inline:16px;padding-block:0;overflow-x:hidden;position:relative}
 #sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .wrap{max-width:1080px;margin:0 auto;position:relative;z-index:1}
@@ -150,7 +155,7 @@ a.card:hover{transform:translateY(-4px)}
 
 .scene{display:grid;grid-template-columns:220px 1fr;gap:.9rem;align-items:stretch;margin-top:1rem}
 @media (max-width:720px){.scene{grid-template-columns:1fr}}
-.phone{background:#0b0a22;border:2px solid rgba(140,120,255,.35);border-radius:28px;padding:.8rem;min-height:320px;display:flex;flex-direction:column;gap:.5rem;box-shadow:0 30px 60px -30px #000,inset 0 0 0 1px rgba(255,255,255,.05);min-width:0}
+.phone{background:#0b0a22;border:2px solid rgba(140,120,255,.35);border-radius:28px;padding:.8rem;height:396px;display:flex;flex-direction:column;gap:.5rem;box-shadow:0 30px 60px -30px #000,inset 0 0 0 1px rgba(255,255,255,.05);min-width:0}
 .ph-top{display:flex;gap:.6rem;align-items:center;padding:.3rem .2rem .5rem;border-bottom:1px solid var(--line)}
 .ph-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--pink));display:grid;place-items:center;font-family:var(--mono);font-size:.75rem;color:#07061a;font-weight:500}
 .ph-name{font-weight:700;font-size:.95rem}.ph-sub{font-size:.75rem;color:var(--fg-2)}
@@ -279,7 +284,7 @@ a.card:hover{transform:translateY(-4px)}
   <p class="eyebrow">Pourquoi Relais</p>
   <h2 style="margin-top:.6rem">Les copieurs existants lisent un format. <span class="grad">Relais lit un message.</span></h2>
   <div class="grid feat" style="margin-top:2rem">
-    <div class="glass card rv pre"><span class="ic a">TG</span><h3>N'importe quel canal</h3><p class="muted">« BUY GOLD NOW !! SL 66 », « Vente XAUUSD, entrée 4 073, SL 4 085, TP1 25 % : 4 061 », trois lignes avec des emojis : l'IA comprend le sens, pas la mise en forme. Changez de canal, rien à reconfigurer.</p></div>
+    <div class="glass card rv pre"><span class="ic a">TG</span><h3>N'importe quel canal</h3><p class="muted">« BUY GOLD NOW !! SL 66 », « Vente XAUUSD, entrée 4 073, SL 4 085, TP1 25 % : 4 061 », trois lignes avec des emojis : l'IA comprend le sens, pas la mise en forme. Changez de canal, rien à reconfigurer. Or, indices, devises, crypto : tous les actifs de votre courtier, pas seulement l'or.</p></div>
     <div class="glass card rv pre"><span class="ic a">%</span><h3>Le lot se calcule tout seul</h3><p class="muted">Vous fixez un risque par trade, par exemple 1 % du compte. À chaque signal, Relais mesure la distance du stop et en déduit le lot : un stop serré donne un lot plus gros, un stop large un lot plus petit. Même perte maximale à chaque fois.</p></div>
     <div class="glass card rv pre"><span class="ic b">GF</span><h3>Garde-fous prop firm</h3><p class="muted">Perte journalière, drawdown total, nombre de positions, stops consécutifs, fenêtres d'actualités, clôture avant le week-end. Chaque refus est écrit dans votre journal avec sa raison.</p></div>
     <div class="glass card rv pre"><span class="ic c">OK</span><h3>Vous gardez la main</h3><p class="muted">Un message incertain n'est jamais exécuté. Un « NOW » vieux de deux minutes non plus. Vous voyez chaque décision, et vous pouvez tout couper d'un bouton.</p></div>
@@ -637,9 +642,9 @@ document.querySelectorAll('.pbtn').forEach(function(b){b.addEventListener('click
   function watchTps(buy,done){onTick=function(){var l=L();tps.forEach(function(t,i){if(!t.hit&&(buy?price>=t.p:price<=t.p)){t.hit=true;toast('TP'+(i+1)+l.hit+Math.round(Math.abs(t.p-entry)*10)+l.pips)}});if(tps.length&&tps.every(function(t){return t.hit})){onTick=null;done&&done()}}}
   var SC={
     normal:function(buy){var l=L();msg(buy?l.buy:l.sell,function(){open(buy);
-      at(2800,function(){var t=mkTps(buy);msg(detMsg(l,t),function(){tps=t;toast(l.tps,'info');drift=buy?.18:-.18;at(1200,function(){watchTps(buy)});
-        at(buy?3200:9000,function(){msg(l.be,function(){sl=entry;toast(l.t_be,'info');drift=buy?.3:-.3;
-          at(11000,function(){msg(l.close,function(){onTick=null;toast(l.t_close+pips()+l.pips);flat();at(3500,function(){start('normal',!buy)})})})})})})})})},
+      at(2800,function(){var t=mkTps(buy);msg(detMsg(l,t),function(){tps=t;toast(l.tps,'info');drift=buy?.05:-.05;
+        at(5200,function(){msg(l.be,function(){sl=entry;toast(l.t_be,'info');drift=buy?.16:-.16;at(1500,function(){watchTps(buy)});
+          at(16000,function(){msg(l.close,function(){onTick=null;toast(l.t_close+pips()+l.pips);flat();at(3500,function(){start('normal',!buy)})})})})})})})})},
     guard:function(){var l=L();document.getElementById('monAcc').textContent=l.acc_g;drift=0;
       msg(l.buy,function(){toast(l.r_daily,'bad');
         at(4200,function(){msg(l.sell,function(){toast(l.r_stops,'bad');

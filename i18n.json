@@ -1,1442 +1,1442 @@
 {
-"Copieur Telegram → MetaTrader 5": {
-"en": "Telegram → MetaTrader 5 copier",
-"es": "Copiador Telegram → MetaTrader 5",
-"pt": "Copiador Telegram → MetaTrader 5",
-"ar": "ناسخ إشارات Telegram → MetaTrader 5",
-"ru": "Копировщик Telegram → MetaTrader 5",
-"he": "מעתיק איתותים Telegram → MetaTrader 5"
-},
-"Vos signaux Telegram,": {
-"en": "Your Telegram signals,",
-"es": "Tus señales de Telegram,",
-"pt": "Os teus sinais do Telegram,",
-"ar": "إشاراتك على Telegram،",
-"ru": "Ваши сигналы из Telegram,",
-"he": "האיתותים שלך מטלגרם,"
-},
-"exécutés sur MT5": {
-"en": "executed on MT5",
-"es": "ejecutadas en MT5",
-"pt": "executados no MT5",
-"ar": "تُنفَّذ على MT5",
-"ru": "исполняются на MT5",
-"he": "מבוצעים ב-MT5"
-},
-", sans jamais casser les règles de votre prop firm.": {
-"en": ", without ever breaking your prop firm's rules.",
-"es": ", sin romper nunca las reglas de tu prop firm.",
-"pt": ", sem nunca quebrar as regras da tua prop firm.",
-"ar": "، دون خرق قواعد شركة التمويل أبداً.",
-"ru": ", никогда не нарушая правила вашей проп-фирмы.",
-"he": ", בלי לשבור אף פעם את כללי חברת הפרופ שלך."
-},
-"Relais lit n'importe quel canal, en français ou en anglais, même mal écrit, et passe l'ordre sur votre compte en moins d'une seconde. Il refuse tout seul ce qui vous ferait perdre votre compte financé.": {
-"en": "Relais reads any channel, in any language, even badly written, and places the order on your account in under a second. It refuses on its own anything that would cost you your funded account.",
-"es": "Relais lee cualquier canal, en cualquier idioma, incluso mal escrito, y coloca la orden en tu cuenta en menos de un segundo. Rechaza por sí solo todo lo que te haría perder tu cuenta fondeada.",
-"pt": "O Relais lê qualquer canal, em qualquer língua, mesmo mal escrito, e coloca a ordem na tua conta em menos de um segundo. Recusa sozinho tudo o que te faria perder a conta financiada.",
-"ar": "يقرأ Relais أي قناة، بأي لغة، حتى لو كانت الكتابة سيئة، وينفّذ الأمر على حسابك في أقل من ثانية. ويرفض تلقائياً كل ما قد يُفقدك حسابك الممول.",
-"ru": "Relais читает любой канал, на любом языке, даже написанный небрежно, и выставляет ордер на ваш счёт меньше чем за секунду. Он сам отклоняет всё, что лишило бы вас финансируемого счёта.",
-"he": "Relais קורא כל ערוץ, בכל שפה, גם כשהוא כתוב גרוע, ומבצע את הפקודה בחשבון שלך בפחות משנייה. הוא דוחה לבד כל מה שיגרום לך לאבד את החשבון הממומן."
-},
-"Tester avec mon message": {
-"en": "Test with my message",
-"es": "Probar con mi mensaje",
-"pt": "Testar com a minha mensagem",
-"ar": "جرّب برسالتك",
-"ru": "Проверить на моём сообщении",
-"he": "לבדוק עם ההודעה שלי"
-},
-"Aucun signal fourni. Relais exécute les ordres des canaux que vous choisissez, sur votre compte, selon vos réglages.": {
-"en": "No signals provided. Relais executes orders from the channels you choose, on your account, with your settings.",
-"es": "No proporcionamos señales. Relais ejecuta las órdenes de los canales que tú eliges, en tu cuenta, con tus ajustes.",
-"pt": "Não fornecemos sinais. O Relais executa as ordens dos canais que escolhes, na tua conta, com as tuas definições.",
-"ar": "لا نقدّم إشارات. ينفّذ Relais أوامر القنوات التي تختارها، على حسابك، وفق إعداداتك.",
-"ru": "Мы не даём сигналов. Relais исполняет ордера из каналов, которые вы выбрали, на вашем счёте, по вашим настройкам.",
-"he": "אנחנו לא מספקים איתותים. Relais מבצע פקודות מהערוצים שבחרת, בחשבון שלך, לפי ההגדרות שלך."
-},
-"Message du canal": {
-"en": "Channel message",
-"es": "Mensaje del canal",
-"pt": "Mensagem do canal",
-"ar": "رسالة القناة",
-"ru": "Сообщение канала",
-"he": "הודעת הערוץ"
-},
-"Lecture": {
-"en": "Reading",
-"es": "Lectura",
-"pt": "Leitura",
-"ar": "القراءة",
-"ru": "Чтение",
-"he": "קריאה"
-},
-"Garde-fous": {
-"en": "Guard-rails",
-"es": "Protecciones",
-"pt": "Proteções",
-"ar": "الضوابط",
-"ru": "Ограничители",
-"he": "מגבלות בטיחות"
-},
-"Ordre MT5": {
-"en": "MT5 order",
-"es": "Orden MT5",
-"pt": "Ordem MT5",
-"ar": "أمر MT5",
-"ru": "Ордер MT5",
-"he": "פקודת MT5"
-},
-"Essayer": {
-"en": "Try it",
-"es": "Probar",
-"pt": "Testar",
-"ar": "جرّب",
-"ru": "Попробовать",
-"he": "לנסות"
-},
-"Admins": {
-"en": "Admins",
-"es": "Admins",
-"pt": "Admins",
-"ar": "المشرفون",
-"ru": "Админам",
-"he": "מנהלים"
-},
-"Tarif": {
-"en": "Pricing",
-"es": "Precio",
-"pt": "Preço",
-"ar": "السعر",
-"ru": "Цена",
-"he": "מחיר"
-},
-"Comparer": {
-"en": "Compare",
-"es": "Comparar",
-"pt": "Comparar",
-"ar": "مقارنة",
-"ru": "Сравнить",
-"he": "השוואה"
-},
-"À vous": {
-"en": "Your turn",
-"es": "Tu turno",
-"pt": "A tua vez",
-"ar": "دورك",
-"ru": "Ваша очередь",
-"he": "תורך"
-},
-"Collez un message de votre canal. Regardez ce que Relais en fait.": {
-"en": "Paste a message from your channel. See what Relais makes of it.",
-"es": "Pega un mensaje de tu canal. Mira qué hace Relais con él.",
-"pt": "Cola uma mensagem do teu canal. Vê o que o Relais faz com ela.",
-"ar": "الصق رسالة من قناتك وشاهد ما يفعله Relais بها.",
-"ru": "Вставьте сообщение из вашего канала и посмотрите, что с ним сделает Relais.",
-"he": "הדבק הודעה מהערוץ שלך ותראה מה Relais עושה איתה."
-},
-"Démonstration dans votre navigateur, rien n'est envoyé. La version installée utilise une lecture par IA, plus tolérante encore que celle-ci.": {
-"en": "Runs in your browser, nothing is sent. The installed version uses AI reading, even more tolerant than this one.",
-"es": "Funciona en tu navegador, no se envía nada. La versión instalada usa lectura por IA, aún más tolerante que esta.",
-"pt": "Corre no teu navegador, nada é enviado. A versão instalada usa leitura por IA, ainda mais tolerante do que esta.",
-"ar": "يعمل في متصفحك، ولا يُرسل شيء. النسخة المثبتة تستخدم قراءة بالذكاء الاصطناعي، أكثر تسامحاً من هذه.",
-"ru": "Работает в вашем браузере, ничего не отправляется. Установленная версия читает с помощью ИИ и ещё терпимее к формату.",
-"he": "רץ בדפדפן שלך, שום דבר לא נשלח. הגרסה המותקנת משתמשת בקריאת AI, סלחנית עוד יותר."
-},
-"Message": {
-"en": "Message",
-"es": "Mensaje",
-"pt": "Mensagem",
-"ar": "الرسالة",
-"ru": "Сообщение",
-"he": "הודעה"
-},
-"Lire le message": {
-"en": "Read the message",
-"es": "Leer el mensaje",
-"pt": "Ler a mensagem",
-"ar": "اقرأ الرسالة",
-"ru": "Прочитать сообщение",
-"he": "קרא את ההודעה"
-},
-"Ce que Relais comprend": {
-"en": "What Relais understands",
-"es": "Lo que Relais entiende",
-"pt": "O que o Relais entende",
-"ar": "ما يفهمه Relais",
-"ru": "Что понял Relais",
-"he": "מה Relais מבין"
-},
-"Pourquoi Relais": {
-"en": "Why Relais",
-"es": "Por qué Relais",
-"pt": "Porquê Relais",
-"ar": "لماذا Relais",
-"ru": "Почему Relais",
-"he": "למה Relais"
-},
-"Les copieurs existants lisent un format.": {
-"en": "Existing copiers read a format.",
-"es": "Los copiadores actuales leen un formato.",
-"pt": "Os copiadores atuais leem um formato.",
-"ar": "الناسخات الحالية تقرأ تنسيقاً.",
-"ru": "Обычные копировщики читают формат.",
-"he": "מעתיקים קיימים קוראים פורמט."
-},
-"Relais lit un message.": {
-"en": "Relais reads a message.",
-"es": "Relais lee un mensaje.",
-"pt": "O Relais lê uma mensagem.",
-"ar": "Relais يقرأ رسالة.",
-"ru": "Relais читает сообщение.",
-"he": "Relais קורא הודעה."
-},
-"N'importe quel canal": {
-"en": "Any channel",
-"es": "Cualquier canal",
-"pt": "Qualquer canal",
-"ar": "أي قناة",
-"ru": "Любой канал",
-"he": "כל ערוץ"
-},
-"« BUY GOLD NOW !! SL 66 », « Vente XAUUSD, entrée 4 073, SL 4 085, TP1 25 % : 4 061 », trois lignes avec des emojis : l'IA comprend le sens, pas la mise en forme. Changez de canal, rien à reconfigurer.": {
-"en": "“BUY GOLD NOW !! SL 66”, “Sell XAUUSD, entry 4073, SL 4085, TP1 25%: 4061”, three lines of emojis: the AI gets the meaning, not the layout. Switch channels, nothing to reconfigure.",
-"es": "«BUY GOLD NOW !! SL 66», «Venta XAUUSD, entrada 4073, SL 4085, TP1 25 %: 4061», tres líneas con emojis: la IA entiende el sentido, no el formato. Cambia de canal, nada que reconfigurar.",
-"pt": "«BUY GOLD NOW !! SL 66», «Venda XAUUSD, entrada 4073, SL 4085, TP1 25%: 4061», três linhas com emojis: a IA percebe o sentido, não o formato. Muda de canal, nada a reconfigurar.",
-"ar": "«BUY GOLD NOW !! SL 66»، «بيع XAUUSD، دخول 4073، SL 4085، TP1 25٪: 4061»، ثلاثة أسطر برموز تعبيرية: يفهم الذكاء الاصطناعي المعنى لا الشكل. غيّر القناة، لا شيء يُعاد ضبطه.",
-"ru": "«BUY GOLD NOW !! SL 66», «Продажа XAUUSD, вход 4073, SL 4085, TP1 25 %: 4061», три строки с эмодзи: ИИ понимает смысл, а не оформление. Смените канал, ничего настраивать не нужно.",
-"he": "«BUY GOLD NOW !! SL 66», «מכירה XAUUSD, כניסה 4073, SL 4085, TP1 25%: 4061», שלוש שורות עם אימוג'ים: ה-AI מבין את המשמעות, לא את העיצוב. מחליפים ערוץ, אין מה להגדיר מחדש."
-},
-"Garde-fous prop firm": {
-"en": "Prop-firm guard-rails",
-"es": "Protecciones para prop firms",
-"pt": "Proteções para prop firms",
-"ar": "ضوابط شركات التمويل",
-"ru": "Ограничители для проп-фирм",
-"he": "מגבלות לחברות פרופ"
-},
-"Perte journalière, drawdown total, nombre de positions, stops consécutifs, fenêtres d'actualités, clôture avant le week-end. Chaque refus est écrit dans votre journal avec sa raison.": {
-"en": "Daily loss, total drawdown, open positions, consecutive stops, news windows, flat before the weekend. Every refusal is written to your log with its reason.",
-"es": "Pérdida diaria, drawdown total, posiciones abiertas, stops consecutivos, ventanas de noticias, cierre antes del fin de semana. Cada rechazo queda en tu registro con su motivo.",
-"pt": "Perda diária, drawdown total, posições abertas, stops consecutivos, janelas de notícias, fechar antes do fim de semana. Cada recusa fica no teu registo com o motivo.",
-"ar": "الخسارة اليومية، إجمالي التراجع، عدد الصفقات المفتوحة، الوقفات المتتالية، نوافذ الأخبار، الإغلاق قبل عطلة الأسبوع. كل رفض يُسجَّل في سجلك مع سببه.",
-"ru": "Дневной убыток, общая просадка, число позиций, стопы подряд, окна новостей, закрытие перед выходными. Каждый отказ записывается в журнал с причиной.",
-"he": "הפסד יומי, דרואודאון כולל, מספר פוזיציות, סטופים רצופים, חלונות חדשות, סגירה לפני סוף השבוע. כל סירוב נרשם ביומן עם הסיבה."
-},
-"Vous gardez la main": {
-"en": "You stay in control",
-"es": "Tú mantienes el control",
-"pt": "Tu ficas no controlo",
-"ar": "أنت المتحكم",
-"ru": "Контроль остаётся у вас",
-"he": "השליטה נשארת אצלך"
-},
-"Un message incertain n'est jamais exécuté. Un « NOW » vieux de deux minutes non plus. Vous voyez chaque décision, et vous pouvez tout couper d'un bouton.": {
-"en": "An uncertain message is never executed. Neither is a two-minute-old “NOW”. You see every decision, and one button stops everything.",
-"es": "Un mensaje dudoso nunca se ejecuta. Un «NOW» de hace dos minutos tampoco. Ves cada decisión y puedes pararlo todo con un botón.",
-"pt": "Uma mensagem duvidosa nunca é executada. Um «NOW» com dois minutos também não. Vês cada decisão e paras tudo com um botão.",
-"ar": "الرسالة غير المؤكدة لا تُنفَّذ أبداً، ولا «NOW» عمره دقيقتان. ترى كل قرار، وزر واحد يوقف كل شيء.",
-"ru": "Неоднозначное сообщение никогда не исполняется. «NOW» двухминутной давности тоже. Вы видите каждое решение, одна кнопка останавливает всё.",
-"he": "הודעה לא ודאית לעולם לא מבוצעת. גם לא «NOW» בן שתי דקות. אתה רואה כל החלטה, וכפתור אחד עוצר הכול."
-},
-"Réglez vos limites une fois. Relais les tient à votre place.": {
-"en": "Set your limits once. Relais holds them for you.",
-"es": "Fija tus límites una vez. Relais los mantiene por ti.",
-"pt": "Define os teus limites uma vez. O Relais mantém-nos por ti.",
-"ar": "اضبط حدودك مرة واحدة. Relais يلتزم بها عنك.",
-"ru": "Задайте лимиты один раз. Relais будет держать их за вас.",
-"he": "קבע את המגבלות פעם אחת. Relais שומר עליהן בשבילך."
-},
-"Perte journalière max": {
-"en": "Max daily loss",
-"es": "Pérdida diaria máx.",
-"pt": "Perda diária máx.",
-"ar": "أقصى خسارة يومية",
-"ru": "Макс. дневной убыток",
-"he": "הפסד יומי מקסימלי"
-},
-"en % du solde de départ du jour": {
-"en": "% of the day's starting balance",
-"es": "% del saldo inicial del día",
-"pt": "% do saldo inicial do dia",
-"ar": "٪ من رصيد بداية اليوم",
-"ru": "% от баланса на начало дня",
-"he": "% מהיתרה בתחילת היום"
-},
-"Drawdown total max": {
-"en": "Max total drawdown",
-"es": "Drawdown total máx.",
-"pt": "Drawdown total máx.",
-"ar": "أقصى تراجع إجمالي",
-"ru": "Макс. общая просадка",
-"he": "דרואודאון כולל מקסימלי"
-},
-"Positions ouvertes en même temps": {
-"en": "Open positions at once",
-"es": "Posiciones abiertas a la vez",
-"pt": "Posições abertas ao mesmo tempo",
-"ar": "الصفقات المفتوحة في آن واحد",
-"ru": "Открытых позиций одновременно",
-"he": "פוזיציות פתוחות בו-זמנית"
-},
-"Arrêt après": {
-"en": "Stop after",
-"es": "Parar tras",
-"pt": "Parar após",
-"ar": "التوقف بعد",
-"ru": "Остановка после",
-"he": "עצירה אחרי"
-},
-"stops consécutifs dans la journée": {
-"en": "consecutive stops in a day",
-"es": "stops consecutivos en el día",
-"pt": "stops consecutivos no dia",
-"ar": "وقفات متتالية في اليوم",
-"ru": "стопов подряд за день",
-"he": "סטופים רצופים ביום"
-},
-"Clôture avant le week-end": {
-"en": "Flat before the weekend",
-"es": "Cerrar antes del fin de semana",
-"pt": "Fechar antes do fim de semana",
-"ar": "الإغلاق قبل عطلة الأسبوع",
-"ru": "Закрытие перед выходными",
-"he": "סגירה לפני סוף השבוע"
-},
-"vendredi 21:00, heure du serveur": {
-"en": "Friday 21:00 server time",
-"es": "viernes 21:00, hora del servidor",
-"pt": "sexta 21:00, hora do servidor",
-"ar": "الجمعة 21:00 بتوقيت الخادم",
-"ru": "пятница 21:00 по серверу",
-"he": "שישי 21:00 שעון שרת"
-},
-"Ignorer les signaux périmés": {
-"en": "Ignore stale signals",
-"es": "Ignorar señales caducadas",
-"pt": "Ignorar sinais expirados",
-"ar": "تجاهل الإشارات القديمة",
-"ru": "Игнорировать устаревшие сигналы",
-"he": "התעלמות מאיתותים ישנים"
-},
-"un « NOW » de plus de 90 secondes": {
-"en": "a “NOW” older than 90 seconds",
-"es": "un «NOW» de más de 90 segundos",
-"pt": "um «NOW» com mais de 90 segundos",
-"ar": "«NOW» أقدم من 90 ثانية",
-"ru": "«NOW» старше 90 секунд",
-"he": "«NOW» בן יותר מ-90 שניות"
-},
-"Journal (exemple)": {
-"en": "Log (example)",
-"es": "Registro (ejemplo)",
-"pt": "Registo (exemplo)",
-"ar": "السجل (مثال)",
-"ru": "Журнал (пример)",
-"he": "יומן (דוגמה)"
-},
-"EXÉCUTÉ": {
-"en": "EXECUTED",
-"es": "EJECUTADO",
-"pt": "EXECUTADO",
-"ar": "نُفِّذ",
-"ru": "ИСПОЛНЕНО",
-"he": "בוצע"
-},
-"REFUSÉ": {
-"en": "REFUSED",
-"es": "RECHAZADO",
-"pt": "RECUSADO",
-"ar": "مرفوض",
-"ru": "ОТКЛОНЕНО",
-"he": "נדחה"
-},
-"déjà 1 position ouverte": {
-"en": "already 1 open position",
-"es": "ya hay 1 posición abierta",
-"pt": "já há 1 posição aberta",
-"ar": "توجد صفقة مفتوحة بالفعل",
-"ru": "уже 1 открытая позиция",
-"he": "כבר יש פוזיציה פתוחה"
-},
-"lecture incertaine (0,61 < 0,70)": {
-"en": "uncertain reading (0.61 < 0.70)",
-"es": "lectura dudosa (0,61 < 0,70)",
-"pt": "leitura duvidosa (0,61 < 0,70)",
-"ar": "قراءة غير مؤكدة (0.61 < 0.70)",
-"ru": "неуверенное чтение (0,61 < 0,70)",
-"he": "קריאה לא ודאית (0.61 < 0.70)"
-},
-"2 stops aujourd'hui : journée terminée": {
-"en": "2 stops today: day is over",
-"es": "2 stops hoy: día terminado",
-"pt": "2 stops hoje: dia terminado",
-"ar": "وقفتان اليوم: انتهى اليوم",
-"ru": "2 стопа сегодня: день закончен",
-"he": "2 סטופים היום: היום נגמר"
-},
-"vendredi soir : pas de position avant le week-end": {
-"en": "Friday night: no position before the weekend",
-"es": "viernes noche: sin posiciones antes del fin de semana",
-"pt": "sexta à noite: sem posições antes do fim de semana",
-"ar": "ليلة الجمعة: لا صفقات قبل العطلة",
-"ru": "вечер пятницы: без позиций на выходные",
-"he": "שישי בערב: אין פוזיציה לפני סוף השבוע"
-},
-"signal trop ancien (134 s)": {
-"en": "signal too old (134 s)",
-"es": "señal demasiado antigua (134 s)",
-"pt": "sinal demasiado antigo (134 s)",
-"ar": "إشارة قديمة جداً (134 ث)",
-"ru": "сигнал слишком старый (134 с)",
-"he": "איתות ישן מדי (134 שנ')"
-},
-"Valeurs d'exemple. Les règles exactes de chaque firme changent : vous les saisissez, Relais les applique.": {
-"en": "Example values. Each firm's exact rules differ: you enter them, Relais applies them.",
-"es": "Valores de ejemplo. Las reglas exactas de cada firma cambian: tú las introduces, Relais las aplica.",
-"pt": "Valores de exemplo. As regras exatas de cada firma variam: tu introduze-las, o Relais aplica-as.",
-"ar": "قيم للتوضيح. قواعد كل شركة تختلف: أنت تُدخلها وRelais يطبّقها.",
-"ru": "Примерные значения. Точные правила у каждой фирмы свои: вы их вводите, Relais применяет.",
-"he": "ערכים לדוגמה. הכללים המדויקים של כל חברה שונים: אתה מזין אותם, Relais מיישם."
-},
-"Mise en route": {
-"en": "Setup",
-"es": "Puesta en marcha",
-"pt": "Arranque",
-"ar": "البدء",
-"ru": "Запуск",
-"he": "התחלה"
-},
-"Trois étapes, vingt minutes.": {
-"en": "Three steps, twenty minutes.",
-"es": "Tres pasos, veinte minutos.",
-"pt": "Três passos, vinte minutos.",
-"ar": "ثلاث خطوات، عشرون دقيقة.",
-"ru": "Три шага, двадцать минут.",
-"he": "שלושה שלבים, עשרים דקות."
-},
-"Installez Relais sur votre VPS ou votre PC Windows": {
-"en": "Install Relais on your VPS or Windows PC",
-"es": "Instala Relais en tu VPS o PC Windows",
-"pt": "Instala o Relais no teu VPS ou PC Windows",
-"ar": "ثبّت Relais على VPS أو جهاز Windows",
-"ru": "Установите Relais на VPS или ПК с Windows",
-"he": "התקן את Relais על ה-VPS או מחשב Windows"
-},
-"Un installeur, un clic. Il pose l'EA dans MetaTrader 5 et ouvre la page de réglages.": {
-"en": "One installer, one click. It drops the EA into MetaTrader 5 and opens the settings page.",
-"es": "Un instalador, un clic. Coloca el EA en MetaTrader 5 y abre la página de ajustes.",
-"pt": "Um instalador, um clique. Coloca o EA no MetaTrader 5 e abre a página de definições.",
-"ar": "مثبّت واحد، نقرة واحدة. يضع الـEA في MetaTrader 5 ويفتح صفحة الإعدادات.",
-"ru": "Один установщик, один клик. Ставит EA в MetaTrader 5 и открывает настройки.",
-"he": "מתקין אחד, קליק אחד. מציב את ה-EA ב-MetaTrader 5 ופותח את דף ההגדרות."
-},
-"Connectez votre Telegram et cochez vos canaux": {
-"en": "Connect your Telegram and tick your channels",
-"es": "Conecta tu Telegram y marca tus canales",
-"pt": "Liga o teu Telegram e marca os teus canais",
-"ar": "اربط Telegram وحدّد قنواتك",
-"ru": "Подключите Telegram и отметьте каналы",
-"he": "חבר את הטלגרם וסמן את הערוצים"
-},
-"Vous vous connectez vous-même, chez vous. Relais ne voit que les canaux que vous cochez.": {
-"en": "You log in yourself, on your machine. Relais only sees the channels you tick.",
-"es": "Inicias sesión tú mismo, en tu máquina. Relais solo ve los canales que marcas.",
-"pt": "Fazes login tu mesmo, na tua máquina. O Relais só vê os canais que marcas.",
-"ar": "تسجّل الدخول بنفسك على جهازك. لا يرى Relais سوى القنوات التي تحدّدها.",
-"ru": "Вы входите сами, на своей машине. Relais видит только отмеченные каналы.",
-"he": "אתה מתחבר בעצמך, במחשב שלך. Relais רואה רק את הערוצים שסימנת."
-},
-"Réglez vos limites et laissez tourner": {
-"en": "Set your limits and let it run",
-"es": "Fija tus límites y déjalo funcionar",
-"pt": "Define os limites e deixa correr",
-"ar": "اضبط حدودك ودعه يعمل",
-"ru": "Задайте лимиты и пусть работает",
-"he": "קבע מגבלות ותן לזה לרוץ"
-},
-"Mode observation d'abord si vous voulez : Relais lit et journalise sans rien exécuter, jusqu'à ce que vous passiez en réel.": {
-"en": "Observation mode first if you like: Relais reads and logs without executing anything, until you go live.",
-"es": "Modo observación primero si quieres: Relais lee y registra sin ejecutar nada, hasta que pases a real.",
-"pt": "Modo observação primeiro, se quiseres: o Relais lê e regista sem executar nada, até passares a real.",
-"ar": "وضع المراقبة أولاً إن شئت: يقرأ Relais ويسجّل دون تنفيذ، حتى تنتقل إلى الحقيقي.",
-"ru": "Сначала режим наблюдения, если хотите: Relais читает и пишет в журнал, ничего не исполняя, пока вы не включите реальный режим.",
-"he": "קודם מצב תצפית אם תרצה: Relais קורא ורושם בלי לבצע, עד שתעבור לאמיתי."
-},
-"Pour les admins de canaux": {
-"en": "For channel admins",
-"es": "Para admins de canales",
-"pt": "Para admins de canais",
-"ar": "لمشرفي القنوات",
-"ru": "Админам каналов",
-"he": "למנהלי ערוצים"
-},
-"Relais Track : votre bilan du jour, posté tout seul dans votre canal.": {
-"en": "Relais Track: your daily recap, posted to your channel by itself.",
-"es": "Relais Track: tu resumen del día, publicado solo en tu canal.",
-"pt": "Relais Track: o teu resumo do dia, publicado sozinho no teu canal.",
-"ar": "Relais Track: ملخص يومك، يُنشر تلقائياً في قناتك.",
-"ru": "Relais Track: итоги дня, которые сами публикуются в вашем канале.",
-"he": "Relais Track: סיכום היום שלך, מתפרסם לבד בערוץ שלך."
-},
-"Vous ajoutez le robot Relais Track à votre canal et vous le reliez à votre compte MT5. Chaque soir il poste une carte : trades du jour, RR, série en cours, pips, bilan de la semaine. Calculé depuis le compte réel, pas depuis vos messages. Vos abonnés voient des chiffres vérifiés, vous n'avez plus rien à compiler à la main.": {
-"en": "Add the Relais Track bot to your channel and link it to your MT5 account. Every evening it posts a card: today's trades, R, current streak, pips, the week's tally. Computed from the real account, not from your messages. Your subscribers see verified numbers; you never compile anything by hand again.",
-"es": "Añade el bot Relais Track a tu canal y vincúlalo a tu cuenta MT5. Cada noche publica una tarjeta: operaciones del día, R, racha, pips, balance semanal. Calculado desde la cuenta real, no desde tus mensajes. Tus suscriptores ven cifras verificadas y tú no vuelves a compilar nada a mano.",
-"pt": "Adiciona o bot Relais Track ao teu canal e liga-o à tua conta MT5. Todas as noites publica um cartão: trades do dia, R, sequência, pips, balanço da semana. Calculado a partir da conta real, não das tuas mensagens. Os teus subscritores veem números verificados e tu nunca mais compilas nada à mão.",
-"ar": "أضف بوت Relais Track إلى قناتك واربطه بحساب MT5. كل مساء ينشر بطاقة: صفقات اليوم، R، السلسلة الحالية، النقاط، حصيلة الأسبوع. محسوبة من الحساب الحقيقي لا من رسائلك. يرى مشتركوك أرقاماً موثّقة، ولا تجمع شيئاً يدوياً بعد الآن.",
-"ru": "Добавьте бота Relais Track в канал и привяжите к счёту MT5. Каждый вечер он публикует карточку: сделки дня, R, текущая серия, пункты, итог недели. Считается по реальному счёту, а не по вашим сообщениям. Подписчики видят проверенные цифры, вам больше ничего не нужно сводить вручную.",
-"he": "הוסף את הבוט Relais Track לערוץ וחבר אותו לחשבון ה-MT5. כל ערב הוא מפרסם כרטיס: עסקאות היום, R, רצף נוכחי, פיפס, סיכום שבועי. מחושב מהחשבון האמיתי, לא מההודעות שלך. המנויים רואים מספרים מאומתים, ואתה לא מרכז יותר כלום ביד."
-},
-"Gratuit pour les admins, sans limite de durée": {
-"en": "Free for admins, no time limit",
-"es": "Gratis para admins, sin límite de tiempo",
-"pt": "Grátis para admins, sem limite de tempo",
-"ar": "مجاني للمشرفين، بلا حد زمني",
-"ru": "Бесплатно для админов, без ограничения срока",
-"he": "חינם למנהלים, ללא הגבלת זמן"
-},
-"Passe par l'API officielle des bots Telegram : aucun compte à risque": {
-"en": "Uses the official Telegram Bot API: no account at risk",
-"es": "Usa la API oficial de bots de Telegram: ninguna cuenta en riesgo",
-"pt": "Usa a API oficial de bots do Telegram: nenhuma conta em risco",
-"ar": "يستخدم واجهة بوتات Telegram الرسمية: لا حساب في خطر",
-"ru": "Через официальный Bot API Telegram: ни один аккаунт не рискует",
-"he": "דרך ה-Bot API הרשמי של טלגרם: אף חשבון לא בסיכון"
-},
-"Chaque carte porte votre lien Relais :": {
-"en": "Every card carries your Relais link:",
-"es": "Cada tarjeta lleva tu enlace Relais:",
-"pt": "Cada cartão leva o teu link Relais:",
-"ar": "كل بطاقة تحمل رابط Relais الخاص بك:",
-"ru": "На каждой карточке ваша ссылка Relais:",
-"he": "כל כרטיס נושא את קישור ה-Relais שלך:"
-},
-"25 % récurrents": {
-"en": "25% recurring",
-"es": "25 % recurrente",
-"pt": "25% recorrente",
-"ar": "25٪ متكررة",
-"ru": "25 % регулярно",
-"he": "25% חוזר"
-},
-"sur chaque abonné qui l'utilise, tant qu'il reste": {
-"en": "on every subscriber who uses it, for as long as they stay",
-"es": "por cada suscriptor que lo use, mientras siga",
-"pt": "por cada subscritor que o use, enquanto ficar",
-"ar": "على كل مشترك يستخدمه، ما دام مشتركاً",
-"ru": "с каждого подписчика, пока он остаётся",
-"he": "על כל מנוי שמשתמש, כל עוד הוא נשאר"
-},
-"Vous choisissez ce qui s'affiche ; rien n'est publié sans votre réglage": {
-"en": "You choose what shows; nothing is posted without your settings",
-"es": "Tú eliges qué se muestra; nada se publica sin tu ajuste",
-"pt": "Tu escolhes o que aparece; nada é publicado sem a tua definição",
-"ar": "أنت تختار ما يظهر؛ لا يُنشر شيء دون إعدادك",
-"ru": "Вы решаете, что показывать; без ваших настроек ничего не публикуется",
-"he": "אתה בוחר מה מוצג; שום דבר לא מתפרסם בלי ההגדרה שלך"
-},
-"Carte du jour (exemple)": {
-"en": "Daily card (example)",
-"es": "Tarjeta del día (ejemplo)",
-"pt": "Cartão do dia (exemplo)",
-"ar": "بطاقة اليوم (مثال)",
-"ru": "Карточка дня (пример)",
-"he": "כרטיס היום (דוגמה)"
-},
-"Canal Or Privé · mercredi 8 oct.": {
-"en": "Private Gold Channel · Wed 8 Oct",
-"es": "Canal Oro Privado · mié. 8 oct.",
-"pt": "Canal Ouro Privado · qua. 8 out.",
-"ar": "قناة الذهب الخاصة · الأربعاء 8 أكتوبر",
-"ru": "Закрытый канал по золоту · ср 8 окт.",
-"he": "ערוץ זהב פרטי · ד' 8 אוק'"
-},
-"RR du jour": {
-"en": "R today",
-"es": "R del día",
-"pt": "R do dia",
-"ar": "R اليوم",
-"ru": "R за день",
-"he": "R היום"
-},
-"Semaine : 11 trades · 64 % gagnants · +6,1 R · série : 3 ✓": {
-"en": "Week: 11 trades · 64% winners · +6.1 R · streak: 3 ✓",
-"es": "Semana: 11 operaciones · 64 % ganadoras · +6,1 R · racha: 3 ✓",
-"pt": "Semana: 11 trades · 64% ganhos · +6,1 R · sequência: 3 ✓",
-"ar": "الأسبوع: 11 صفقة · 64٪ رابحة · +6.1 R · السلسلة: 3 ✓",
-"ru": "Неделя: 11 сделок · 64 % прибыльных · +6,1 R · серия: 3 ✓",
-"he": "שבוע: 11 עסקאות · 64% מנצחות · +6.1 R · רצף: 3 ✓"
-},
-"Chiffres lus sur le compte MT5 relié · exécuté avec Relais · résultats passés, aucune garantie": {
-"en": "Figures read from the linked MT5 account · executed with Relais · past results, no guarantee",
-"es": "Cifras leídas de la cuenta MT5 vinculada · ejecutado con Relais · resultados pasados, sin garantía",
-"pt": "Números lidos da conta MT5 ligada · executado com Relais · resultados passados, sem garantia",
-"ar": "أرقام مقروءة من حساب MT5 المرتبط · نُفِّذ عبر Relais · نتائج سابقة، لا ضمان",
-"ru": "Цифры из привязанного счёта MT5 · исполнено через Relais · прошлые результаты, без гарантий",
-"he": "נתונים שנקראו מחשבון ה-MT5 המקושר · בוצע עם Relais · תוצאות עבר, ללא ערובה"
-},
-"Un prix, tout compris.": {
-"en": "One price, all included.",
-"es": "Un precio, todo incluido.",
-"pt": "Um preço, tudo incluído.",
-"ar": "سعر واحد، كل شيء مشمول.",
-"ru": "Одна цена, всё включено.",
-"he": "מחיר אחד, הכול כלול."
-},
-"/ mois": {
-"en": "/ month",
-"es": "/ mes",
-"pt": "/ mês",
-"ar": "/ شهر",
-"ru": "/ месяц",
-"he": "/ חודש"
-},
-"Relais Track offert aux admins de canaux": {
-"en": "Relais Track free for channel admins",
-"es": "Relais Track gratis para admins de canales",
-"pt": "Relais Track grátis para admins de canais",
-"ar": "Relais Track مجاني لمشرفي القنوات",
-"ru": "Relais Track бесплатно для админов каналов",
-"he": "Relais Track חינם למנהלי ערוצים"
-},
-"Parrainage : un mois offert par filleul": {
-"en": "Referral: one free month per referred user",
-"es": "Referidos: un mes gratis por cada referido",
-"pt": "Indicações: um mês grátis por cada indicado",
-"ar": "الإحالة: شهر مجاني عن كل مُحال",
-"ru": "Реферал: месяц бесплатно за каждого приглашённого",
-"he": "הפניה: חודש חינם על כל מופנה"
-},
-"Canaux illimités, un compte MT5": {
-"en": "Unlimited channels, one MT5 account",
-"es": "Canales ilimitados, una cuenta MT5",
-"pt": "Canais ilimitados, uma conta MT5",
-"ar": "قنوات غير محدودة، حساب MT5 واحد",
-"ru": "Каналы без ограничений, один счёт MT5",
-"he": "ערוצים ללא הגבלה, חשבון MT5 אחד"
-},
-"Lecture IA des messages incluse": {
-"en": "AI message reading included",
-"es": "Lectura por IA incluida",
-"pt": "Leitura por IA incluída",
-"ar": "قراءة الرسائل بالذكاء الاصطناعي مشمولة",
-"ru": "Чтение сообщений ИИ включено",
-"he": "קריאת AI של ההודעות כלולה"
-},
-"Garde-fous et journal": {
-"en": "Guard-rails and log",
-"es": "Protecciones y registro",
-"pt": "Proteções e registo",
-"ar": "ضوابط وسجل",
-"ru": "Ограничители и журнал",
-"he": "מגבלות ויומן"
-},
-"Résiliable en un clic": {
-"en": "Cancel in one click",
-"es": "Cancelable en un clic",
-"pt": "Cancelável num clique",
-"ar": "إلغاء بنقرة واحدة",
-"ru": "Отмена в один клик",
-"he": "ביטול בקליק"
-},
-"Rejoindre la liste d'attente": {
-"en": "Join the waiting list",
-"es": "Unirme a la lista de espera",
-"pt": "Entrar na lista de espera",
-"ar": "انضم إلى قائمة الانتظار",
-"ru": "В список ожидания",
-"he": "הצטרף לרשימת ההמתנה"
-},
-"Votre e-mail": {
-"en": "Your email",
-"es": "Tu correo",
-"pt": "O teu e-mail",
-"ar": "بريدك الإلكتروني",
-"ru": "Ваш e-mail",
-"he": "האימייל שלך"
-},
-"Code promo (facultatif)": {
-"en": "Promo code (optional)",
-"es": "Código promo (opcional)",
-"pt": "Código promo (opcional)",
-"ar": "رمز ترويجي (اختياري)",
-"ru": "Промокод (необязательно)",
-"he": "קוד קופון (לא חובה)"
-},
-"Me prévenir à l'ouverture": {
-"en": "Notify me at launch",
-"es": "Avisarme en el lanzamiento",
-"pt": "Avisar-me no lançamento",
-"ar": "أبلغني عند الإطلاق",
-"ru": "Сообщить при запуске",
-"he": "עדכנו אותי בהשקה"
-},
-"Ou écrivez-nous directement :": {
-"en": "Or write to us directly:",
-"es": "O escríbenos directamente:",
-"pt": "Ou escreve-nos diretamente:",
-"ar": "أو راسلنا مباشرة:",
-"ru": "Или напишите нам напрямую:",
-"he": "או כתבו לנו ישירות:"
-},
-"Copier": {
-"en": "Copy",
-"es": "Copiar",
-"pt": "Copiar",
-"ar": "نسخ",
-"ru": "Копировать",
-"he": "העתק"
-},
-"Comparaison": {
-"en": "Comparison",
-"es": "Comparación",
-"pt": "Comparação",
-"ar": "مقارنة",
-"ru": "Сравнение",
-"he": "השוואה"
-},
-"Ce que les avis reprochent aux copieurs classiques. Et ce que fait Relais.": {
-"en": "What reviews hold against classic copiers. And what Relais does.",
-"es": "Lo que las reseñas reprochan a los copiadores clásicos. Y lo que hace Relais.",
-"pt": "O que as avaliações criticam nos copiadores clássicos. E o que o Relais faz.",
-"ar": "ما تعيبه المراجعات على الناسخات التقليدية. وما يفعله Relais.",
-"ru": "За что ругают обычные копировщики. И что делает Relais.",
-"he": "מה הביקורות מוצאות במעתיקים הקלאסיים. ומה Relais עושה."
-},
-"Point": {
-"en": "Point",
-"es": "Punto",
-"pt": "Ponto",
-"ar": "النقطة",
-"ru": "Пункт",
-"he": "נקודה"
-},
-"Copieurs classiques": {
-"en": "Classic copiers",
-"es": "Copiadores clásicos",
-"pt": "Copiadores clássicos",
-"ar": "الناسخات التقليدية",
-"ru": "Обычные копировщики",
-"he": "מעתיקים קלאסיים"
-},
-"Lecture des messages": {
-"en": "Message reading",
-"es": "Lectura de mensajes",
-"pt": "Leitura de mensagens",
-"ar": "قراءة الرسائل",
-"ru": "Чтение сообщений",
-"he": "קריאת הודעות"
-},
-"Des règles par format, à régler canal par canal": {
-"en": "Rules per format, set up channel by channel",
-"es": "Reglas por formato, configuradas canal a canal",
-"pt": "Regras por formato, configuradas canal a canal",
-"ar": "قواعد لكل تنسيق، تُضبط قناةً قناة",
-"ru": "Правила под каждый формат, настройка канал за каналом",
-"he": "כללים לכל פורמט, הגדרה ערוץ-ערוץ"
-},
-"IA : n'importe quel format, rien à régler": {
-"en": "AI: any format, nothing to set up",
-"es": "IA: cualquier formato, nada que configurar",
-"pt": "IA: qualquer formato, nada a configurar",
-"ar": "ذكاء اصطناعي: أي تنسيق، لا إعداد",
-"ru": "ИИ: любой формат, ничего настраивать",
-"he": "AI: כל פורמט, אין מה להגדיר"
-},
-"Règles prop firm": {
-"en": "Prop-firm rules",
-"es": "Reglas de la prop firm",
-"pt": "Regras da prop firm",
-"ar": "قواعد شركة التمويل",
-"ru": "Правила проп-фирмы",
-"he": "כללי חברת הפרופ"
-},
-"À surveiller soi-même": {
-"en": "Watch them yourself",
-"es": "A vigilar por tu cuenta",
-"pt": "A vigiar por ti",
-"ar": "تراقبها بنفسك",
-"ru": "Следить самому",
-"he": "לעקוב לבד"
-},
-"Garde-fous intégrés, refus expliqués": {
-"en": "Built-in guard-rails, refusals explained",
-"es": "Protecciones integradas, rechazos explicados",
-"pt": "Proteções integradas, recusas explicadas",
-"ar": "ضوابط مدمجة، رفض مُعلَّل",
-"ru": "Встроенные ограничители, объяснённые отказы",
-"he": "מגבלות מובנות, סירובים מוסברים"
-},
-"Journal": {
-"en": "Log",
-"es": "Registro",
-"pt": "Registo",
-"ar": "السجل",
-"ru": "Журнал",
-"he": "יומן"
-},
-"On ne sait pas ce qui a été lu ni pourquoi rien n'est parti": {
-"en": "No way to know what was read or why nothing fired",
-"es": "No se sabe qué se leyó ni por qué no salió nada",
-"pt": "Não se sabe o que foi lido nem porque nada saiu",
-"ar": "لا تعرف ما قُرئ ولا لماذا لم يُرسل شيء",
-"ru": "Неизвестно, что прочитано и почему ничего не отправлено",
-"he": "אין לדעת מה נקרא ולמה כלום לא יצא"
-},
-"Chaque message, chaque décision, chaque raison": {
-"en": "Every message, every decision, every reason",
-"es": "Cada mensaje, cada decisión, cada motivo",
-"pt": "Cada mensagem, cada decisão, cada motivo",
-"ar": "كل رسالة، كل قرار، كل سبب",
-"ru": "Каждое сообщение, решение и причина",
-"he": "כל הודעה, כל החלטה, כל סיבה"
-},
-"Frais cachés": {
-"en": "Hidden fees",
-"es": "Costes ocultos",
-"pt": "Custos escondidos",
-"ar": "رسوم خفية",
-"ru": "Скрытые платежи",
-"he": "עלויות נסתרות"
-},
-"Abonnement tiers à payer en plus pour relier MT5": {
-"en": "Extra third-party subscription to connect MT5",
-"es": "Suscripción de terceros extra para conectar MT5",
-"pt": "Subscrição extra de terceiros para ligar o MT5",
-"ar": "اشتراك خارجي إضافي لربط MT5",
-"ru": "Доп. подписка на сторонний сервис для связи с MT5",
-"he": "מנוי צד שלישי נוסף לחיבור MT5"
-},
-"Un prix, tout compris": {
-"en": "One price, all included",
-"es": "Un precio, todo incluido",
-"pt": "Um preço, tudo incluído",
-"ar": "سعر واحد شامل",
-"ru": "Одна цена, всё включено",
-"he": "מחיר אחד, הכול כלול"
-},
-"Licence « à vie »": {
-"en": "“Lifetime” licence",
-"es": "Licencia «de por vida»",
-"pt": "Licença «vitalícia»",
-"ar": "ترخيص «مدى الحياة»",
-"ru": "«Пожизненная» лицензия",
-"he": "רישיון «לכל החיים»"
-},
-"Parfois coupée sans préavis": {
-"en": "Sometimes cut without notice",
-"es": "A veces cortada sin aviso",
-"pt": "Às vezes cortada sem aviso",
-"ar": "تُقطع أحياناً دون إشعار",
-"ru": "Иногда отключают без предупреждения",
-"he": "לפעמים מנותק בלי התראה"
-},
-"Pas de licence à vie : un abonnement résiliable en un clic": {
-"en": "No lifetime licence: a subscription you cancel in one click",
-"es": "Sin licencia de por vida: una suscripción cancelable en un clic",
-"pt": "Sem licença vitalícia: uma subscrição cancelável num clique",
-"ar": "لا ترخيص مدى الحياة: اشتراك تلغيه بنقرة",
-"ru": "Без пожизненной лицензии: подписка, отменяемая в один клик",
-"he": "בלי רישיון לכל החיים: מנוי שמבטלים בקליק"
-},
-"Vos identifiants": {
-"en": "Your credentials",
-"es": "Tus credenciales",
-"pt": "As tuas credenciais",
-"ar": "بيانات دخولك",
-"ru": "Ваши учётные данные",
-"he": "פרטי ההתחברות שלך"
-},
-"Souvent confiés à un serveur tiers": {
-"en": "Often handed to a third-party server",
-"es": "A menudo confiadas a un servidor de terceros",
-"pt": "Muitas vezes entregues a um servidor de terceiros",
-"ar": "غالباً تُسلَّم لخادم خارجي",
-"ru": "Часто передаются на сторонний сервер",
-"he": "לעיתים קרובות נמסרים לשרת צד שלישי"
-},
-"Restent sur votre machine": {
-"en": "Stay on your machine",
-"es": "Se quedan en tu máquina",
-"pt": "Ficam na tua máquina",
-"ar": "تبقى على جهازك",
-"ru": "Остаются на вашей машине",
-"he": "נשארים במחשב שלך"
-},
-"Colonne « copieurs classiques » : reproches relevés dans les avis publics (Trustpilot, forums) en 2025-2026, sans viser un produit en particulier.": {
-"en": "“Classic copiers” column: complaints collected from public reviews (Trustpilot, forums) in 2025-2026, not aimed at any one product.",
-"es": "Columna «copiadores clásicos»: quejas recogidas en reseñas públicas (Trustpilot, foros) en 2025-2026, sin señalar a ningún producto.",
-"pt": "Coluna «copiadores clássicos»: queixas recolhidas em avaliações públicas (Trustpilot, fóruns) em 2025-2026, sem visar nenhum produto.",
-"ar": "عمود «الناسخات التقليدية»: شكاوى مأخوذة من مراجعات عامة (Trustpilot، منتديات) في 2025-2026، دون استهداف منتج بعينه.",
-"ru": "Колонка «обычные копировщики»: претензии из публичных отзывов (Trustpilot, форумы) 2025-2026, без привязки к конкретному продукту.",
-"he": "עמודת «מעתיקים קלאסיים»: תלונות שנאספו מביקורות ציבוריות (Trustpilot, פורומים) ב-2025-2026, בלי לכוון למוצר מסוים."
-},
-"Questions": {
-"en": "Questions",
-"es": "Preguntas",
-"pt": "Perguntas",
-"ar": "أسئلة",
-"ru": "Вопросы",
-"he": "שאלות"
-},
-"Ce qu'on nous demande.": {
-"en": "What people ask us.",
-"es": "Lo que nos preguntan.",
-"pt": "O que nos perguntam.",
-"ar": "ما يسألنا الناس عنه.",
-"ru": "О чём нас спрашивают.",
-"he": "מה שואלים אותנו."
-},
-"Est-ce que Relais fournit des signaux ?": {
-"en": "Does Relais provide signals?",
-"es": "¿Relais proporciona señales?",
-"pt": "O Relais fornece sinais?",
-"ar": "هل يقدّم Relais إشارات؟",
-"ru": "Даёт ли Relais сигналы?",
-"he": "האם Relais מספק איתותים?"
-},
-"Non. Relais est un logiciel : il exécute, sur votre compte, les ordres des canaux que vous avez choisis vous-même. Nous ne recommandons aucun canal et nous ne promettons aucun résultat.": {
-"en": "No. Relais is software: it executes, on your account, the orders of channels you picked yourself. We recommend no channel and promise no result.",
-"es": "No. Relais es un software: ejecuta, en tu cuenta, las órdenes de los canales que tú mismo elegiste. No recomendamos ningún canal ni prometemos ningún resultado.",
-"pt": "Não. O Relais é um software: executa, na tua conta, as ordens dos canais que tu próprio escolheste. Não recomendamos nenhum canal nem prometemos resultados.",
-"ar": "لا. Relais برنامج: ينفّذ على حسابك أوامر القنوات التي اخترتها بنفسك. لا نوصي بأي قناة ولا نعد بأي نتيجة.",
-"ru": "Нет. Relais — программа: она исполняет на вашем счёте ордера каналов, которые вы выбрали сами. Мы не рекомендуем каналы и не обещаем результатов.",
-"he": "לא. Relais הוא תוכנה: הוא מבצע בחשבון שלך פקודות מערוצים שבחרת בעצמך. אנחנו לא ממליצים על ערוץ ולא מבטיחים תוצאה."
-},
-"Ma prop firm autorise-t-elle les copieurs ?": {
-"en": "Does my prop firm allow copiers?",
-"es": "¿Mi prop firm permite copiadores?",
-"pt": "A minha prop firm permite copiadores?",
-"ar": "هل تسمح شركة التمويل بالناسخات؟",
-"ru": "Разрешает ли моя проп-фирма копировщики?",
-"he": "האם חברת הפרופ שלי מאפשרת מעתיקים?"
-},
-"La plupart autorisent un robot sur votre propre compte, mais interdisent la copie entre personnes et le trading à haute fréquence. Lisez les règles de votre firme ; Relais ne les contourne pas, il vous aide à les respecter.": {
-"en": "Most allow a robot on your own account but ban copying between people and high-frequency trading; some explicitly ban Telegram-driven EAs. Read your firm's rules; Relais does not bypass them, it helps you keep them.",
-"es": "La mayoría permite un robot en tu propia cuenta, pero prohíbe copiar entre personas y el trading de alta frecuencia; algunas prohíben expresamente los EA basados en Telegram. Lee las reglas de tu firma; Relais no las elude, te ayuda a cumplirlas.",
-"pt": "A maioria permite um robô na tua própria conta, mas proíbe copiar entre pessoas e trading de alta frequência; algumas proíbem expressamente EAs baseados em Telegram. Lê as regras da tua firma; o Relais não as contorna, ajuda-te a cumpri-las.",
-"ar": "معظمها يسمح بروبوت على حسابك الخاص لكنه يمنع النسخ بين الأشخاص والتداول عالي التردد؛ وبعضها يمنع صراحةً الـEA المعتمدة على Telegram. اقرأ قواعد شركتك؛ Relais لا يتحايل عليها بل يساعدك على الالتزام بها.",
-"ru": "Большинство разрешают робота на вашем собственном счёте, но запрещают копирование между людьми и высокочастотную торговлю; некоторые прямо запрещают EA на базе Telegram. Читайте правила своей фирмы; Relais их не обходит, а помогает соблюдать.",
-"he": "רובן מאפשרות רובוט בחשבון שלך אבל אוסרות העתקה בין אנשים ומסחר בתדירות גבוהה; חלקן אוסרות במפורש EA מבוסס טלגרם. קרא את כללי החברה שלך; Relais לא עוקף אותם, הוא עוזר לך לעמוד בהם."
-},
-"Que se passe-t-il si le message est ambigu ?": {
-"en": "What happens if the message is ambiguous?",
-"es": "¿Qué pasa si el mensaje es ambiguo?",
-"pt": "O que acontece se a mensagem for ambígua?",
-"ar": "ماذا يحدث إذا كانت الرسالة غامضة؟",
-"ru": "Что, если сообщение неоднозначно?",
-"he": "מה קורה אם ההודעה דו-משמעית?"
-},
-"Rien. Si la lecture n'atteint pas le niveau de confiance que vous avez fixé, l'ordre n'est pas passé et le message est écrit dans le journal avec la raison.": {
-"en": "Nothing. If the reading does not reach the confidence level you set, no order is placed and the message is logged with the reason.",
-"es": "Nada. Si la lectura no alcanza el nivel de confianza que fijaste, no se coloca la orden y el mensaje queda en el registro con el motivo.",
-"pt": "Nada. Se a leitura não atingir o nível de confiança que definiste, nenhuma ordem é colocada e a mensagem fica no registo com o motivo.",
-"ar": "لا شيء. إذا لم تبلغ القراءة مستوى الثقة الذي حدّدته، لا يُرسل أمر وتُسجَّل الرسالة مع السبب.",
-"ru": "Ничего. Если уверенность чтения ниже заданного вами порога, ордер не выставляется, а сообщение записывается в журнал с причиной.",
-"he": "כלום. אם הקריאה לא מגיעה לרמת הביטחון שקבעת, לא מבוצעת פקודה וההודעה נרשמת ביומן עם הסיבה."
-},
-"Mes identifiants Telegram et MT5 passent-ils par vous ?": {
-"en": "Do my Telegram and MT5 credentials go through you?",
-"es": "¿Mis credenciales de Telegram y MT5 pasan por vosotros?",
-"pt": "As minhas credenciais de Telegram e MT5 passam por vocês?",
-"ar": "هل تمر بيانات دخولي إلى Telegram وMT5 عبركم؟",
-"ru": "Проходят ли мои данные Telegram и MT5 через вас?",
-"he": "האם פרטי הטלגרם וה-MT5 שלי עוברים דרככם?"
-},
-"Non. Vous vous connectez vous-même sur votre machine. Relais n'envoie que le texte des messages à lire, jamais vos identifiants.": {
-"en": "No. You log in yourself on your machine. Relais only sends the text of messages to be read, never your credentials.",
-"es": "No. Inicias sesión tú mismo en tu máquina. Relais solo envía el texto de los mensajes a leer, nunca tus credenciales.",
-"pt": "Não. Fazes login tu mesmo na tua máquina. O Relais só envia o texto das mensagens a ler, nunca as tuas credenciais.",
-"ar": "لا. تسجّل الدخول بنفسك على جهازك. لا يرسل Relais سوى نص الرسائل لقراءتها، وليس بيانات دخولك أبداً.",
-"ru": "Нет. Вы входите сами на своей машине. Relais отправляет только текст сообщений для чтения, никогда ваши данные.",
-"he": "לא. אתה מתחבר בעצמך במחשב שלך. Relais שולח רק את טקסט ההודעות לקריאה, לעולם לא את פרטי ההתחברות."
-},
-"Quels marchés ?": {
-"en": "Which markets?",
-"es": "¿Qué mercados?",
-"pt": "Que mercados?",
-"ar": "أي أسواق؟",
-"ru": "Какие рынки?",
-"he": "אילו שווקים?"
-},
-"Tout ce que votre courtier MT5 propose : or, forex, indices, crypto. Les noms de symboles s'adaptent à votre courtier.": {
-"en": "Anything your MT5 broker offers: gold, forex, indices, crypto. Symbol names adapt to your broker.",
-"es": "Todo lo que ofrezca tu bróker MT5: oro, forex, índices, cripto. Los símbolos se adaptan a tu bróker.",
-"pt": "Tudo o que o teu broker MT5 oferecer: ouro, forex, índices, cripto. Os símbolos adaptam-se ao teu broker.",
-"ar": "كل ما يقدّمه وسيطك على MT5: الذهب، الفوركس، المؤشرات، العملات الرقمية. تتكيّف أسماء الرموز مع وسيطك.",
-"ru": "Всё, что даёт ваш брокер MT5: золото, форекс, индексы, крипто. Названия символов подстраиваются под брокера.",
-"he": "כל מה שהברוקר MT5 שלך מציע: זהב, פורקס, מדדים, קריפטו. שמות הסימבולים מותאמים לברוקר."
-},
-"Relais · logiciel d'exécution, pas un service de conseil en investissement.": {
-"en": "Relais · execution software, not investment advice.",
-"es": "Relais · software de ejecución, no asesoramiento de inversión.",
-"pt": "Relais · software de execução, não aconselhamento de investimento.",
-"ar": "Relais · برنامج تنفيذ، وليس خدمة استشارات استثمارية.",
-"ru": "Relais · программа исполнения, не инвестиционная консультация.",
-"he": "Relais · תוכנת ביצוע, לא ייעוץ השקעות."
-},
-"Le trading comporte un risque de perte en capital.": {
-"en": "Trading carries a risk of capital loss.",
-"es": "Operar conlleva riesgo de pérdida de capital.",
-"pt": "Negociar implica risco de perda de capital.",
-"ar": "ينطوي التداول على مخاطر خسارة رأس المال.",
-"ru": "Торговля сопряжена с риском потери капитала.",
-"he": "מסחר כרוך בסיכון להפסד הון."
-},
-"vous@exemple.fr": {
-"en": "you@example.com",
-"es": "tu@ejemplo.es",
-"pt": "tu@exemplo.pt",
-"ar": "you@example.com",
-"ru": "you@example.com",
-"he": "you@example.com"
-},
-"ex. LANCEMENT": {
-"en": "e.g. LAUNCH",
-"es": "ej. LAUNCH",
-"pt": "ex. LAUNCH",
-"ar": "مثال: LAUNCH",
-"ru": "напр. LAUNCH",
-"he": "למשל LAUNCH"
-},
-"39 €": {
-"en": "$45",
-"es": "39 €",
-"pt": "39 €",
-"ar": "$45",
-"ru": "$45",
-"he": "$45"
-},
-"Prix de lancement, garanti à vie si vous vous inscrivez avant le 1er janvier 2027. Ensuite : 59 € par mois.": {
-"en": "Launch price, locked for life if you sign up before 1 January 2027. After that: $69 per month.",
-"es": "Precio de lanzamiento, garantizado de por vida si te inscribes antes del 1 de enero de 2027. Después: 59 € al mes.",
-"pt": "Preço de lançamento, garantido para sempre se te inscreveres antes de 1 de janeiro de 2027. Depois: 59 € por mês.",
-"ar": "سعر الإطلاق، مضمون مدى الحياة إذا سجّلت قبل 1 يناير 2027. بعدها: 69$ شهرياً.",
-"ru": "Стартовая цена, закрепляется навсегда при регистрации до 1 января 2027. Потом: $69 в месяц.",
-"he": "מחיר השקה, מובטח לכל החיים אם נרשמים לפני 1 בינואר 2027. אחר כך: $69 לחודש."
-},
-"Contact": {
-"en": "Contact",
-"es": "Contacto",
-"pt": "Contacto",
-"ar": "اتصل بنا",
-"ru": "Контакты",
-"he": "צור קשר"
-},
-"Une question ? Un humain répond, en direct.": {
-"en": "A question? A human answers, live.",
-"es": "¿Una pregunta? Una persona responde, en directo.",
-"pt": "Uma pergunta? Uma pessoa responde, em direto.",
-"ar": "سؤال؟ إنسان يجيبك مباشرة.",
-"ru": "Вопрос? Отвечает живой человек, сразу.",
-"he": "שאלה? בן אדם עונה, בזמן אמת."
-},
-"Le plus rapide : on répond depuis le téléphone, en général dans l'heure.": {
-"en": "Fastest: we answer from the phone, usually within the hour.",
-"es": "Lo más rápido: respondemos desde el móvil, normalmente en menos de una hora.",
-"pt": "O mais rápido: respondemos do telemóvel, normalmente dentro de uma hora.",
-"ar": "الأسرع: نرد من الهاتف، عادةً خلال ساعة.",
-"ru": "Быстрее всего: отвечаем с телефона, обычно в течение часа.",
-"he": "הכי מהיר: עונים מהטלפון, בדרך כלל תוך שעה."
-},
-"E-mail": {
-"en": "Email",
-"es": "Correo",
-"pt": "E-mail",
-"ar": "البريد الإلكتروني",
-"ru": "E-mail",
-"he": "אימייל"
-},
-"Pour les questions longues, les factures, les partenariats.": {
-"en": "For long questions, invoices, partnerships.",
-"es": "Para preguntas largas, facturas, colaboraciones.",
-"pt": "Para perguntas longas, faturas, parcerias.",
-"ar": "للأسئلة الطويلة والفواتير والشراكات.",
-"ru": "Для длинных вопросов, счетов, партнёрств.",
-"he": "לשאלות ארוכות, חשבוניות, שותפויות."
-},
-"Installez, lancez en mode observation, et envoyez-nous votre journal : on le lit avec vous et on règle les garde-fous ensemble.": {
-"en": "Install, run in observation mode, and send us your log: we read it with you and tune the guard-rails together.",
-"es": "Instala, lánzalo en modo observación y envíanos tu registro: lo leemos contigo y ajustamos las protecciones juntos.",
-"pt": "Instala, corre em modo observação e envia-nos o teu registo: lemo-lo contigo e afinamos as proteções juntos.",
-"ar": "ثبّت، شغّل وضع المراقبة، وأرسل لنا سجلك: نقرأه معك ونضبط الضوابط سوياً.",
-"ru": "Установите, запустите в режиме наблюдения и пришлите журнал: разберём его вместе и настроим ограничители.",
-"he": "התקן, הרץ במצב תצפית ושלח לנו את היומן: נקרא אותו איתך ונכוון את המגבלות יחד."
-},
-"Parler à quelqu'un": {
-"en": "Talk to someone",
-"es": "Hablar con alguien",
-"pt": "Falar com alguém",
-"ar": "تحدّث مع شخص",
-"ru": "Написать человеку",
-"he": "לדבר עם מישהו"
-},
-"Discuter sur Telegram": {
-"en": "Chat on Telegram",
-"es": "Chatear por Telegram",
-"pt": "Conversar no Telegram",
-"ar": "الدردشة على Telegram",
-"ru": "Написать в Telegram",
-"he": "לשוחח בטלגרם"
-},
-"En direct · compte démo": {
-"en": "Live · demo account",
-"es": "En directo · cuenta demo",
-"pt": "Ao vivo · conta demo",
-"ar": "مباشر · حساب تجريبي",
-"ru": "В прямом эфире · демо-счёт",
-"he": "בשידור חי · חשבון דמו"
-},
-"Messages lus aujourd'hui": {
-"en": "Messages read today",
-"es": "Mensajes leídos hoy",
-"pt": "Mensagens lidas hoje",
-"ar": "رسائل مقروءة اليوم",
-"ru": "Сообщений прочитано сегодня",
-"he": "הודעות שנקראו היום"
-},
-"Ordres exécutés": {
-"en": "Orders executed",
-"es": "Órdenes ejecutadas",
-"pt": "Ordens executadas",
-"ar": "أوامر منفّذة",
-"ru": "Ордеров исполнено",
-"he": "פקודות שבוצעו"
-},
-"Refusés par les garde-fous": {
-"en": "Refused by guard-rails",
-"es": "Rechazados por las protecciones",
-"pt": "Recusados pelas proteções",
-"ar": "مرفوضة بالضوابط",
-"ru": "Отклонено ограничителями",
-"he": "נדחו על ידי המגבלות"
-},
-"Canaux suivis": {
-"en": "Channels followed",
-"es": "Canales seguidos",
-"pt": "Canais seguidos",
-"ar": "قنوات متابَعة",
-"ru": "Каналов отслеживается",
-"he": "ערוצים במעקב"
-},
-"Dernier message": {
-"en": "Last message",
-"es": "Último mensaje",
-"pt": "Última mensagem",
-"ar": "آخر رسالة",
-"ru": "Последнее сообщение",
-"he": "הודעה אחרונה"
-},
-"Compte de démonstration : solde fictif, exécution réelle sur un courtier démo. Ce bandeau montre comment Relais tourne, pas un résultat de trading.": {
-"en": "Demo account: fictitious balance, real execution on a demo broker. This strip shows how Relais runs, not a trading result.",
-"es": "Cuenta de demostración: saldo ficticio, ejecución real en un bróker demo. Esta banda muestra cómo funciona Relais, no un resultado de trading.",
-"pt": "Conta de demonstração: saldo fictício, execução real num broker demo. Esta faixa mostra como o Relais corre, não um resultado de trading.",
-"ar": "حساب تجريبي: رصيد وهمي، تنفيذ حقيقي لدى وسيط تجريبي. يعرض هذا الشريط كيف يعمل Relais، وليس نتيجة تداول.",
-"ru": "Демо-счёт: условный баланс, реальное исполнение у демо-брокера. Эта полоса показывает, как работает Relais, а не торговый результат.",
-"he": "חשבון דמו: יתרה פיקטיבית, ביצוע אמיתי אצל ברוקר דמו. הפס הזה מראה איך Relais רץ, לא תוצאת מסחר."
-},
-"Mensuel": {
-"en": "Monthly",
-"es": "Mensual",
-"pt": "Mensal",
-"ar": "شهري",
-"ru": "Помесячно",
-"he": "חודשי"
-},
-"Annuel · 2 mois offerts": {
-"en": "Yearly · 2 months free",
-"es": "Anual · 2 meses gratis",
-"pt": "Anual · 2 meses grátis",
-"ar": "سنوي · شهران مجاناً",
-"ru": "Годовой · 2 месяца бесплатно",
-"he": "שנתי · חודשיים חינם"
-},
-"390 €": {
-"en": "$450",
-"es": "390 €",
-"pt": "390 €",
-"ar": "$450",
-"ru": "$450",
-"he": "$450"
-},
-"/ an": {
-"en": "/ year",
-"es": "/ año",
-"pt": "/ ano",
-"ar": "/ سنة",
-"ru": "/ год",
-"he": "/ שנה"
-},
-"Scénario": {
-"en": "Scenario",
-"es": "Escenario",
-"pt": "Cenário",
-"ar": "سيناريو",
-"ru": "Сценарий",
-"he": "תרחיש"
-},
-"Du message au marché, en moins d'une seconde.": {
-"en": "From message to market, in under a second.",
-"es": "Del mensaje al mercado, en menos de un segundo.",
-"pt": "Da mensagem ao mercado, em menos de um segundo.",
-"ar": "من الرسالة إلى السوق في أقل من ثانية.",
-"ru": "От сообщения до рынка меньше чем за секунду.",
-"he": "מההודעה לשוק, בפחות משנייה."
-},
-"Scénario rejoué en boucle à partir de vrais messages ; le graphique est simulé.": {
-"en": "Scenario replayed in a loop from real messages; the chart is simulated.",
-"es": "Escenario repetido en bucle a partir de mensajes reales; el gráfico es simulado.",
-"pt": "Cenário repetido em ciclo a partir de mensagens reais; o gráfico é simulado.",
-"ar": "سيناريو يُعاد في حلقة من رسائل حقيقية؛ الرسم البياني محاكاة.",
-"ru": "Сценарий повторяется по кругу на реальных сообщениях; график смоделирован.",
-"he": "תרחיש שמתנגן בלולאה מהודעות אמיתיות; הגרף מדומה."
-},
-"Canal Or Privé": {
-"en": "Private Gold Channel",
-"es": "Canal Oro Privado",
-"pt": "Canal Ouro Privado",
-"ar": "قناة الذهب الخاصة",
-"ru": "Закрытый канал по золоту",
-"he": "ערוץ זהב פרטי"
-},
-"1 248 abonnés": {
-"en": "1,248 subscribers",
-"es": "1.248 suscriptores",
-"pt": "1.248 subscritores",
-"ar": "1248 مشتركاً",
-"ru": "1 248 подписчиков",
-"he": "1,248 מנויים"
-},
-"Compte démo": {
-"en": "Demo account",
-"es": "Cuenta demo",
-"pt": "Conta demo",
-"ar": "حساب تجريبي",
-"ru": "Демо-счёт",
-"he": "חשבון דמו"
-},
-"Exemple normal": {
-"en": "Normal example",
-"es": "Ejemplo normal",
-"pt": "Exemplo normal",
-"ar": "مثال عادي",
-"ru": "Обычный пример",
-"he": "דוגמה רגילה"
-},
-"Garde-fou qui bloque": {
-"en": "Guard-rail blocking",
-"es": "Protección que bloquea",
-"pt": "Proteção que bloqueia",
-"ar": "ضابط يمنع",
-"ru": "Ограничитель блокирует",
-"he": "מגבלה שחוסמת"
-},
-"Gestion de position": {
-"en": "Position management",
-"es": "Gestión de la posición",
-"pt": "Gestão da posição",
-"ar": "إدارة الصفقة",
-"ru": "Управление позицией",
-"he": "ניהול פוזיציה"
-},
-"Risque par trade": {
-"en": "Risk per trade",
-"es": "Riesgo por operación",
-"pt": "Risco por trade",
-"ar": "المخاطرة لكل صفقة",
-"ru": "Риск на сделку",
-"he": "סיכון לעסקה"
-},
-"le lot est calculé depuis la distance du stop": {
-"en": "lot size is computed from the stop distance",
-"es": "el lote se calcula a partir de la distancia del stop",
-"pt": "o lote é calculado a partir da distância do stop",
-"ar": "يُحسب حجم العقد من مسافة الستوب",
-"ru": "лот считается по расстоянию до стопа",
-"he": "גודל הלוט מחושב ממרחק הסטופ"
-},
-"Le lot se calcule tout seul": {
-"en": "Lot size works itself out",
-"es": "El lote se calcula solo",
-"pt": "O lote calcula-se sozinho",
-"ar": "حجم العقد يُحسب تلقائياً",
-"ru": "Лот считается сам",
-"he": "הלוט מחושב לבד"
-},
-"Vous fixez un risque par trade, par exemple 1 % du compte. À chaque signal, Relais mesure la distance du stop et en déduit le lot : un stop serré donne un lot plus gros, un stop large un lot plus petit. Même perte maximale à chaque fois.": {
-"en": "You set a risk per trade, say 1% of the account. On every signal, Relais measures the stop distance and derives the lot: a tight stop gives a bigger lot, a wide stop a smaller one. Same maximum loss every time.",
-"es": "Fijas un riesgo por operación, por ejemplo el 1 % de la cuenta. En cada señal, Relais mide la distancia del stop y deduce el lote: un stop ajustado da un lote mayor, un stop amplio uno menor. La misma pérdida máxima cada vez.",
-"pt": "Defines um risco por trade, por exemplo 1% da conta. A cada sinal, o Relais mede a distância do stop e deduz o lote: um stop curto dá um lote maior, um stop largo um lote menor. A mesma perda máxima de cada vez.",
-"ar": "تحدد مخاطرة لكل صفقة، مثلاً 1٪ من الحساب. مع كل إشارة يقيس Relais مسافة الستوب ويستنتج حجم العقد: ستوب ضيق يعطي عقداً أكبر، وستوب واسع عقداً أصغر. نفس الخسارة القصوى في كل مرة.",
-"ru": "Вы задаёте риск на сделку, например 1 % счёта. На каждом сигнале Relais измеряет расстояние до стопа и выводит лот: узкий стоп даёт больший лот, широкий — меньший. Максимальный убыток всегда один и тот же.",
-"he": "אתה קובע סיכון לעסקה, למשל 1% מהחשבון. בכל איתות Relais מודד את מרחק הסטופ וגוזר ממנו את הלוט: סטופ צמוד נותן לוט גדול יותר, סטופ רחב לוט קטן יותר. אותו הפסד מקסימלי בכל פעם."
-},
-"lot = 1 % du compte / 20 pips de stop": {
-"en": "lot = 1% of account / 20-pip stop",
-"es": "lote = 1 % de la cuenta / stop de 20 pips",
-"pt": "lote = 1% da conta / stop de 20 pips",
-"ar": "العقد = 1٪ من الحساب / ستوب 20 نقطة",
-"ru": "лот = 1 % счёта / стоп 20 пунктов",
-"he": "לוט = 1% מהחשבון / סטופ 20 פיפס"
-},
-"TP1, TP2, TP3 touchés": {
-"en": "TP1, TP2, TP3 hit",
-"es": "TP1, TP2, TP3 alcanzados",
-"pt": "TP1, TP2, TP3 atingidos",
-"ar": "تحقق TP1 وTP2 وTP3",
-"ru": "TP1, TP2, TP3 достигнуты",
-"he": "TP1, TP2, TP3 הושגו"
-},
-"Calculateur de lot": {
-"en": "Lot calculator",
-"es": "Calculadora de lote",
-"pt": "Calculadora de lote",
-"ar": "حاسبة حجم العقد",
-"ru": "Калькулятор лота",
-"he": "מחשבון לוט"
-},
-"Votre lot, calculé depuis votre risque": {
-"en": "Your lot, computed from your risk",
-"es": "Tu lote, calculado desde tu riesgo",
-"pt": "O teu lote, calculado a partir do teu risco",
-"ar": "حجم عقدك محسوب من مخاطرتك",
-"ru": "Ваш лот, рассчитанный из риска",
-"he": "הלוט שלך, מחושב מהסיכון"
-},
-"Capital": {
-"en": "Capital",
-"es": "Capital",
-"pt": "Capital",
-"ar": "رأس المال",
-"ru": "Капитал",
-"he": "הון"
-},
-"Risque par trade (%)": {
-"en": "Risk per trade (%)",
-"es": "Riesgo por operación (%)",
-"pt": "Risco por trade (%)",
-"ar": "المخاطرة لكل صفقة (٪)",
-"ru": "Риск на сделку (%)",
-"he": "סיכון לעסקה (%)"
-},
-"Stop (pips)": {
-"en": "Stop (pips)",
-"es": "Stop (pips)",
-"pt": "Stop (pips)",
-"ar": "الستوب (نقاط)",
-"ru": "Стоп (пункты)",
-"he": "סטופ (פיפס)"
-},
-"Or (XAUUSD) : 1 pip = 0,10 $ ; 1 lot = 100 onces, soit 10 $ par pip.": {
-"en": "Gold (XAUUSD): 1 pip = $0.10; 1 lot = 100 oz, i.e. $10 per pip.",
-"es": "Oro (XAUUSD): 1 pip = 0,10 $; 1 lote = 100 onzas, es decir 10 $ por pip.",
-"pt": "Ouro (XAUUSD): 1 pip = 0,10 $; 1 lote = 100 onças, ou seja 10 $ por pip.",
-"ar": "الذهب (XAUUSD): النقطة = 0.10$؛ العقد = 100 أونصة أي 10$ لكل نقطة.",
-"ru": "Золото (XAUUSD): 1 пункт = $0,10; 1 лот = 100 унций, то есть $10 за пункт.",
-"he": "זהב (XAUUSD): פיפ = $0.10; לוט = 100 אונקיות, כלומר $10 לפיפ."
-},
-"Résultat": {
-"en": "Result",
-"es": "Resultado",
-"pt": "Resultado",
-"ar": "النتيجة",
-"ru": "Результат",
-"he": "תוצאה"
-},
-"C'est le calcul que Relais fait à chaque signal : votre perte maximale reste la même, quelle que soit la distance du stop.": {
-"en": "This is the calculation Relais does on every signal: your maximum loss stays the same whatever the stop distance.",
-"es": "Es el cálculo que Relais hace en cada señal: tu pérdida máxima es la misma sea cual sea la distancia del stop.",
-"pt": "É o cálculo que o Relais faz em cada sinal: a tua perda máxima fica igual, seja qual for a distância do stop.",
-"ar": "هذا ما يحسبه Relais مع كل إشارة: خسارتك القصوى تبقى نفسها مهما كانت مسافة الستوب.",
-"ru": "Этот расчёт Relais делает на каждом сигнале: максимальный убыток один и тот же при любом расстоянии до стопа.",
-"he": "זה החישוב ש-Relais עושה בכל איתות: ההפסד המקסימלי שלך נשאר זהה בכל מרחק סטופ."
-},
-"Des garde-fous adaptés à votre plan de trading. Réglez-les une fois, Relais les tient à votre place.": {
-"en": "Guard-rails that fit your trading plan. Set them once, Relais holds them for you.",
-"es": "Protecciones adaptadas a tu plan de trading. Fíjalas una vez, Relais las mantiene por ti.",
-"pt": "Proteções adaptadas ao teu plano de trading. Define-as uma vez, o Relais mantém-nas por ti.",
-"ar": "ضوابط تناسب خطة تداولك. اضبطها مرة واحدة وRelais يلتزم بها عنك.",
-"ru": "Ограничители под ваш торговый план. Задайте один раз, Relais будет их держать.",
-"he": "מגבלות שמתאימות לתוכנית המסחר שלך. קבע פעם אחת, Relais שומר עליהן."
-},
-"BE, prenez TP1, clôturez 50 %": {
-"en": "BE, take TP1, close 50%",
-"es": "BE, tomar TP1, cerrar 50 %",
-"pt": "BE, tomar TP1, fechar 50%",
-"ar": "BE، خذ TP1، أغلق 50٪",
-"ru": "BE, взять TP1, закрыть 50 %",
-"he": "BE, קח TP1, סגור 50%"
-},
-"Mon espace": {
-"en": "My account",
-"es": "Mi espacio",
-"pt": "A minha área",
-"ar": "حسابي",
-"ru": "Мой кабинет",
-"he": "האזור שלי"
-},
-"Commencer · 14 jours : remboursé si ça ne tourne pas": {
-"en": "Get started · 14 days: refunded if it won't run",
-"es": "Empezar · 14 días: reembolso si no funciona",
-"pt": "Começar · 14 dias: reembolso se não correr",
-"ar": "ابدأ · 14 يوماً: استرداد إن لم يعمل",
-"ru": "Начать · 14 дней: возврат, если не запустится",
-"he": "להתחיל · 14 יום: החזר אם זה לא רץ"
-},
-"14 jours : remboursé si ça ne tourne pas": {
-"en": "14 days: refunded if it won't run",
-"es": "14 días: reembolso si no funciona",
-"pt": "14 dias: reembolso se não correr",
-"ar": "14 يوماً: استرداد إن لم يعمل",
-"ru": "14 дней: возврат, если не запустится",
-"he": "14 יום: החזר אם זה לא רץ"
-},
-"Garantie 14 jours : si Relais ne fonctionne pas sur votre installation et que notre support n'a pas réussi à le faire tourner, nous remboursons intégralement. La garantie ne couvre pas les résultats de trading ni les changements d'avis.": {
-"en": "14-day guarantee: if Relais does not work on your setup and our support could not get it running, we refund in full. The guarantee does not cover trading results or a change of mind.",
-"es": "Garantía de 14 días: si Relais no funciona en tu instalación y nuestro soporte no ha conseguido hacerlo funcionar, reembolsamos íntegramente. La garantía no cubre los resultados de trading ni los cambios de opinión.",
-"pt": "Garantia de 14 dias: se o Relais não funcionar na tua instalação e o nosso suporte não tiver conseguido pô-lo a correr, reembolsamos na totalidade. A garantia não cobre os resultados de trading nem as mudanças de ideias.",
-"ar": "ضمان 14 يوماً: إذا لم يعمل Relais على جهازك ولم يتمكن فريق الدعم من تشغيله، نردّ لك المبلغ كاملاً. لا يغطي الضمان نتائج التداول ولا تغيير الرأي.",
-"ru": "Гарантия 14 дней: если Relais не работает на вашей системе и наша поддержка не смогла его запустить, мы возвращаем всю сумму. Гарантия не распространяется на результаты торговли и на передумавших.",
-"he": "אחריות 14 יום: אם Relais לא עובד על ההתקנה שלכם והתמיכה שלנו לא הצליחה להריץ אותו, נחזיר את מלוא הסכום. האחריות אינה מכסה תוצאות מסחר או שינוי דעה."
-},
-"Payant dès le premier jour, prix de lancement bloqué à vie pour les inscrits avant le 1er janvier 2027.": {
-"en": "Paid from day one, launch price locked for life for members who join before 1 January 2027.",
-"es": "De pago desde el primer día, precio de lanzamiento bloqueado de por vida para los inscritos antes del 1 de enero de 2027.",
-"pt": "Pago desde o primeiro dia, preço de lançamento bloqueado para sempre para quem se inscrever antes de 1 de janeiro de 2027.",
-"ar": "مدفوع من اليوم الأول، وسعر الإطلاق مثبّت مدى الحياة للمسجّلين قبل 1 يناير 2027.",
-"ru": "Платно с первого дня, стартовая цена закрепляется навсегда для тех, кто подключится до 1 января 2027.",
-"he": "בתשלום מהיום הראשון, מחיר ההשקה נעול לכל החיים לנרשמים לפני 1 בינואר 2027."
-},
-"On installe avec vous": {
-"en": "We set it up with you",
-"es": "Lo instalamos contigo",
-"pt": "Instalamos contigo",
-"ar": "نثبّته معك",
-"ru": "Настраиваем вместе с вами",
-"he": "מתקינים יחד אתכם"
-},
-"Dès le premier jour, lancez en mode observation et envoyez-nous votre journal : on le lit avec vous et on règle les garde-fous ensemble. Si Relais ne tourne pas sur votre installation malgré notre support, on vous rembourse dans les 14 jours.": {
-"en": "From day one, run in observation mode and send us your journal: we read it with you and tune the guard-rails together. If Relais won't run on your setup despite our support, we refund you within 14 days.",
-"es": "Desde el primer día, lanza el modo observación y envíanos tu diario: lo leemos contigo y ajustamos las protecciones juntos. Si Relais no funciona en tu instalación pese a nuestro soporte, te reembolsamos en 14 días.",
-"pt": "Desde o primeiro dia, lança em modo observação e envia-nos o teu diário: lemo-lo contigo e afinamos as proteções juntos. Se o Relais não correr na tua instalação apesar do nosso suporte, reembolsamos-te em 14 dias.",
-"ar": "من اليوم الأول، شغّله في وضع المراقبة وأرسل لنا سجلّك: نقرأه معك ونضبط الضوابط معاً. إذا لم يعمل Relais على جهازك رغم دعمنا، نردّ لك المبلغ خلال 14 يوماً.",
-"ru": "С первого дня запустите режим наблюдения и пришлите нам журнал: мы прочитаем его вместе с вами и настроим ограничители. Если Relais не запустится на вашей системе несмотря на нашу поддержку, мы вернём деньги в течение 14 дней.",
-"he": "מהיום הראשון, הריצו במצב תצפית ושלחו לנו את היומן: נקרא אותו יחד ונכוון את המגבלות ביחד. אם Relais לא רץ על ההתקנה שלכם למרות התמיכה שלנו, נחזיר לכם את הכסף תוך 14 יום."
-},
-"Comment fonctionne le remboursement ?": {
-"en": "How does the refund work?",
-"es": "¿Cómo funciona el reembolso?",
-"pt": "Como funciona o reembolso?",
-"ar": "كيف يعمل الاسترداد؟",
-"ru": "Как работает возврат?",
-"he": "איך עובד ההחזר?"
-},
-"Dans les 14 jours suivant le premier paiement, si Relais ne tourne pas sur votre installation et que notre support n'a pas réussi à le faire fonctionner, un message au support suffit : remboursement intégral. La garantie ne couvre pas les résultats de trading ni les changements d'avis.": {
-"en": "Within 14 days of the first payment, if Relais does not run on your setup and our support could not get it working, one message to support is enough: full refund. The guarantee does not cover trading results or a change of mind.",
-"es": "En los 14 días siguientes al primer pago, si Relais no funciona en tu instalación y nuestro soporte no ha conseguido hacerlo funcionar, basta un mensaje al soporte: reembolso íntegro. La garantía no cubre los resultados de trading ni los cambios de opinión.",
-"pt": "Nos 14 dias após o primeiro pagamento, se o Relais não correr na tua instalação e o nosso suporte não tiver conseguido pô-lo a funcionar, basta uma mensagem ao suporte: reembolso total. A garantia não cobre os resultados de trading nem as mudanças de ideias.",
-"ar": "خلال 14 يوماً من الدفعة الأولى، إذا لم يعمل Relais على جهازك ولم يتمكن فريق الدعم من تشغيله، تكفي رسالة واحدة للدعم: استرداد كامل. لا يغطي الضمان نتائج التداول ولا تغيير الرأي.",
-"ru": "В течение 14 дней после первого платежа, если Relais не работает на вашей системе и наша поддержка не смогла его запустить, достаточно одного сообщения в поддержку: полный возврат. Гарантия не распространяется на результаты торговли и на передумавших.",
-"he": "תוך 14 יום מהתשלום הראשון, אם Relais לא רץ על ההתקנה שלכם והתמיכה שלנו לא הצליחה להפעיל אותו, מספיקה הודעה אחת לתמיכה: החזר מלא. האחריות אינה מכסה תוצאות מסחר או שינוי דעה."
-}
+ "Copieur Telegram → MetaTrader 5": {
+  "en": "Telegram → MetaTrader 5 copier",
+  "es": "Copiador Telegram → MetaTrader 5",
+  "pt": "Copiador Telegram → MetaTrader 5",
+  "ar": "ناسخ إشارات Telegram → MetaTrader 5",
+  "ru": "Копировщик Telegram → MetaTrader 5",
+  "he": "מעתיק איתותים Telegram → MetaTrader 5"
+ },
+ "Vos signaux Telegram,": {
+  "en": "Your Telegram signals,",
+  "es": "Tus señales de Telegram,",
+  "pt": "Os teus sinais do Telegram,",
+  "ar": "إشاراتك على Telegram،",
+  "ru": "Ваши сигналы из Telegram,",
+  "he": "האיתותים שלך מטלגרם,"
+ },
+ "exécutés sur MT5": {
+  "en": "executed on MT5",
+  "es": "ejecutadas en MT5",
+  "pt": "executados no MT5",
+  "ar": "تُنفَّذ على MT5",
+  "ru": "исполняются на MT5",
+  "he": "מבוצעים ב-MT5"
+ },
+ ", sans jamais casser les règles de votre prop firm.": {
+  "en": ", without ever breaking your prop firm's rules.",
+  "es": ", sin romper nunca las reglas de tu prop firm.",
+  "pt": ", sem nunca quebrar as regras da tua prop firm.",
+  "ar": "، دون خرق قواعد شركة التمويل أبداً.",
+  "ru": ", никогда не нарушая правила вашей проп-фирмы.",
+  "he": ", בלי לשבור אף פעם את כללי חברת הפרופ שלך."
+ },
+ "Relais lit n'importe quel canal, en français ou en anglais, même mal écrit, et passe l'ordre sur votre compte en moins d'une seconde. Il refuse tout seul ce qui vous ferait perdre votre compte financé.": {
+  "en": "Relais reads any channel, in any language, even badly written, and places the order on your account in under a second. It refuses on its own anything that would cost you your funded account.",
+  "es": "Relais lee cualquier canal, en cualquier idioma, incluso mal escrito, y coloca la orden en tu cuenta en menos de un segundo. Rechaza por sí solo todo lo que te haría perder tu cuenta fondeada.",
+  "pt": "O Relais lê qualquer canal, em qualquer língua, mesmo mal escrito, e coloca a ordem na tua conta em menos de um segundo. Recusa sozinho tudo o que te faria perder a conta financiada.",
+  "ar": "يقرأ Relais أي قناة، بأي لغة، حتى لو كانت الكتابة سيئة، وينفّذ الأمر على حسابك في أقل من ثانية. ويرفض تلقائياً كل ما قد يُفقدك حسابك الممول.",
+  "ru": "Relais читает любой канал, на любом языке, даже написанный небрежно, и выставляет ордер на ваш счёт меньше чем за секунду. Он сам отклоняет всё, что лишило бы вас финансируемого счёта.",
+  "he": "Relais קורא כל ערוץ, בכל שפה, גם כשהוא כתוב גרוע, ומבצע את הפקודה בחשבון שלך בפחות משנייה. הוא דוחה לבד כל מה שיגרום לך לאבד את החשבון הממומן."
+ },
+ "Tester avec mon message": {
+  "en": "Test with my message",
+  "es": "Probar con mi mensaje",
+  "pt": "Testar com a minha mensagem",
+  "ar": "جرّب برسالتك",
+  "ru": "Проверить на моём сообщении",
+  "he": "לבדוק עם ההודעה שלי"
+ },
+ "Aucun signal fourni. Relais exécute les ordres des canaux que vous choisissez, sur votre compte, selon vos réglages.": {
+  "en": "No signals provided. Relais executes orders from the channels you choose, on your account, with your settings.",
+  "es": "No proporcionamos señales. Relais ejecuta las órdenes de los canales que tú eliges, en tu cuenta, con tus ajustes.",
+  "pt": "Não fornecemos sinais. O Relais executa as ordens dos canais que escolhes, na tua conta, com as tuas definições.",
+  "ar": "لا نقدّم إشارات. ينفّذ Relais أوامر القنوات التي تختارها، على حسابك، وفق إعداداتك.",
+  "ru": "Мы не даём сигналов. Relais исполняет ордера из каналов, которые вы выбрали, на вашем счёте, по вашим настройкам.",
+  "he": "אנחנו לא מספקים איתותים. Relais מבצע פקודות מהערוצים שבחרת, בחשבון שלך, לפי ההגדרות שלך."
+ },
+ "Message du canal": {
+  "en": "Channel message",
+  "es": "Mensaje del canal",
+  "pt": "Mensagem do canal",
+  "ar": "رسالة القناة",
+  "ru": "Сообщение канала",
+  "he": "הודעת הערוץ"
+ },
+ "Lecture": {
+  "en": "Reading",
+  "es": "Lectura",
+  "pt": "Leitura",
+  "ar": "القراءة",
+  "ru": "Чтение",
+  "he": "קריאה"
+ },
+ "Garde-fous": {
+  "en": "Guard-rails",
+  "es": "Protecciones",
+  "pt": "Proteções",
+  "ar": "الضوابط",
+  "ru": "Ограничители",
+  "he": "מגבלות בטיחות"
+ },
+ "Ordre MT5": {
+  "en": "MT5 order",
+  "es": "Orden MT5",
+  "pt": "Ordem MT5",
+  "ar": "أمر MT5",
+  "ru": "Ордер MT5",
+  "he": "פקודת MT5"
+ },
+ "Essayer": {
+  "en": "Try it",
+  "es": "Probar",
+  "pt": "Testar",
+  "ar": "جرّب",
+  "ru": "Попробовать",
+  "he": "לנסות"
+ },
+ "Admins": {
+  "en": "Admins",
+  "es": "Admins",
+  "pt": "Admins",
+  "ar": "المشرفون",
+  "ru": "Админам",
+  "he": "מנהלים"
+ },
+ "Tarif": {
+  "en": "Pricing",
+  "es": "Precio",
+  "pt": "Preço",
+  "ar": "السعر",
+  "ru": "Цена",
+  "he": "מחיר"
+ },
+ "Comparer": {
+  "en": "Compare",
+  "es": "Comparar",
+  "pt": "Comparar",
+  "ar": "مقارنة",
+  "ru": "Сравнить",
+  "he": "השוואה"
+ },
+ "À vous": {
+  "en": "Your turn",
+  "es": "Tu turno",
+  "pt": "A tua vez",
+  "ar": "دورك",
+  "ru": "Ваша очередь",
+  "he": "תורך"
+ },
+ "Collez un message de votre canal. Regardez ce que Relais en fait.": {
+  "en": "Paste a message from your channel. See what Relais makes of it.",
+  "es": "Pega un mensaje de tu canal. Mira qué hace Relais con él.",
+  "pt": "Cola uma mensagem do teu canal. Vê o que o Relais faz com ela.",
+  "ar": "الصق رسالة من قناتك وشاهد ما يفعله Relais بها.",
+  "ru": "Вставьте сообщение из вашего канала и посмотрите, что с ним сделает Relais.",
+  "he": "הדבק הודעה מהערוץ שלך ותראה מה Relais עושה איתה."
+ },
+ "Démonstration dans votre navigateur, rien n'est envoyé. La version installée utilise une lecture par IA, plus tolérante encore que celle-ci.": {
+  "en": "Runs in your browser, nothing is sent. The installed version uses AI reading, even more tolerant than this one.",
+  "es": "Funciona en tu navegador, no se envía nada. La versión instalada usa lectura por IA, aún más tolerante que esta.",
+  "pt": "Corre no teu navegador, nada é enviado. A versão instalada usa leitura por IA, ainda mais tolerante do que esta.",
+  "ar": "يعمل في متصفحك، ولا يُرسل شيء. النسخة المثبتة تستخدم قراءة بالذكاء الاصطناعي، أكثر تسامحاً من هذه.",
+  "ru": "Работает в вашем браузере, ничего не отправляется. Установленная версия читает с помощью ИИ и ещё терпимее к формату.",
+  "he": "רץ בדפדפן שלך, שום דבר לא נשלח. הגרסה המותקנת משתמשת בקריאת AI, סלחנית עוד יותר."
+ },
+ "Message": {
+  "en": "Message",
+  "es": "Mensaje",
+  "pt": "Mensagem",
+  "ar": "الرسالة",
+  "ru": "Сообщение",
+  "he": "הודעה"
+ },
+ "Lire le message": {
+  "en": "Read the message",
+  "es": "Leer el mensaje",
+  "pt": "Ler a mensagem",
+  "ar": "اقرأ الرسالة",
+  "ru": "Прочитать сообщение",
+  "he": "קרא את ההודעה"
+ },
+ "Ce que Relais comprend": {
+  "en": "What Relais understands",
+  "es": "Lo que Relais entiende",
+  "pt": "O que o Relais entende",
+  "ar": "ما يفهمه Relais",
+  "ru": "Что понял Relais",
+  "he": "מה Relais מבין"
+ },
+ "Pourquoi Relais": {
+  "en": "Why Relais",
+  "es": "Por qué Relais",
+  "pt": "Porquê Relais",
+  "ar": "لماذا Relais",
+  "ru": "Почему Relais",
+  "he": "למה Relais"
+ },
+ "Les copieurs existants lisent un format.": {
+  "en": "Existing copiers read a format.",
+  "es": "Los copiadores actuales leen un formato.",
+  "pt": "Os copiadores atuais leem um formato.",
+  "ar": "الناسخات الحالية تقرأ تنسيقاً.",
+  "ru": "Обычные копировщики читают формат.",
+  "he": "מעתיקים קיימים קוראים פורמט."
+ },
+ "Relais lit un message.": {
+  "en": "Relais reads a message.",
+  "es": "Relais lee un mensaje.",
+  "pt": "O Relais lê uma mensagem.",
+  "ar": "Relais يقرأ رسالة.",
+  "ru": "Relais читает сообщение.",
+  "he": "Relais קורא הודעה."
+ },
+ "N'importe quel canal": {
+  "en": "Any channel",
+  "es": "Cualquier canal",
+  "pt": "Qualquer canal",
+  "ar": "أي قناة",
+  "ru": "Любой канал",
+  "he": "כל ערוץ"
+ },
+ "Garde-fous prop firm": {
+  "en": "Prop-firm guard-rails",
+  "es": "Protecciones para prop firms",
+  "pt": "Proteções para prop firms",
+  "ar": "ضوابط شركات التمويل",
+  "ru": "Ограничители для проп-фирм",
+  "he": "מגבלות לחברות פרופ"
+ },
+ "Perte journalière, drawdown total, nombre de positions, stops consécutifs, fenêtres d'actualités, clôture avant le week-end. Chaque refus est écrit dans votre journal avec sa raison.": {
+  "en": "Daily loss, total drawdown, open positions, consecutive stops, news windows, flat before the weekend. Every refusal is written to your log with its reason.",
+  "es": "Pérdida diaria, drawdown total, posiciones abiertas, stops consecutivos, ventanas de noticias, cierre antes del fin de semana. Cada rechazo queda en tu registro con su motivo.",
+  "pt": "Perda diária, drawdown total, posições abertas, stops consecutivos, janelas de notícias, fechar antes do fim de semana. Cada recusa fica no teu registo com o motivo.",
+  "ar": "الخسارة اليومية، إجمالي التراجع، عدد الصفقات المفتوحة، الوقفات المتتالية، نوافذ الأخبار، الإغلاق قبل عطلة الأسبوع. كل رفض يُسجَّل في سجلك مع سببه.",
+  "ru": "Дневной убыток, общая просадка, число позиций, стопы подряд, окна новостей, закрытие перед выходными. Каждый отказ записывается в журнал с причиной.",
+  "he": "הפסד יומי, דרואודאון כולל, מספר פוזיציות, סטופים רצופים, חלונות חדשות, סגירה לפני סוף השבוע. כל סירוב נרשם ביומן עם הסיבה."
+ },
+ "Vous gardez la main": {
+  "en": "You stay in control",
+  "es": "Tú mantienes el control",
+  "pt": "Tu ficas no controlo",
+  "ar": "أنت المتحكم",
+  "ru": "Контроль остаётся у вас",
+  "he": "השליטה נשארת אצלך"
+ },
+ "Un message incertain n'est jamais exécuté. Un « NOW » vieux de deux minutes non plus. Vous voyez chaque décision, et vous pouvez tout couper d'un bouton.": {
+  "en": "An uncertain message is never executed. Neither is a two-minute-old “NOW”. You see every decision, and one button stops everything.",
+  "es": "Un mensaje dudoso nunca se ejecuta. Un «NOW» de hace dos minutos tampoco. Ves cada decisión y puedes pararlo todo con un botón.",
+  "pt": "Uma mensagem duvidosa nunca é executada. Um «NOW» com dois minutos também não. Vês cada decisão e paras tudo com um botão.",
+  "ar": "الرسالة غير المؤكدة لا تُنفَّذ أبداً، ولا «NOW» عمره دقيقتان. ترى كل قرار، وزر واحد يوقف كل شيء.",
+  "ru": "Неоднозначное сообщение никогда не исполняется. «NOW» двухминутной давности тоже. Вы видите каждое решение, одна кнопка останавливает всё.",
+  "he": "הודעה לא ודאית לעולם לא מבוצעת. גם לא «NOW» בן שתי דקות. אתה רואה כל החלטה, וכפתור אחד עוצר הכול."
+ },
+ "Réglez vos limites une fois. Relais les tient à votre place.": {
+  "en": "Set your limits once. Relais holds them for you.",
+  "es": "Fija tus límites una vez. Relais los mantiene por ti.",
+  "pt": "Define os teus limites uma vez. O Relais mantém-nos por ti.",
+  "ar": "اضبط حدودك مرة واحدة. Relais يلتزم بها عنك.",
+  "ru": "Задайте лимиты один раз. Relais будет держать их за вас.",
+  "he": "קבע את המגבלות פעם אחת. Relais שומר עליהן בשבילך."
+ },
+ "Perte journalière max": {
+  "en": "Max daily loss",
+  "es": "Pérdida diaria máx.",
+  "pt": "Perda diária máx.",
+  "ar": "أقصى خسارة يومية",
+  "ru": "Макс. дневной убыток",
+  "he": "הפסד יומי מקסימלי"
+ },
+ "en % du solde de départ du jour": {
+  "en": "% of the day's starting balance",
+  "es": "% del saldo inicial del día",
+  "pt": "% do saldo inicial do dia",
+  "ar": "٪ من رصيد بداية اليوم",
+  "ru": "% от баланса на начало дня",
+  "he": "% מהיתרה בתחילת היום"
+ },
+ "Drawdown total max": {
+  "en": "Max total drawdown",
+  "es": "Drawdown total máx.",
+  "pt": "Drawdown total máx.",
+  "ar": "أقصى تراجع إجمالي",
+  "ru": "Макс. общая просадка",
+  "he": "דרואודאון כולל מקסימלי"
+ },
+ "Positions ouvertes en même temps": {
+  "en": "Open positions at once",
+  "es": "Posiciones abiertas a la vez",
+  "pt": "Posições abertas ao mesmo tempo",
+  "ar": "الصفقات المفتوحة في آن واحد",
+  "ru": "Открытых позиций одновременно",
+  "he": "פוזיציות פתוחות בו-זמנית"
+ },
+ "Arrêt après": {
+  "en": "Stop after",
+  "es": "Parar tras",
+  "pt": "Parar após",
+  "ar": "التوقف بعد",
+  "ru": "Остановка после",
+  "he": "עצירה אחרי"
+ },
+ "stops consécutifs dans la journée": {
+  "en": "consecutive stops in a day",
+  "es": "stops consecutivos en el día",
+  "pt": "stops consecutivos no dia",
+  "ar": "وقفات متتالية في اليوم",
+  "ru": "стопов подряд за день",
+  "he": "סטופים רצופים ביום"
+ },
+ "Clôture avant le week-end": {
+  "en": "Flat before the weekend",
+  "es": "Cerrar antes del fin de semana",
+  "pt": "Fechar antes do fim de semana",
+  "ar": "الإغلاق قبل عطلة الأسبوع",
+  "ru": "Закрытие перед выходными",
+  "he": "סגירה לפני סוף השבוע"
+ },
+ "vendredi 21:00, heure du serveur": {
+  "en": "Friday 21:00 server time",
+  "es": "viernes 21:00, hora del servidor",
+  "pt": "sexta 21:00, hora do servidor",
+  "ar": "الجمعة 21:00 بتوقيت الخادم",
+  "ru": "пятница 21:00 по серверу",
+  "he": "שישי 21:00 שעון שרת"
+ },
+ "Ignorer les signaux périmés": {
+  "en": "Ignore stale signals",
+  "es": "Ignorar señales caducadas",
+  "pt": "Ignorar sinais expirados",
+  "ar": "تجاهل الإشارات القديمة",
+  "ru": "Игнорировать устаревшие сигналы",
+  "he": "התעלמות מאיתותים ישנים"
+ },
+ "un « NOW » de plus de 90 secondes": {
+  "en": "a “NOW” older than 90 seconds",
+  "es": "un «NOW» de más de 90 segundos",
+  "pt": "um «NOW» com mais de 90 segundos",
+  "ar": "«NOW» أقدم من 90 ثانية",
+  "ru": "«NOW» старше 90 секунд",
+  "he": "«NOW» בן יותר מ-90 שניות"
+ },
+ "Journal (exemple)": {
+  "en": "Log (example)",
+  "es": "Registro (ejemplo)",
+  "pt": "Registo (exemplo)",
+  "ar": "السجل (مثال)",
+  "ru": "Журнал (пример)",
+  "he": "יומן (דוגמה)"
+ },
+ "EXÉCUTÉ": {
+  "en": "EXECUTED",
+  "es": "EJECUTADO",
+  "pt": "EXECUTADO",
+  "ar": "نُفِّذ",
+  "ru": "ИСПОЛНЕНО",
+  "he": "בוצע"
+ },
+ "REFUSÉ": {
+  "en": "REFUSED",
+  "es": "RECHAZADO",
+  "pt": "RECUSADO",
+  "ar": "مرفوض",
+  "ru": "ОТКЛОНЕНО",
+  "he": "נדחה"
+ },
+ "déjà 1 position ouverte": {
+  "en": "already 1 open position",
+  "es": "ya hay 1 posición abierta",
+  "pt": "já há 1 posição aberta",
+  "ar": "توجد صفقة مفتوحة بالفعل",
+  "ru": "уже 1 открытая позиция",
+  "he": "כבר יש פוזיציה פתוחה"
+ },
+ "lecture incertaine (0,61 < 0,70)": {
+  "en": "uncertain reading (0.61 < 0.70)",
+  "es": "lectura dudosa (0,61 < 0,70)",
+  "pt": "leitura duvidosa (0,61 < 0,70)",
+  "ar": "قراءة غير مؤكدة (0.61 < 0.70)",
+  "ru": "неуверенное чтение (0,61 < 0,70)",
+  "he": "קריאה לא ודאית (0.61 < 0.70)"
+ },
+ "2 stops aujourd'hui : journée terminée": {
+  "en": "2 stops today: day is over",
+  "es": "2 stops hoy: día terminado",
+  "pt": "2 stops hoje: dia terminado",
+  "ar": "وقفتان اليوم: انتهى اليوم",
+  "ru": "2 стопа сегодня: день закончен",
+  "he": "2 סטופים היום: היום נגמר"
+ },
+ "vendredi soir : pas de position avant le week-end": {
+  "en": "Friday night: no position before the weekend",
+  "es": "viernes noche: sin posiciones antes del fin de semana",
+  "pt": "sexta à noite: sem posições antes do fim de semana",
+  "ar": "ليلة الجمعة: لا صفقات قبل العطلة",
+  "ru": "вечер пятницы: без позиций на выходные",
+  "he": "שישי בערב: אין פוזיציה לפני סוף השבוע"
+ },
+ "signal trop ancien (134 s)": {
+  "en": "signal too old (134 s)",
+  "es": "señal demasiado antigua (134 s)",
+  "pt": "sinal demasiado antigo (134 s)",
+  "ar": "إشارة قديمة جداً (134 ث)",
+  "ru": "сигнал слишком старый (134 с)",
+  "he": "איתות ישן מדי (134 שנ')"
+ },
+ "Valeurs d'exemple. Les règles exactes de chaque firme changent : vous les saisissez, Relais les applique.": {
+  "en": "Example values. Each firm's exact rules differ: you enter them, Relais applies them.",
+  "es": "Valores de ejemplo. Las reglas exactas de cada firma cambian: tú las introduces, Relais las aplica.",
+  "pt": "Valores de exemplo. As regras exatas de cada firma variam: tu introduze-las, o Relais aplica-as.",
+  "ar": "قيم للتوضيح. قواعد كل شركة تختلف: أنت تُدخلها وRelais يطبّقها.",
+  "ru": "Примерные значения. Точные правила у каждой фирмы свои: вы их вводите, Relais применяет.",
+  "he": "ערכים לדוגמה. הכללים המדויקים של כל חברה שונים: אתה מזין אותם, Relais מיישם."
+ },
+ "Mise en route": {
+  "en": "Setup",
+  "es": "Puesta en marcha",
+  "pt": "Arranque",
+  "ar": "البدء",
+  "ru": "Запуск",
+  "he": "התחלה"
+ },
+ "Trois étapes, vingt minutes.": {
+  "en": "Three steps, twenty minutes.",
+  "es": "Tres pasos, veinte minutos.",
+  "pt": "Três passos, vinte minutos.",
+  "ar": "ثلاث خطوات، عشرون دقيقة.",
+  "ru": "Три шага, двадцать минут.",
+  "he": "שלושה שלבים, עשרים דקות."
+ },
+ "Installez Relais sur votre VPS ou votre PC Windows": {
+  "en": "Install Relais on your VPS or Windows PC",
+  "es": "Instala Relais en tu VPS o PC Windows",
+  "pt": "Instala o Relais no teu VPS ou PC Windows",
+  "ar": "ثبّت Relais على VPS أو جهاز Windows",
+  "ru": "Установите Relais на VPS или ПК с Windows",
+  "he": "התקן את Relais על ה-VPS או מחשב Windows"
+ },
+ "Un installeur, un clic. Il pose l'EA dans MetaTrader 5 et ouvre la page de réglages.": {
+  "en": "One installer, one click. It drops the EA into MetaTrader 5 and opens the settings page.",
+  "es": "Un instalador, un clic. Coloca el EA en MetaTrader 5 y abre la página de ajustes.",
+  "pt": "Um instalador, um clique. Coloca o EA no MetaTrader 5 e abre a página de definições.",
+  "ar": "مثبّت واحد، نقرة واحدة. يضع الـEA في MetaTrader 5 ويفتح صفحة الإعدادات.",
+  "ru": "Один установщик, один клик. Ставит EA в MetaTrader 5 и открывает настройки.",
+  "he": "מתקין אחד, קליק אחד. מציב את ה-EA ב-MetaTrader 5 ופותח את דף ההגדרות."
+ },
+ "Connectez votre Telegram et cochez vos canaux": {
+  "en": "Connect your Telegram and tick your channels",
+  "es": "Conecta tu Telegram y marca tus canales",
+  "pt": "Liga o teu Telegram e marca os teus canais",
+  "ar": "اربط Telegram وحدّد قنواتك",
+  "ru": "Подключите Telegram и отметьте каналы",
+  "he": "חבר את הטלגרם וסמן את הערוצים"
+ },
+ "Vous vous connectez vous-même, chez vous. Relais ne voit que les canaux que vous cochez.": {
+  "en": "You log in yourself, on your machine. Relais only sees the channels you tick.",
+  "es": "Inicias sesión tú mismo, en tu máquina. Relais solo ve los canales que marcas.",
+  "pt": "Fazes login tu mesmo, na tua máquina. O Relais só vê os canais que marcas.",
+  "ar": "تسجّل الدخول بنفسك على جهازك. لا يرى Relais سوى القنوات التي تحدّدها.",
+  "ru": "Вы входите сами, на своей машине. Relais видит только отмеченные каналы.",
+  "he": "אתה מתחבר בעצמך, במחשב שלך. Relais רואה רק את הערוצים שסימנת."
+ },
+ "Réglez vos limites et laissez tourner": {
+  "en": "Set your limits and let it run",
+  "es": "Fija tus límites y déjalo funcionar",
+  "pt": "Define os limites e deixa correr",
+  "ar": "اضبط حدودك ودعه يعمل",
+  "ru": "Задайте лимиты и пусть работает",
+  "he": "קבע מגבלות ותן לזה לרוץ"
+ },
+ "Mode observation d'abord si vous voulez : Relais lit et journalise sans rien exécuter, jusqu'à ce que vous passiez en réel.": {
+  "en": "Observation mode first if you like: Relais reads and logs without executing anything, until you go live.",
+  "es": "Modo observación primero si quieres: Relais lee y registra sin ejecutar nada, hasta que pases a real.",
+  "pt": "Modo observação primeiro, se quiseres: o Relais lê e regista sem executar nada, até passares a real.",
+  "ar": "وضع المراقبة أولاً إن شئت: يقرأ Relais ويسجّل دون تنفيذ، حتى تنتقل إلى الحقيقي.",
+  "ru": "Сначала режим наблюдения, если хотите: Relais читает и пишет в журнал, ничего не исполняя, пока вы не включите реальный режим.",
+  "he": "קודם מצב תצפית אם תרצה: Relais קורא ורושם בלי לבצע, עד שתעבור לאמיתי."
+ },
+ "Pour les admins de canaux": {
+  "en": "For channel admins",
+  "es": "Para admins de canales",
+  "pt": "Para admins de canais",
+  "ar": "لمشرفي القنوات",
+  "ru": "Админам каналов",
+  "he": "למנהלי ערוצים"
+ },
+ "Relais Track : votre bilan du jour, posté tout seul dans votre canal.": {
+  "en": "Relais Track: your daily recap, posted to your channel by itself.",
+  "es": "Relais Track: tu resumen del día, publicado solo en tu canal.",
+  "pt": "Relais Track: o teu resumo do dia, publicado sozinho no teu canal.",
+  "ar": "Relais Track: ملخص يومك، يُنشر تلقائياً في قناتك.",
+  "ru": "Relais Track: итоги дня, которые сами публикуются в вашем канале.",
+  "he": "Relais Track: סיכום היום שלך, מתפרסם לבד בערוץ שלך."
+ },
+ "Vous ajoutez le robot Relais Track à votre canal et vous le reliez à votre compte MT5. Chaque soir il poste une carte : trades du jour, RR, série en cours, pips, bilan de la semaine. Calculé depuis le compte réel, pas depuis vos messages. Vos abonnés voient des chiffres vérifiés, vous n'avez plus rien à compiler à la main.": {
+  "en": "Add the Relais Track bot to your channel and link it to your MT5 account. Every evening it posts a card: today's trades, R, current streak, pips, the week's tally. Computed from the real account, not from your messages. Your subscribers see verified numbers; you never compile anything by hand again.",
+  "es": "Añade el bot Relais Track a tu canal y vincúlalo a tu cuenta MT5. Cada noche publica una tarjeta: operaciones del día, R, racha, pips, balance semanal. Calculado desde la cuenta real, no desde tus mensajes. Tus suscriptores ven cifras verificadas y tú no vuelves a compilar nada a mano.",
+  "pt": "Adiciona o bot Relais Track ao teu canal e liga-o à tua conta MT5. Todas as noites publica um cartão: trades do dia, R, sequência, pips, balanço da semana. Calculado a partir da conta real, não das tuas mensagens. Os teus subscritores veem números verificados e tu nunca mais compilas nada à mão.",
+  "ar": "أضف بوت Relais Track إلى قناتك واربطه بحساب MT5. كل مساء ينشر بطاقة: صفقات اليوم، R، السلسلة الحالية، النقاط، حصيلة الأسبوع. محسوبة من الحساب الحقيقي لا من رسائلك. يرى مشتركوك أرقاماً موثّقة، ولا تجمع شيئاً يدوياً بعد الآن.",
+  "ru": "Добавьте бота Relais Track в канал и привяжите к счёту MT5. Каждый вечер он публикует карточку: сделки дня, R, текущая серия, пункты, итог недели. Считается по реальному счёту, а не по вашим сообщениям. Подписчики видят проверенные цифры, вам больше ничего не нужно сводить вручную.",
+  "he": "הוסף את הבוט Relais Track לערוץ וחבר אותו לחשבון ה-MT5. כל ערב הוא מפרסם כרטיס: עסקאות היום, R, רצף נוכחי, פיפס, סיכום שבועי. מחושב מהחשבון האמיתי, לא מההודעות שלך. המנויים רואים מספרים מאומתים, ואתה לא מרכז יותר כלום ביד."
+ },
+ "Gratuit pour les admins, sans limite de durée": {
+  "en": "Free for admins, no time limit",
+  "es": "Gratis para admins, sin límite de tiempo",
+  "pt": "Grátis para admins, sem limite de tempo",
+  "ar": "مجاني للمشرفين، بلا حد زمني",
+  "ru": "Бесплатно для админов, без ограничения срока",
+  "he": "חינם למנהלים, ללא הגבלת זמן"
+ },
+ "Passe par l'API officielle des bots Telegram : aucun compte à risque": {
+  "en": "Uses the official Telegram Bot API: no account at risk",
+  "es": "Usa la API oficial de bots de Telegram: ninguna cuenta en riesgo",
+  "pt": "Usa a API oficial de bots do Telegram: nenhuma conta em risco",
+  "ar": "يستخدم واجهة بوتات Telegram الرسمية: لا حساب في خطر",
+  "ru": "Через официальный Bot API Telegram: ни один аккаунт не рискует",
+  "he": "דרך ה-Bot API הרשמי של טלגרם: אף חשבון לא בסיכון"
+ },
+ "Chaque carte porte votre lien Relais :": {
+  "en": "Every card carries your Relais link:",
+  "es": "Cada tarjeta lleva tu enlace Relais:",
+  "pt": "Cada cartão leva o teu link Relais:",
+  "ar": "كل بطاقة تحمل رابط Relais الخاص بك:",
+  "ru": "На каждой карточке ваша ссылка Relais:",
+  "he": "כל כרטיס נושא את קישור ה-Relais שלך:"
+ },
+ "25 % récurrents": {
+  "en": "25% recurring",
+  "es": "25 % recurrente",
+  "pt": "25% recorrente",
+  "ar": "25٪ متكررة",
+  "ru": "25 % регулярно",
+  "he": "25% חוזר"
+ },
+ "sur chaque abonné qui l'utilise, tant qu'il reste": {
+  "en": "on every subscriber who uses it, for as long as they stay",
+  "es": "por cada suscriptor que lo use, mientras siga",
+  "pt": "por cada subscritor que o use, enquanto ficar",
+  "ar": "على كل مشترك يستخدمه، ما دام مشتركاً",
+  "ru": "с каждого подписчика, пока он остаётся",
+  "he": "על כל מנוי שמשתמש, כל עוד הוא נשאר"
+ },
+ "Vous choisissez ce qui s'affiche ; rien n'est publié sans votre réglage": {
+  "en": "You choose what shows; nothing is posted without your settings",
+  "es": "Tú eliges qué se muestra; nada se publica sin tu ajuste",
+  "pt": "Tu escolhes o que aparece; nada é publicado sem a tua definição",
+  "ar": "أنت تختار ما يظهر؛ لا يُنشر شيء دون إعدادك",
+  "ru": "Вы решаете, что показывать; без ваших настроек ничего не публикуется",
+  "he": "אתה בוחר מה מוצג; שום דבר לא מתפרסם בלי ההגדרה שלך"
+ },
+ "Carte du jour (exemple)": {
+  "en": "Daily card (example)",
+  "es": "Tarjeta del día (ejemplo)",
+  "pt": "Cartão do dia (exemplo)",
+  "ar": "بطاقة اليوم (مثال)",
+  "ru": "Карточка дня (пример)",
+  "he": "כרטיס היום (דוגמה)"
+ },
+ "Canal Or Privé · mercredi 8 oct.": {
+  "en": "Private Gold Channel · Wed 8 Oct",
+  "es": "Canal Oro Privado · mié. 8 oct.",
+  "pt": "Canal Ouro Privado · qua. 8 out.",
+  "ar": "قناة الذهب الخاصة · الأربعاء 8 أكتوبر",
+  "ru": "Закрытый канал по золоту · ср 8 окт.",
+  "he": "ערוץ זהב פרטי · ד' 8 אוק'"
+ },
+ "RR du jour": {
+  "en": "R today",
+  "es": "R del día",
+  "pt": "R do dia",
+  "ar": "R اليوم",
+  "ru": "R за день",
+  "he": "R היום"
+ },
+ "Semaine : 11 trades · 64 % gagnants · +6,1 R · série : 3 ✓": {
+  "en": "Week: 11 trades · 64% winners · +6.1 R · streak: 3 ✓",
+  "es": "Semana: 11 operaciones · 64 % ganadoras · +6,1 R · racha: 3 ✓",
+  "pt": "Semana: 11 trades · 64% ganhos · +6,1 R · sequência: 3 ✓",
+  "ar": "الأسبوع: 11 صفقة · 64٪ رابحة · +6.1 R · السلسلة: 3 ✓",
+  "ru": "Неделя: 11 сделок · 64 % прибыльных · +6,1 R · серия: 3 ✓",
+  "he": "שבוע: 11 עסקאות · 64% מנצחות · +6.1 R · רצף: 3 ✓"
+ },
+ "Chiffres lus sur le compte MT5 relié · exécuté avec Relais · résultats passés, aucune garantie": {
+  "en": "Figures read from the linked MT5 account · executed with Relais · past results, no guarantee",
+  "es": "Cifras leídas de la cuenta MT5 vinculada · ejecutado con Relais · resultados pasados, sin garantía",
+  "pt": "Números lidos da conta MT5 ligada · executado com Relais · resultados passados, sem garantia",
+  "ar": "أرقام مقروءة من حساب MT5 المرتبط · نُفِّذ عبر Relais · نتائج سابقة، لا ضمان",
+  "ru": "Цифры из привязанного счёта MT5 · исполнено через Relais · прошлые результаты, без гарантий",
+  "he": "נתונים שנקראו מחשבון ה-MT5 המקושר · בוצע עם Relais · תוצאות עבר, ללא ערובה"
+ },
+ "Un prix, tout compris.": {
+  "en": "One price, all included.",
+  "es": "Un precio, todo incluido.",
+  "pt": "Um preço, tudo incluído.",
+  "ar": "سعر واحد، كل شيء مشمول.",
+  "ru": "Одна цена, всё включено.",
+  "he": "מחיר אחד, הכול כלול."
+ },
+ "/ mois": {
+  "en": "/ month",
+  "es": "/ mes",
+  "pt": "/ mês",
+  "ar": "/ شهر",
+  "ru": "/ месяц",
+  "he": "/ חודש"
+ },
+ "Relais Track offert aux admins de canaux": {
+  "en": "Relais Track free for channel admins",
+  "es": "Relais Track gratis para admins de canales",
+  "pt": "Relais Track grátis para admins de canais",
+  "ar": "Relais Track مجاني لمشرفي القنوات",
+  "ru": "Relais Track бесплатно для админов каналов",
+  "he": "Relais Track חינם למנהלי ערוצים"
+ },
+ "Parrainage : un mois offert par filleul": {
+  "en": "Referral: one free month per referred user",
+  "es": "Referidos: un mes gratis por cada referido",
+  "pt": "Indicações: um mês grátis por cada indicado",
+  "ar": "الإحالة: شهر مجاني عن كل مُحال",
+  "ru": "Реферал: месяц бесплатно за каждого приглашённого",
+  "he": "הפניה: חודש חינם על כל מופנה"
+ },
+ "Canaux illimités, un compte MT5": {
+  "en": "Unlimited channels, one MT5 account",
+  "es": "Canales ilimitados, una cuenta MT5",
+  "pt": "Canais ilimitados, uma conta MT5",
+  "ar": "قنوات غير محدودة، حساب MT5 واحد",
+  "ru": "Каналы без ограничений, один счёт MT5",
+  "he": "ערוצים ללא הגבלה, חשבון MT5 אחד"
+ },
+ "Lecture IA des messages incluse": {
+  "en": "AI message reading included",
+  "es": "Lectura por IA incluida",
+  "pt": "Leitura por IA incluída",
+  "ar": "قراءة الرسائل بالذكاء الاصطناعي مشمولة",
+  "ru": "Чтение сообщений ИИ включено",
+  "he": "קריאת AI של ההודעות כלולה"
+ },
+ "Garde-fous et journal": {
+  "en": "Guard-rails and log",
+  "es": "Protecciones y registro",
+  "pt": "Proteções e registo",
+  "ar": "ضوابط وسجل",
+  "ru": "Ограничители и журнал",
+  "he": "מגבלות ויומן"
+ },
+ "Résiliable en un clic": {
+  "en": "Cancel in one click",
+  "es": "Cancelable en un clic",
+  "pt": "Cancelável num clique",
+  "ar": "إلغاء بنقرة واحدة",
+  "ru": "Отмена в один клик",
+  "he": "ביטול בקליק"
+ },
+ "Rejoindre la liste d'attente": {
+  "en": "Join the waiting list",
+  "es": "Unirme a la lista de espera",
+  "pt": "Entrar na lista de espera",
+  "ar": "انضم إلى قائمة الانتظار",
+  "ru": "В список ожидания",
+  "he": "הצטרף לרשימת ההמתנה"
+ },
+ "Votre e-mail": {
+  "en": "Your email",
+  "es": "Tu correo",
+  "pt": "O teu e-mail",
+  "ar": "بريدك الإلكتروني",
+  "ru": "Ваш e-mail",
+  "he": "האימייל שלך"
+ },
+ "Code promo (facultatif)": {
+  "en": "Promo code (optional)",
+  "es": "Código promo (opcional)",
+  "pt": "Código promo (opcional)",
+  "ar": "رمز ترويجي (اختياري)",
+  "ru": "Промокод (необязательно)",
+  "he": "קוד קופון (לא חובה)"
+ },
+ "Me prévenir à l'ouverture": {
+  "en": "Notify me at launch",
+  "es": "Avisarme en el lanzamiento",
+  "pt": "Avisar-me no lançamento",
+  "ar": "أبلغني عند الإطلاق",
+  "ru": "Сообщить при запуске",
+  "he": "עדכנו אותי בהשקה"
+ },
+ "Ou écrivez-nous directement :": {
+  "en": "Or write to us directly:",
+  "es": "O escríbenos directamente:",
+  "pt": "Ou escreve-nos diretamente:",
+  "ar": "أو راسلنا مباشرة:",
+  "ru": "Или напишите нам напрямую:",
+  "he": "או כתבו לנו ישירות:"
+ },
+ "Copier": {
+  "en": "Copy",
+  "es": "Copiar",
+  "pt": "Copiar",
+  "ar": "نسخ",
+  "ru": "Копировать",
+  "he": "העתק"
+ },
+ "Comparaison": {
+  "en": "Comparison",
+  "es": "Comparación",
+  "pt": "Comparação",
+  "ar": "مقارنة",
+  "ru": "Сравнение",
+  "he": "השוואה"
+ },
+ "Ce que les avis reprochent aux copieurs classiques. Et ce que fait Relais.": {
+  "en": "What reviews hold against classic copiers. And what Relais does.",
+  "es": "Lo que las reseñas reprochan a los copiadores clásicos. Y lo que hace Relais.",
+  "pt": "O que as avaliações criticam nos copiadores clássicos. E o que o Relais faz.",
+  "ar": "ما تعيبه المراجعات على الناسخات التقليدية. وما يفعله Relais.",
+  "ru": "За что ругают обычные копировщики. И что делает Relais.",
+  "he": "מה הביקורות מוצאות במעתיקים הקלאסיים. ומה Relais עושה."
+ },
+ "Point": {
+  "en": "Point",
+  "es": "Punto",
+  "pt": "Ponto",
+  "ar": "النقطة",
+  "ru": "Пункт",
+  "he": "נקודה"
+ },
+ "Copieurs classiques": {
+  "en": "Classic copiers",
+  "es": "Copiadores clásicos",
+  "pt": "Copiadores clássicos",
+  "ar": "الناسخات التقليدية",
+  "ru": "Обычные копировщики",
+  "he": "מעתיקים קלאסיים"
+ },
+ "Lecture des messages": {
+  "en": "Message reading",
+  "es": "Lectura de mensajes",
+  "pt": "Leitura de mensagens",
+  "ar": "قراءة الرسائل",
+  "ru": "Чтение сообщений",
+  "he": "קריאת הודעות"
+ },
+ "Des règles par format, à régler canal par canal": {
+  "en": "Rules per format, set up channel by channel",
+  "es": "Reglas por formato, configuradas canal a canal",
+  "pt": "Regras por formato, configuradas canal a canal",
+  "ar": "قواعد لكل تنسيق، تُضبط قناةً قناة",
+  "ru": "Правила под каждый формат, настройка канал за каналом",
+  "he": "כללים לכל פורמט, הגדרה ערוץ-ערוץ"
+ },
+ "IA : n'importe quel format, rien à régler": {
+  "en": "AI: any format, nothing to set up",
+  "es": "IA: cualquier formato, nada que configurar",
+  "pt": "IA: qualquer formato, nada a configurar",
+  "ar": "ذكاء اصطناعي: أي تنسيق، لا إعداد",
+  "ru": "ИИ: любой формат, ничего настраивать",
+  "he": "AI: כל פורמט, אין מה להגדיר"
+ },
+ "Règles prop firm": {
+  "en": "Prop-firm rules",
+  "es": "Reglas de la prop firm",
+  "pt": "Regras da prop firm",
+  "ar": "قواعد شركة التمويل",
+  "ru": "Правила проп-фирмы",
+  "he": "כללי חברת הפרופ"
+ },
+ "À surveiller soi-même": {
+  "en": "Watch them yourself",
+  "es": "A vigilar por tu cuenta",
+  "pt": "A vigiar por ti",
+  "ar": "تراقبها بنفسك",
+  "ru": "Следить самому",
+  "he": "לעקוב לבד"
+ },
+ "Garde-fous intégrés, refus expliqués": {
+  "en": "Built-in guard-rails, refusals explained",
+  "es": "Protecciones integradas, rechazos explicados",
+  "pt": "Proteções integradas, recusas explicadas",
+  "ar": "ضوابط مدمجة، رفض مُعلَّل",
+  "ru": "Встроенные ограничители, объяснённые отказы",
+  "he": "מגבלות מובנות, סירובים מוסברים"
+ },
+ "Journal": {
+  "en": "Log",
+  "es": "Registro",
+  "pt": "Registo",
+  "ar": "السجل",
+  "ru": "Журнал",
+  "he": "יומן"
+ },
+ "On ne sait pas ce qui a été lu ni pourquoi rien n'est parti": {
+  "en": "No way to know what was read or why nothing fired",
+  "es": "No se sabe qué se leyó ni por qué no salió nada",
+  "pt": "Não se sabe o que foi lido nem porque nada saiu",
+  "ar": "لا تعرف ما قُرئ ولا لماذا لم يُرسل شيء",
+  "ru": "Неизвестно, что прочитано и почему ничего не отправлено",
+  "he": "אין לדעת מה נקרא ולמה כלום לא יצא"
+ },
+ "Chaque message, chaque décision, chaque raison": {
+  "en": "Every message, every decision, every reason",
+  "es": "Cada mensaje, cada decisión, cada motivo",
+  "pt": "Cada mensagem, cada decisão, cada motivo",
+  "ar": "كل رسالة، كل قرار، كل سبب",
+  "ru": "Каждое сообщение, решение и причина",
+  "he": "כל הודעה, כל החלטה, כל סיבה"
+ },
+ "Frais cachés": {
+  "en": "Hidden fees",
+  "es": "Costes ocultos",
+  "pt": "Custos escondidos",
+  "ar": "رسوم خفية",
+  "ru": "Скрытые платежи",
+  "he": "עלויות נסתרות"
+ },
+ "Abonnement tiers à payer en plus pour relier MT5": {
+  "en": "Extra third-party subscription to connect MT5",
+  "es": "Suscripción de terceros extra para conectar MT5",
+  "pt": "Subscrição extra de terceiros para ligar o MT5",
+  "ar": "اشتراك خارجي إضافي لربط MT5",
+  "ru": "Доп. подписка на сторонний сервис для связи с MT5",
+  "he": "מנוי צד שלישי נוסף לחיבור MT5"
+ },
+ "Un prix, tout compris": {
+  "en": "One price, all included",
+  "es": "Un precio, todo incluido",
+  "pt": "Um preço, tudo incluído",
+  "ar": "سعر واحد شامل",
+  "ru": "Одна цена, всё включено",
+  "he": "מחיר אחד, הכול כלול"
+ },
+ "Licence « à vie »": {
+  "en": "“Lifetime” licence",
+  "es": "Licencia «de por vida»",
+  "pt": "Licença «vitalícia»",
+  "ar": "ترخيص «مدى الحياة»",
+  "ru": "«Пожизненная» лицензия",
+  "he": "רישיון «לכל החיים»"
+ },
+ "Parfois coupée sans préavis": {
+  "en": "Sometimes cut without notice",
+  "es": "A veces cortada sin aviso",
+  "pt": "Às vezes cortada sem aviso",
+  "ar": "تُقطع أحياناً دون إشعار",
+  "ru": "Иногда отключают без предупреждения",
+  "he": "לפעמים מנותק בלי התראה"
+ },
+ "Pas de licence à vie : un abonnement résiliable en un clic": {
+  "en": "No lifetime licence: a subscription you cancel in one click",
+  "es": "Sin licencia de por vida: una suscripción cancelable en un clic",
+  "pt": "Sem licença vitalícia: uma subscrição cancelável num clique",
+  "ar": "لا ترخيص مدى الحياة: اشتراك تلغيه بنقرة",
+  "ru": "Без пожизненной лицензии: подписка, отменяемая в один клик",
+  "he": "בלי רישיון לכל החיים: מנוי שמבטלים בקליק"
+ },
+ "Vos identifiants": {
+  "en": "Your credentials",
+  "es": "Tus credenciales",
+  "pt": "As tuas credenciais",
+  "ar": "بيانات دخولك",
+  "ru": "Ваши учётные данные",
+  "he": "פרטי ההתחברות שלך"
+ },
+ "Souvent confiés à un serveur tiers": {
+  "en": "Often handed to a third-party server",
+  "es": "A menudo confiadas a un servidor de terceros",
+  "pt": "Muitas vezes entregues a um servidor de terceiros",
+  "ar": "غالباً تُسلَّم لخادم خارجي",
+  "ru": "Часто передаются на сторонний сервер",
+  "he": "לעיתים קרובות נמסרים לשרת צד שלישי"
+ },
+ "Restent sur votre machine": {
+  "en": "Stay on your machine",
+  "es": "Se quedan en tu máquina",
+  "pt": "Ficam na tua máquina",
+  "ar": "تبقى على جهازك",
+  "ru": "Остаются на вашей машине",
+  "he": "נשארים במחשב שלך"
+ },
+ "Colonne « copieurs classiques » : reproches relevés dans les avis publics (Trustpilot, forums) en 2025-2026, sans viser un produit en particulier.": {
+  "en": "“Classic copiers” column: complaints collected from public reviews (Trustpilot, forums) in 2025-2026, not aimed at any one product.",
+  "es": "Columna «copiadores clásicos»: quejas recogidas en reseñas públicas (Trustpilot, foros) en 2025-2026, sin señalar a ningún producto.",
+  "pt": "Coluna «copiadores clássicos»: queixas recolhidas em avaliações públicas (Trustpilot, fóruns) em 2025-2026, sem visar nenhum produto.",
+  "ar": "عمود «الناسخات التقليدية»: شكاوى مأخوذة من مراجعات عامة (Trustpilot، منتديات) في 2025-2026، دون استهداف منتج بعينه.",
+  "ru": "Колонка «обычные копировщики»: претензии из публичных отзывов (Trustpilot, форумы) 2025-2026, без привязки к конкретному продукту.",
+  "he": "עמודת «מעתיקים קלאסיים»: תלונות שנאספו מביקורות ציבוריות (Trustpilot, פורומים) ב-2025-2026, בלי לכוון למוצר מסוים."
+ },
+ "Questions": {
+  "en": "Questions",
+  "es": "Preguntas",
+  "pt": "Perguntas",
+  "ar": "أسئلة",
+  "ru": "Вопросы",
+  "he": "שאלות"
+ },
+ "Ce qu'on nous demande.": {
+  "en": "What people ask us.",
+  "es": "Lo que nos preguntan.",
+  "pt": "O que nos perguntam.",
+  "ar": "ما يسألنا الناس عنه.",
+  "ru": "О чём нас спрашивают.",
+  "he": "מה שואלים אותנו."
+ },
+ "Est-ce que Relais fournit des signaux ?": {
+  "en": "Does Relais provide signals?",
+  "es": "¿Relais proporciona señales?",
+  "pt": "O Relais fornece sinais?",
+  "ar": "هل يقدّم Relais إشارات؟",
+  "ru": "Даёт ли Relais сигналы?",
+  "he": "האם Relais מספק איתותים?"
+ },
+ "Non. Relais est un logiciel : il exécute, sur votre compte, les ordres des canaux que vous avez choisis vous-même. Nous ne recommandons aucun canal et nous ne promettons aucun résultat.": {
+  "en": "No. Relais is software: it executes, on your account, the orders of channels you picked yourself. We recommend no channel and promise no result.",
+  "es": "No. Relais es un software: ejecuta, en tu cuenta, las órdenes de los canales que tú mismo elegiste. No recomendamos ningún canal ni prometemos ningún resultado.",
+  "pt": "Não. O Relais é um software: executa, na tua conta, as ordens dos canais que tu próprio escolheste. Não recomendamos nenhum canal nem prometemos resultados.",
+  "ar": "لا. Relais برنامج: ينفّذ على حسابك أوامر القنوات التي اخترتها بنفسك. لا نوصي بأي قناة ولا نعد بأي نتيجة.",
+  "ru": "Нет. Relais — программа: она исполняет на вашем счёте ордера каналов, которые вы выбрали сами. Мы не рекомендуем каналы и не обещаем результатов.",
+  "he": "לא. Relais הוא תוכנה: הוא מבצע בחשבון שלך פקודות מערוצים שבחרת בעצמך. אנחנו לא ממליצים על ערוץ ולא מבטיחים תוצאה."
+ },
+ "Ma prop firm autorise-t-elle les copieurs ?": {
+  "en": "Does my prop firm allow copiers?",
+  "es": "¿Mi prop firm permite copiadores?",
+  "pt": "A minha prop firm permite copiadores?",
+  "ar": "هل تسمح شركة التمويل بالناسخات؟",
+  "ru": "Разрешает ли моя проп-фирма копировщики?",
+  "he": "האם חברת הפרופ שלי מאפשרת מעתיקים?"
+ },
+ "La plupart autorisent un robot sur votre propre compte, mais interdisent la copie entre personnes et le trading à haute fréquence. Lisez les règles de votre firme ; Relais ne les contourne pas, il vous aide à les respecter.": {
+  "en": "Most allow a robot on your own account but ban copying between people and high-frequency trading; some explicitly ban Telegram-driven EAs. Read your firm's rules; Relais does not bypass them, it helps you keep them.",
+  "es": "La mayoría permite un robot en tu propia cuenta, pero prohíbe copiar entre personas y el trading de alta frecuencia; algunas prohíben expresamente los EA basados en Telegram. Lee las reglas de tu firma; Relais no las elude, te ayuda a cumplirlas.",
+  "pt": "A maioria permite um robô na tua própria conta, mas proíbe copiar entre pessoas e trading de alta frequência; algumas proíbem expressamente EAs baseados em Telegram. Lê as regras da tua firma; o Relais não as contorna, ajuda-te a cumpri-las.",
+  "ar": "معظمها يسمح بروبوت على حسابك الخاص لكنه يمنع النسخ بين الأشخاص والتداول عالي التردد؛ وبعضها يمنع صراحةً الـEA المعتمدة على Telegram. اقرأ قواعد شركتك؛ Relais لا يتحايل عليها بل يساعدك على الالتزام بها.",
+  "ru": "Большинство разрешают робота на вашем собственном счёте, но запрещают копирование между людьми и высокочастотную торговлю; некоторые прямо запрещают EA на базе Telegram. Читайте правила своей фирмы; Relais их не обходит, а помогает соблюдать.",
+  "he": "רובן מאפשרות רובוט בחשבון שלך אבל אוסרות העתקה בין אנשים ומסחר בתדירות גבוהה; חלקן אוסרות במפורש EA מבוסס טלגרם. קרא את כללי החברה שלך; Relais לא עוקף אותם, הוא עוזר לך לעמוד בהם."
+ },
+ "Que se passe-t-il si le message est ambigu ?": {
+  "en": "What happens if the message is ambiguous?",
+  "es": "¿Qué pasa si el mensaje es ambiguo?",
+  "pt": "O que acontece se a mensagem for ambígua?",
+  "ar": "ماذا يحدث إذا كانت الرسالة غامضة؟",
+  "ru": "Что, если сообщение неоднозначно?",
+  "he": "מה קורה אם ההודעה דו-משמעית?"
+ },
+ "Rien. Si la lecture n'atteint pas le niveau de confiance que vous avez fixé, l'ordre n'est pas passé et le message est écrit dans le journal avec la raison.": {
+  "en": "Nothing. If the reading does not reach the confidence level you set, no order is placed and the message is logged with the reason.",
+  "es": "Nada. Si la lectura no alcanza el nivel de confianza que fijaste, no se coloca la orden y el mensaje queda en el registro con el motivo.",
+  "pt": "Nada. Se a leitura não atingir o nível de confiança que definiste, nenhuma ordem é colocada e a mensagem fica no registo com o motivo.",
+  "ar": "لا شيء. إذا لم تبلغ القراءة مستوى الثقة الذي حدّدته، لا يُرسل أمر وتُسجَّل الرسالة مع السبب.",
+  "ru": "Ничего. Если уверенность чтения ниже заданного вами порога, ордер не выставляется, а сообщение записывается в журнал с причиной.",
+  "he": "כלום. אם הקריאה לא מגיעה לרמת הביטחון שקבעת, לא מבוצעת פקודה וההודעה נרשמת ביומן עם הסיבה."
+ },
+ "Mes identifiants Telegram et MT5 passent-ils par vous ?": {
+  "en": "Do my Telegram and MT5 credentials go through you?",
+  "es": "¿Mis credenciales de Telegram y MT5 pasan por vosotros?",
+  "pt": "As minhas credenciais de Telegram e MT5 passam por vocês?",
+  "ar": "هل تمر بيانات دخولي إلى Telegram وMT5 عبركم؟",
+  "ru": "Проходят ли мои данные Telegram и MT5 через вас?",
+  "he": "האם פרטי הטלגרם וה-MT5 שלי עוברים דרככם?"
+ },
+ "Non. Vous vous connectez vous-même sur votre machine. Relais n'envoie que le texte des messages à lire, jamais vos identifiants.": {
+  "en": "No. You log in yourself on your machine. Relais only sends the text of messages to be read, never your credentials.",
+  "es": "No. Inicias sesión tú mismo en tu máquina. Relais solo envía el texto de los mensajes a leer, nunca tus credenciales.",
+  "pt": "Não. Fazes login tu mesmo na tua máquina. O Relais só envia o texto das mensagens a ler, nunca as tuas credenciais.",
+  "ar": "لا. تسجّل الدخول بنفسك على جهازك. لا يرسل Relais سوى نص الرسائل لقراءتها، وليس بيانات دخولك أبداً.",
+  "ru": "Нет. Вы входите сами на своей машине. Relais отправляет только текст сообщений для чтения, никогда ваши данные.",
+  "he": "לא. אתה מתחבר בעצמך במחשב שלך. Relais שולח רק את טקסט ההודעות לקריאה, לעולם לא את פרטי ההתחברות."
+ },
+ "Quels marchés ?": {
+  "en": "Which markets?",
+  "es": "¿Qué mercados?",
+  "pt": "Que mercados?",
+  "ar": "أي أسواق؟",
+  "ru": "Какие рынки?",
+  "he": "אילו שווקים?"
+ },
+ "Tout ce que votre courtier MT5 propose : or, forex, indices, crypto. Les noms de symboles s'adaptent à votre courtier.": {
+  "en": "Anything your MT5 broker offers: gold, forex, indices, crypto. Symbol names adapt to your broker.",
+  "es": "Todo lo que ofrezca tu bróker MT5: oro, forex, índices, cripto. Los símbolos se adaptan a tu bróker.",
+  "pt": "Tudo o que o teu broker MT5 oferecer: ouro, forex, índices, cripto. Os símbolos adaptam-se ao teu broker.",
+  "ar": "كل ما يقدّمه وسيطك على MT5: الذهب، الفوركس، المؤشرات، العملات الرقمية. تتكيّف أسماء الرموز مع وسيطك.",
+  "ru": "Всё, что даёт ваш брокер MT5: золото, форекс, индексы, крипто. Названия символов подстраиваются под брокера.",
+  "he": "כל מה שהברוקר MT5 שלך מציע: זהב, פורקס, מדדים, קריפטו. שמות הסימבולים מותאמים לברוקר."
+ },
+ "Relais · logiciel d'exécution, pas un service de conseil en investissement.": {
+  "en": "Relais · execution software, not investment advice.",
+  "es": "Relais · software de ejecución, no asesoramiento de inversión.",
+  "pt": "Relais · software de execução, não aconselhamento de investimento.",
+  "ar": "Relais · برنامج تنفيذ، وليس خدمة استشارات استثمارية.",
+  "ru": "Relais · программа исполнения, не инвестиционная консультация.",
+  "he": "Relais · תוכנת ביצוע, לא ייעוץ השקעות."
+ },
+ "Le trading comporte un risque de perte en capital.": {
+  "en": "Trading carries a risk of capital loss.",
+  "es": "Operar conlleva riesgo de pérdida de capital.",
+  "pt": "Negociar implica risco de perda de capital.",
+  "ar": "ينطوي التداول على مخاطر خسارة رأس المال.",
+  "ru": "Торговля сопряжена с риском потери капитала.",
+  "he": "מסחר כרוך בסיכון להפסד הון."
+ },
+ "vous@exemple.fr": {
+  "en": "you@example.com",
+  "es": "tu@ejemplo.es",
+  "pt": "tu@exemplo.pt",
+  "ar": "you@example.com",
+  "ru": "you@example.com",
+  "he": "you@example.com"
+ },
+ "ex. LANCEMENT": {
+  "en": "e.g. LAUNCH",
+  "es": "ej. LAUNCH",
+  "pt": "ex. LAUNCH",
+  "ar": "مثال: LAUNCH",
+  "ru": "напр. LAUNCH",
+  "he": "למשל LAUNCH"
+ },
+ "39 €": {
+  "en": "$45",
+  "es": "39 €",
+  "pt": "39 €",
+  "ar": "$45",
+  "ru": "$45",
+  "he": "$45"
+ },
+ "Prix de lancement, garanti à vie si vous vous inscrivez avant le 1er janvier 2027. Ensuite : 59 € par mois.": {
+  "en": "Launch price, locked for life if you sign up before 1 January 2027. After that: $69 per month.",
+  "es": "Precio de lanzamiento, garantizado de por vida si te inscribes antes del 1 de enero de 2027. Después: 59 € al mes.",
+  "pt": "Preço de lançamento, garantido para sempre se te inscreveres antes de 1 de janeiro de 2027. Depois: 59 € por mês.",
+  "ar": "سعر الإطلاق، مضمون مدى الحياة إذا سجّلت قبل 1 يناير 2027. بعدها: 69$ شهرياً.",
+  "ru": "Стартовая цена, закрепляется навсегда при регистрации до 1 января 2027. Потом: $69 в месяц.",
+  "he": "מחיר השקה, מובטח לכל החיים אם נרשמים לפני 1 בינואר 2027. אחר כך: $69 לחודש."
+ },
+ "Contact": {
+  "en": "Contact",
+  "es": "Contacto",
+  "pt": "Contacto",
+  "ar": "اتصل بنا",
+  "ru": "Контакты",
+  "he": "צור קשר"
+ },
+ "Une question ? Un humain répond, en direct.": {
+  "en": "A question? A human answers, live.",
+  "es": "¿Una pregunta? Una persona responde, en directo.",
+  "pt": "Uma pergunta? Uma pessoa responde, em direto.",
+  "ar": "سؤال؟ إنسان يجيبك مباشرة.",
+  "ru": "Вопрос? Отвечает живой человек, сразу.",
+  "he": "שאלה? בן אדם עונה, בזמן אמת."
+ },
+ "Le plus rapide : on répond depuis le téléphone, en général dans l'heure.": {
+  "en": "Fastest: we answer from the phone, usually within the hour.",
+  "es": "Lo más rápido: respondemos desde el móvil, normalmente en menos de una hora.",
+  "pt": "O mais rápido: respondemos do telemóvel, normalmente dentro de uma hora.",
+  "ar": "الأسرع: نرد من الهاتف، عادةً خلال ساعة.",
+  "ru": "Быстрее всего: отвечаем с телефона, обычно в течение часа.",
+  "he": "הכי מהיר: עונים מהטלפון, בדרך כלל תוך שעה."
+ },
+ "E-mail": {
+  "en": "Email",
+  "es": "Correo",
+  "pt": "E-mail",
+  "ar": "البريد الإلكتروني",
+  "ru": "E-mail",
+  "he": "אימייל"
+ },
+ "Pour les questions longues, les factures, les partenariats.": {
+  "en": "For long questions, invoices, partnerships.",
+  "es": "Para preguntas largas, facturas, colaboraciones.",
+  "pt": "Para perguntas longas, faturas, parcerias.",
+  "ar": "للأسئلة الطويلة والفواتير والشراكات.",
+  "ru": "Для длинных вопросов, счетов, партнёрств.",
+  "he": "לשאלות ארוכות, חשבוניות, שותפויות."
+ },
+ "Installez, lancez en mode observation, et envoyez-nous votre journal : on le lit avec vous et on règle les garde-fous ensemble.": {
+  "en": "Install, run in observation mode, and send us your log: we read it with you and tune the guard-rails together.",
+  "es": "Instala, lánzalo en modo observación y envíanos tu registro: lo leemos contigo y ajustamos las protecciones juntos.",
+  "pt": "Instala, corre em modo observação e envia-nos o teu registo: lemo-lo contigo e afinamos as proteções juntos.",
+  "ar": "ثبّت، شغّل وضع المراقبة، وأرسل لنا سجلك: نقرأه معك ونضبط الضوابط سوياً.",
+  "ru": "Установите, запустите в режиме наблюдения и пришлите журнал: разберём его вместе и настроим ограничители.",
+  "he": "התקן, הרץ במצב תצפית ושלח לנו את היומן: נקרא אותו איתך ונכוון את המגבלות יחד."
+ },
+ "Parler à quelqu'un": {
+  "en": "Talk to someone",
+  "es": "Hablar con alguien",
+  "pt": "Falar com alguém",
+  "ar": "تحدّث مع شخص",
+  "ru": "Написать человеку",
+  "he": "לדבר עם מישהו"
+ },
+ "Discuter sur Telegram": {
+  "en": "Chat on Telegram",
+  "es": "Chatear por Telegram",
+  "pt": "Conversar no Telegram",
+  "ar": "الدردشة على Telegram",
+  "ru": "Написать в Telegram",
+  "he": "לשוחח בטלגרם"
+ },
+ "En direct · compte démo": {
+  "en": "Live · demo account",
+  "es": "En directo · cuenta demo",
+  "pt": "Ao vivo · conta demo",
+  "ar": "مباشر · حساب تجريبي",
+  "ru": "В прямом эфире · демо-счёт",
+  "he": "בשידור חי · חשבון דמו"
+ },
+ "Messages lus aujourd'hui": {
+  "en": "Messages read today",
+  "es": "Mensajes leídos hoy",
+  "pt": "Mensagens lidas hoje",
+  "ar": "رسائل مقروءة اليوم",
+  "ru": "Сообщений прочитано сегодня",
+  "he": "הודעות שנקראו היום"
+ },
+ "Ordres exécutés": {
+  "en": "Orders executed",
+  "es": "Órdenes ejecutadas",
+  "pt": "Ordens executadas",
+  "ar": "أوامر منفّذة",
+  "ru": "Ордеров исполнено",
+  "he": "פקודות שבוצעו"
+ },
+ "Refusés par les garde-fous": {
+  "en": "Refused by guard-rails",
+  "es": "Rechazados por las protecciones",
+  "pt": "Recusados pelas proteções",
+  "ar": "مرفوضة بالضوابط",
+  "ru": "Отклонено ограничителями",
+  "he": "נדחו על ידי המגבלות"
+ },
+ "Canaux suivis": {
+  "en": "Channels followed",
+  "es": "Canales seguidos",
+  "pt": "Canais seguidos",
+  "ar": "قنوات متابَعة",
+  "ru": "Каналов отслеживается",
+  "he": "ערוצים במעקב"
+ },
+ "Dernier message": {
+  "en": "Last message",
+  "es": "Último mensaje",
+  "pt": "Última mensagem",
+  "ar": "آخر رسالة",
+  "ru": "Последнее сообщение",
+  "he": "הודעה אחרונה"
+ },
+ "Compte de démonstration : solde fictif, exécution réelle sur un courtier démo. Ce bandeau montre comment Relais tourne, pas un résultat de trading.": {
+  "en": "Demo account: fictitious balance, real execution on a demo broker. This strip shows how Relais runs, not a trading result.",
+  "es": "Cuenta de demostración: saldo ficticio, ejecución real en un bróker demo. Esta banda muestra cómo funciona Relais, no un resultado de trading.",
+  "pt": "Conta de demonstração: saldo fictício, execução real num broker demo. Esta faixa mostra como o Relais corre, não um resultado de trading.",
+  "ar": "حساب تجريبي: رصيد وهمي، تنفيذ حقيقي لدى وسيط تجريبي. يعرض هذا الشريط كيف يعمل Relais، وليس نتيجة تداول.",
+  "ru": "Демо-счёт: условный баланс, реальное исполнение у демо-брокера. Эта полоса показывает, как работает Relais, а не торговый результат.",
+  "he": "חשבון דמו: יתרה פיקטיבית, ביצוע אמיתי אצל ברוקר דמו. הפס הזה מראה איך Relais רץ, לא תוצאת מסחר."
+ },
+ "Mensuel": {
+  "en": "Monthly",
+  "es": "Mensual",
+  "pt": "Mensal",
+  "ar": "شهري",
+  "ru": "Помесячно",
+  "he": "חודשי"
+ },
+ "Annuel · 2 mois offerts": {
+  "en": "Yearly · 2 months free",
+  "es": "Anual · 2 meses gratis",
+  "pt": "Anual · 2 meses grátis",
+  "ar": "سنوي · شهران مجاناً",
+  "ru": "Годовой · 2 месяца бесплатно",
+  "he": "שנתי · חודשיים חינם"
+ },
+ "390 €": {
+  "en": "$450",
+  "es": "390 €",
+  "pt": "390 €",
+  "ar": "$450",
+  "ru": "$450",
+  "he": "$450"
+ },
+ "/ an": {
+  "en": "/ year",
+  "es": "/ año",
+  "pt": "/ ano",
+  "ar": "/ سنة",
+  "ru": "/ год",
+  "he": "/ שנה"
+ },
+ "Scénario": {
+  "en": "Scenario",
+  "es": "Escenario",
+  "pt": "Cenário",
+  "ar": "سيناريو",
+  "ru": "Сценарий",
+  "he": "תרחיש"
+ },
+ "Du message au marché, en moins d'une seconde.": {
+  "en": "From message to market, in under a second.",
+  "es": "Del mensaje al mercado, en menos de un segundo.",
+  "pt": "Da mensagem ao mercado, em menos de um segundo.",
+  "ar": "من الرسالة إلى السوق في أقل من ثانية.",
+  "ru": "От сообщения до рынка меньше чем за секунду.",
+  "he": "מההודעה לשוק, בפחות משנייה."
+ },
+ "Scénario rejoué en boucle à partir de vrais messages ; le graphique est simulé.": {
+  "en": "Scenario replayed in a loop from real messages; the chart is simulated.",
+  "es": "Escenario repetido en bucle a partir de mensajes reales; el gráfico es simulado.",
+  "pt": "Cenário repetido em ciclo a partir de mensagens reais; o gráfico é simulado.",
+  "ar": "سيناريو يُعاد في حلقة من رسائل حقيقية؛ الرسم البياني محاكاة.",
+  "ru": "Сценарий повторяется по кругу на реальных сообщениях; график смоделирован.",
+  "he": "תרחיש שמתנגן בלולאה מהודעות אמיתיות; הגרף מדומה."
+ },
+ "Canal Or Privé": {
+  "en": "Private Gold Channel",
+  "es": "Canal Oro Privado",
+  "pt": "Canal Ouro Privado",
+  "ar": "قناة الذهب الخاصة",
+  "ru": "Закрытый канал по золоту",
+  "he": "ערוץ זהב פרטי"
+ },
+ "1 248 abonnés": {
+  "en": "1,248 subscribers",
+  "es": "1.248 suscriptores",
+  "pt": "1.248 subscritores",
+  "ar": "1248 مشتركاً",
+  "ru": "1 248 подписчиков",
+  "he": "1,248 מנויים"
+ },
+ "Compte démo": {
+  "en": "Demo account",
+  "es": "Cuenta demo",
+  "pt": "Conta demo",
+  "ar": "حساب تجريبي",
+  "ru": "Демо-счёт",
+  "he": "חשבון דמו"
+ },
+ "Exemple normal": {
+  "en": "Normal example",
+  "es": "Ejemplo normal",
+  "pt": "Exemplo normal",
+  "ar": "مثال عادي",
+  "ru": "Обычный пример",
+  "he": "דוגמה רגילה"
+ },
+ "Garde-fou qui bloque": {
+  "en": "Guard-rail blocking",
+  "es": "Protección que bloquea",
+  "pt": "Proteção que bloqueia",
+  "ar": "ضابط يمنع",
+  "ru": "Ограничитель блокирует",
+  "he": "מגבלה שחוסמת"
+ },
+ "Gestion de position": {
+  "en": "Position management",
+  "es": "Gestión de la posición",
+  "pt": "Gestão da posição",
+  "ar": "إدارة الصفقة",
+  "ru": "Управление позицией",
+  "he": "ניהול פוזיציה"
+ },
+ "Risque par trade": {
+  "en": "Risk per trade",
+  "es": "Riesgo por operación",
+  "pt": "Risco por trade",
+  "ar": "المخاطرة لكل صفقة",
+  "ru": "Риск на сделку",
+  "he": "סיכון לעסקה"
+ },
+ "le lot est calculé depuis la distance du stop": {
+  "en": "lot size is computed from the stop distance",
+  "es": "el lote se calcula a partir de la distancia del stop",
+  "pt": "o lote é calculado a partir da distância do stop",
+  "ar": "يُحسب حجم العقد من مسافة الستوب",
+  "ru": "лот считается по расстоянию до стопа",
+  "he": "גודל הלוט מחושב ממרחק הסטופ"
+ },
+ "Le lot se calcule tout seul": {
+  "en": "Lot size works itself out",
+  "es": "El lote se calcula solo",
+  "pt": "O lote calcula-se sozinho",
+  "ar": "حجم العقد يُحسب تلقائياً",
+  "ru": "Лот считается сам",
+  "he": "הלוט מחושב לבד"
+ },
+ "Vous fixez un risque par trade, par exemple 1 % du compte. À chaque signal, Relais mesure la distance du stop et en déduit le lot : un stop serré donne un lot plus gros, un stop large un lot plus petit. Même perte maximale à chaque fois.": {
+  "en": "You set a risk per trade, say 1% of the account. On every signal, Relais measures the stop distance and derives the lot: a tight stop gives a bigger lot, a wide stop a smaller one. Same maximum loss every time.",
+  "es": "Fijas un riesgo por operación, por ejemplo el 1 % de la cuenta. En cada señal, Relais mide la distancia del stop y deduce el lote: un stop ajustado da un lote mayor, un stop amplio uno menor. La misma pérdida máxima cada vez.",
+  "pt": "Defines um risco por trade, por exemplo 1% da conta. A cada sinal, o Relais mede a distância do stop e deduz o lote: um stop curto dá um lote maior, um stop largo um lote menor. A mesma perda máxima de cada vez.",
+  "ar": "تحدد مخاطرة لكل صفقة، مثلاً 1٪ من الحساب. مع كل إشارة يقيس Relais مسافة الستوب ويستنتج حجم العقد: ستوب ضيق يعطي عقداً أكبر، وستوب واسع عقداً أصغر. نفس الخسارة القصوى في كل مرة.",
+  "ru": "Вы задаёте риск на сделку, например 1 % счёта. На каждом сигнале Relais измеряет расстояние до стопа и выводит лот: узкий стоп даёт больший лот, широкий — меньший. Максимальный убыток всегда один и тот же.",
+  "he": "אתה קובע סיכון לעסקה, למשל 1% מהחשבון. בכל איתות Relais מודד את מרחק הסטופ וגוזר ממנו את הלוט: סטופ צמוד נותן לוט גדול יותר, סטופ רחב לוט קטן יותר. אותו הפסד מקסימלי בכל פעם."
+ },
+ "lot = 1 % du compte / 20 pips de stop": {
+  "en": "lot = 1% of account / 20-pip stop",
+  "es": "lote = 1 % de la cuenta / stop de 20 pips",
+  "pt": "lote = 1% da conta / stop de 20 pips",
+  "ar": "العقد = 1٪ من الحساب / ستوب 20 نقطة",
+  "ru": "лот = 1 % счёта / стоп 20 пунктов",
+  "he": "לוט = 1% מהחשבון / סטופ 20 פיפס"
+ },
+ "TP1, TP2, TP3 touchés": {
+  "en": "TP1, TP2, TP3 hit",
+  "es": "TP1, TP2, TP3 alcanzados",
+  "pt": "TP1, TP2, TP3 atingidos",
+  "ar": "تحقق TP1 وTP2 وTP3",
+  "ru": "TP1, TP2, TP3 достигнуты",
+  "he": "TP1, TP2, TP3 הושגו"
+ },
+ "Calculateur de lot": {
+  "en": "Lot calculator",
+  "es": "Calculadora de lote",
+  "pt": "Calculadora de lote",
+  "ar": "حاسبة حجم العقد",
+  "ru": "Калькулятор лота",
+  "he": "מחשבון לוט"
+ },
+ "Votre lot, calculé depuis votre risque": {
+  "en": "Your lot, computed from your risk",
+  "es": "Tu lote, calculado desde tu riesgo",
+  "pt": "O teu lote, calculado a partir do teu risco",
+  "ar": "حجم عقدك محسوب من مخاطرتك",
+  "ru": "Ваш лот, рассчитанный из риска",
+  "he": "הלוט שלך, מחושב מהסיכון"
+ },
+ "Capital": {
+  "en": "Capital",
+  "es": "Capital",
+  "pt": "Capital",
+  "ar": "رأس المال",
+  "ru": "Капитал",
+  "he": "הון"
+ },
+ "Risque par trade (%)": {
+  "en": "Risk per trade (%)",
+  "es": "Riesgo por operación (%)",
+  "pt": "Risco por trade (%)",
+  "ar": "المخاطرة لكل صفقة (٪)",
+  "ru": "Риск на сделку (%)",
+  "he": "סיכון לעסקה (%)"
+ },
+ "Stop (pips)": {
+  "en": "Stop (pips)",
+  "es": "Stop (pips)",
+  "pt": "Stop (pips)",
+  "ar": "الستوب (نقاط)",
+  "ru": "Стоп (пункты)",
+  "he": "סטופ (פיפס)"
+ },
+ "Or (XAUUSD) : 1 pip = 0,10 $ ; 1 lot = 100 onces, soit 10 $ par pip.": {
+  "en": "Gold (XAUUSD): 1 pip = $0.10; 1 lot = 100 oz, i.e. $10 per pip.",
+  "es": "Oro (XAUUSD): 1 pip = 0,10 $; 1 lote = 100 onzas, es decir 10 $ por pip.",
+  "pt": "Ouro (XAUUSD): 1 pip = 0,10 $; 1 lote = 100 onças, ou seja 10 $ por pip.",
+  "ar": "الذهب (XAUUSD): النقطة = 0.10$؛ العقد = 100 أونصة أي 10$ لكل نقطة.",
+  "ru": "Золото (XAUUSD): 1 пункт = $0,10; 1 лот = 100 унций, то есть $10 за пункт.",
+  "he": "זהב (XAUUSD): פיפ = $0.10; לוט = 100 אונקיות, כלומר $10 לפיפ."
+ },
+ "Résultat": {
+  "en": "Result",
+  "es": "Resultado",
+  "pt": "Resultado",
+  "ar": "النتيجة",
+  "ru": "Результат",
+  "he": "תוצאה"
+ },
+ "C'est le calcul que Relais fait à chaque signal : votre perte maximale reste la même, quelle que soit la distance du stop.": {
+  "en": "This is the calculation Relais does on every signal: your maximum loss stays the same whatever the stop distance.",
+  "es": "Es el cálculo que Relais hace en cada señal: tu pérdida máxima es la misma sea cual sea la distancia del stop.",
+  "pt": "É o cálculo que o Relais faz em cada sinal: a tua perda máxima fica igual, seja qual for a distância do stop.",
+  "ar": "هذا ما يحسبه Relais مع كل إشارة: خسارتك القصوى تبقى نفسها مهما كانت مسافة الستوب.",
+  "ru": "Этот расчёт Relais делает на каждом сигнале: максимальный убыток один и тот же при любом расстоянии до стопа.",
+  "he": "זה החישוב ש-Relais עושה בכל איתות: ההפסד המקסימלי שלך נשאר זהה בכל מרחק סטופ."
+ },
+ "Des garde-fous adaptés à votre plan de trading. Réglez-les une fois, Relais les tient à votre place.": {
+  "en": "Guard-rails that fit your trading plan. Set them once, Relais holds them for you.",
+  "es": "Protecciones adaptadas a tu plan de trading. Fíjalas una vez, Relais las mantiene por ti.",
+  "pt": "Proteções adaptadas ao teu plano de trading. Define-as uma vez, o Relais mantém-nas por ti.",
+  "ar": "ضوابط تناسب خطة تداولك. اضبطها مرة واحدة وRelais يلتزم بها عنك.",
+  "ru": "Ограничители под ваш торговый план. Задайте один раз, Relais будет их держать.",
+  "he": "מגבלות שמתאימות לתוכנית המסחר שלך. קבע פעם אחת, Relais שומר עליהן."
+ },
+ "BE, prenez TP1, clôturez 50 %": {
+  "en": "BE, take TP1, close 50%",
+  "es": "BE, tomar TP1, cerrar 50 %",
+  "pt": "BE, tomar TP1, fechar 50%",
+  "ar": "BE، خذ TP1، أغلق 50٪",
+  "ru": "BE, взять TP1, закрыть 50 %",
+  "he": "BE, קח TP1, סגור 50%"
+ },
+ "Mon espace": {
+  "en": "My account",
+  "es": "Mi espacio",
+  "pt": "A minha área",
+  "ar": "حسابي",
+  "ru": "Мой кабинет",
+  "he": "האזור שלי"
+ },
+ "Commencer · 14 jours : remboursé si ça ne tourne pas": {
+  "en": "Get started · 14 days: refunded if it won't run",
+  "es": "Empezar · 14 días: reembolso si no funciona",
+  "pt": "Começar · 14 dias: reembolso se não correr",
+  "ar": "ابدأ · 14 يوماً: استرداد إن لم يعمل",
+  "ru": "Начать · 14 дней: возврат, если не запустится",
+  "he": "להתחיל · 14 יום: החזר אם זה לא רץ"
+ },
+ "14 jours : remboursé si ça ne tourne pas": {
+  "en": "14 days: refunded if it won't run",
+  "es": "14 días: reembolso si no funciona",
+  "pt": "14 dias: reembolso se não correr",
+  "ar": "14 يوماً: استرداد إن لم يعمل",
+  "ru": "14 дней: возврат, если не запустится",
+  "he": "14 יום: החזר אם זה לא רץ"
+ },
+ "Garantie 14 jours : si Relais ne fonctionne pas sur votre installation et que notre support n'a pas réussi à le faire tourner, nous remboursons intégralement. La garantie ne couvre pas les résultats de trading ni les changements d'avis.": {
+  "en": "14-day guarantee: if Relais does not work on your setup and our support could not get it running, we refund in full. The guarantee does not cover trading results or a change of mind.",
+  "es": "Garantía de 14 días: si Relais no funciona en tu instalación y nuestro soporte no ha conseguido hacerlo funcionar, reembolsamos íntegramente. La garantía no cubre los resultados de trading ni los cambios de opinión.",
+  "pt": "Garantia de 14 dias: se o Relais não funcionar na tua instalação e o nosso suporte não tiver conseguido pô-lo a correr, reembolsamos na totalidade. A garantia não cobre os resultados de trading nem as mudanças de ideias.",
+  "ar": "ضمان 14 يوماً: إذا لم يعمل Relais على جهازك ولم يتمكن فريق الدعم من تشغيله، نردّ لك المبلغ كاملاً. لا يغطي الضمان نتائج التداول ولا تغيير الرأي.",
+  "ru": "Гарантия 14 дней: если Relais не работает на вашей системе и наша поддержка не смогла его запустить, мы возвращаем всю сумму. Гарантия не распространяется на результаты торговли и на передумавших.",
+  "he": "אחריות 14 יום: אם Relais לא עובד על ההתקנה שלכם והתמיכה שלנו לא הצליחה להריץ אותו, נחזיר את מלוא הסכום. האחריות אינה מכסה תוצאות מסחר או שינוי דעה."
+ },
+ "Payant dès le premier jour, prix de lancement bloqué à vie pour les inscrits avant le 1er janvier 2027.": {
+  "en": "Paid from day one, launch price locked for life for members who join before 1 January 2027.",
+  "es": "De pago desde el primer día, precio de lanzamiento bloqueado de por vida para los inscritos antes del 1 de enero de 2027.",
+  "pt": "Pago desde o primeiro dia, preço de lançamento bloqueado para sempre para quem se inscrever antes de 1 de janeiro de 2027.",
+  "ar": "مدفوع من اليوم الأول، وسعر الإطلاق مثبّت مدى الحياة للمسجّلين قبل 1 يناير 2027.",
+  "ru": "Платно с первого дня, стартовая цена закрепляется навсегда для тех, кто подключится до 1 января 2027.",
+  "he": "בתשלום מהיום הראשון, מחיר ההשקה נעול לכל החיים לנרשמים לפני 1 בינואר 2027."
+ },
+ "On installe avec vous": {
+  "en": "We set it up with you",
+  "es": "Lo instalamos contigo",
+  "pt": "Instalamos contigo",
+  "ar": "نثبّته معك",
+  "ru": "Настраиваем вместе с вами",
+  "he": "מתקינים יחד אתכם"
+ },
+ "Dès le premier jour, lancez en mode observation et envoyez-nous votre journal : on le lit avec vous et on règle les garde-fous ensemble. Si Relais ne tourne pas sur votre installation malgré notre support, on vous rembourse dans les 14 jours.": {
+  "en": "From day one, run in observation mode and send us your journal: we read it with you and tune the guard-rails together. If Relais won't run on your setup despite our support, we refund you within 14 days.",
+  "es": "Desde el primer día, lanza el modo observación y envíanos tu diario: lo leemos contigo y ajustamos las protecciones juntos. Si Relais no funciona en tu instalación pese a nuestro soporte, te reembolsamos en 14 días.",
+  "pt": "Desde o primeiro dia, lança em modo observação e envia-nos o teu diário: lemo-lo contigo e afinamos as proteções juntos. Se o Relais não correr na tua instalação apesar do nosso suporte, reembolsamos-te em 14 dias.",
+  "ar": "من اليوم الأول، شغّله في وضع المراقبة وأرسل لنا سجلّك: نقرأه معك ونضبط الضوابط معاً. إذا لم يعمل Relais على جهازك رغم دعمنا، نردّ لك المبلغ خلال 14 يوماً.",
+  "ru": "С первого дня запустите режим наблюдения и пришлите нам журнал: мы прочитаем его вместе с вами и настроим ограничители. Если Relais не запустится на вашей системе несмотря на нашу поддержку, мы вернём деньги в течение 14 дней.",
+  "he": "מהיום הראשון, הריצו במצב תצפית ושלחו לנו את היומן: נקרא אותו יחד ונכוון את המגבלות ביחד. אם Relais לא רץ על ההתקנה שלכם למרות התמיכה שלנו, נחזיר לכם את הכסף תוך 14 יום."
+ },
+ "Comment fonctionne le remboursement ?": {
+  "en": "How does the refund work?",
+  "es": "¿Cómo funciona el reembolso?",
+  "pt": "Como funciona o reembolso?",
+  "ar": "كيف يعمل الاسترداد؟",
+  "ru": "Как работает возврат?",
+  "he": "איך עובד ההחזר?"
+ },
+ "Dans les 14 jours suivant le premier paiement, si Relais ne tourne pas sur votre installation et que notre support n'a pas réussi à le faire fonctionner, un message au support suffit : remboursement intégral. La garantie ne couvre pas les résultats de trading ni les changements d'avis.": {
+  "en": "Within 14 days of the first payment, if Relais does not run on your setup and our support could not get it working, one message to support is enough: full refund. The guarantee does not cover trading results or a change of mind.",
+  "es": "En los 14 días siguientes al primer pago, si Relais no funciona en tu instalación y nuestro soporte no ha conseguido hacerlo funcionar, basta un mensaje al soporte: reembolso íntegro. La garantía no cubre los resultados de trading ni los cambios de opinión.",
+  "pt": "Nos 14 dias após o primeiro pagamento, se o Relais não correr na tua instalação e o nosso suporte não tiver conseguido pô-lo a funcionar, basta uma mensagem ao suporte: reembolso total. A garantia não cobre os resultados de trading nem as mudanças de ideias.",
+  "ar": "خلال 14 يوماً من الدفعة الأولى، إذا لم يعمل Relais على جهازك ولم يتمكن فريق الدعم من تشغيله، تكفي رسالة واحدة للدعم: استرداد كامل. لا يغطي الضمان نتائج التداول ولا تغيير الرأي.",
+  "ru": "В течение 14 дней после первого платежа, если Relais не работает на вашей системе и наша поддержка не смогла его запустить, достаточно одного сообщения в поддержку: полный возврат. Гарантия не распространяется на результаты торговли и на передумавших.",
+  "he": "תוך 14 יום מהתשלום הראשון, אם Relais לא רץ על ההתקנה שלכם והתמיכה שלנו לא הצליחה להפעיל אותו, מספיקה הודעה אחת לתמיכה: החזר מלא. האחריות אינה מכסה תוצאות מסחר או שינוי דעה."
+ },
+ "« BUY GOLD NOW !! SL 66 », « Vente XAUUSD, entrée 4 073, SL 4 085, TP1 25 % : 4 061 », trois lignes avec des emojis : l'IA comprend le sens, pas la mise en forme. Changez de canal, rien à reconfigurer. Or, indices, devises, crypto : tous les actifs de votre courtier, pas seulement l'or.": {
+  "en": "“BUY GOLD NOW !! SL 66”, “Sell XAUUSD, entry 4073, SL 4085, TP1 25%: 4061”, three lines of emojis: the AI gets the meaning, not the layout. Switch channels, nothing to reconfigure. Gold, indices, forex, crypto: every asset your broker offers, not just gold.",
+  "es": "«BUY GOLD NOW !! SL 66», «Venta XAUUSD, entrada 4073, SL 4085, TP1 25 %: 4061», tres líneas con emojis: la IA entiende el sentido, no el formato. Cambia de canal, nada que reconfigurar. Oro, índices, divisas, cripto: todos los activos de tu bróker, no solo el oro.",
+  "pt": "«BUY GOLD NOW !! SL 66», «Venda XAUUSD, entrada 4073, SL 4085, TP1 25%: 4061», três linhas com emojis: a IA percebe o sentido, não o formato. Muda de canal, nada a reconfigurar. Ouro, índices, forex, cripto: todos os ativos da sua corretora, não só o ouro.",
+  "ar": "«BUY GOLD NOW !! SL 66»، «بيع XAUUSD، دخول 4073، SL 4085، TP1 25٪: 4061»، ثلاثة أسطر برموز تعبيرية: يفهم الذكاء الاصطناعي المعنى لا الشكل. غيّر القناة، لا شيء يُعاد ضبطه. الذهب والمؤشرات والعملات والعملات الرقمية: كل أصول وسيطك، وليس الذهب فقط.",
+  "ru": "«BUY GOLD NOW !! SL 66», «Продажа XAUUSD, вход 4073, SL 4085, TP1 25 %: 4061», три строки с эмодзи: ИИ понимает смысл, а не оформление. Смените канал, ничего настраивать не нужно. Золото, индексы, валюты, крипто: все активы вашего брокера, а не только золото.",
+  "he": "«BUY GOLD NOW !! SL 66», «מכירה XAUUSD, כניסה 4073, SL 4085, TP1 25%: 4061», שלוש שורות עם אימוג'ים: ה-AI מבין את המשמעות, לא את העיצוב. מחליפים ערוץ, אין מה להגדיר מחדש. זהב, מדדים, מטבעות, קריפטו: כל הנכסים אצל הברוקר שלך, לא רק זהב."
+ }
 }
