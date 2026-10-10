@@ -323,19 +323,20 @@ body{padding-top:2.4rem}
         <li>Résiliable en un clic</li>
       </ul>
     </div>
-    <div class="glass card">
-      <h3>Rejoindre la liste d'attente</h3>
-      <p class="muted">Payant dès le premier jour, prix de lancement bloqué à vie pour les inscrits avant le 1er janvier 2027.</p>
-      <form id="wl">
-        <label for="email" class="lbl">Votre e-mail</label>
-        <input type="email" id="email" name="email" placeholder="vous@exemple.fr" required autocomplete="email">
-        <label for="promo" class="lbl">Code promo (facultatif)</label>
-        <input type="text" id="promo" name="promo" placeholder="ex. LANCEMENT" autocomplete="off" style="width:100%;padding:.85rem .9rem;border-radius:12px;border:1px solid var(--line);background:rgba(7,6,26,.7);color:var(--fg);font:inherit;text-transform:uppercase">
-        <p class="note" id="promoNote" hidden></p>
-        <button class="btn" type="submit">Me prévenir à l'ouverture</button>
-      </form>
-      <p class="note" id="wlNote">Ou écrivez-nous directement :</p>
-      <div class="addr"><code id="mail">contact@relais-copier.com</code><button class="btn ghost" type="button" id="copy" style="padding:.45rem .8rem;font-size:.9rem">Copier</button></div>
+    <div class="glass card" id="achat">
+      <h3 data-i18n="buy_title">S'abonner à Relais</h3>
+      <p class="muted" data-i18n="buy_sub">Votre clé arrive par e-mail juste après le paiement. Résiliable en un clic, à tout moment.</p>
+      <label for="email" class="lbl" data-i18n="buy_mail">Votre e-mail (la clé y sera envoyée)</label>
+      <input type="email" id="email" name="email" placeholder="vous@exemple.fr" required autocomplete="email">
+      <label for="promo" class="lbl" data-i18n="buy_promo">Code promo (facultatif)</label>
+      <input type="text" id="promo" name="promo" placeholder="ex. LANCEMENT" autocomplete="off" style="width:100%;padding:.85rem .9rem;border-radius:12px;border:1px solid var(--line);background:rgba(7,6,26,.7);color:var(--fg);font:inherit;text-transform:uppercase">
+      <p class="note" id="promoNote" hidden></p>
+      <p class="note" id="buyPlan" style="margin-top:.6rem"></p>
+      <div id="paypal-buttons" style="margin-top:1rem;min-height:52px"></div>
+      <p class="note" id="buyFlash" hidden></p>
+      <p class="note" data-i18n="buy_cards">Carte bancaire acceptée, sans compte PayPal.</p>
+      <p class="note" id="wlNote" data-i18n="buy_contact">Une question avant d'acheter ? Écrivez-nous :</p>
+      <div class="addr"><code id="mail">contact@relais-copier.com</code><button class="btn ghost" type="button" id="copy" style="padding:.45rem .8rem;font-size:.9rem" data-i18n="copy">Copier</button></div>
     </div>
   </div>
 </section>
@@ -739,13 +740,63 @@ document.querySelectorAll('.pbtn').forEach(function(b){b.addEventListener('click
 document.querySelectorAll('.sw').forEach(function(b){b.addEventListener('click',function(){var on=b.getAttribute('aria-checked')==='true';b.setAttribute('aria-checked',on?'false':'true');var id=b.dataset.guard==='we'?'logWe':'logAge';document.getElementById(id).hidden=on})});
 
 /* ---------- waitlist ---------- */
-(function(){var f=document.getElementById('wl'),n=document.getElementById('wlNote'),e=document.getElementById('email');
+(function(){var n=document.getElementById('wlNote'),e=document.getElementById('email');
 try{var d=localStorage.getItem('relais-email');if(d)e.value=d}catch(x){}
-var pr=document.getElementById('promo'),pn=document.getElementById('promoNote');var codes={LANCEMENT:'1er mois à 9 €',LAUNCH:'first month at $9',ADMIN:'3 mois à 9 € pour les admins de canaux / 3 months at $9 for channel admins'};pr.addEventListener('input',function(){var c=pr.value.trim().toUpperCase();if(!c){pn.hidden=true;return}pn.hidden=false;pn.textContent=codes[c]?'Code valide : '+codes[c]:'Code inconnu, vérifiez l\'orthographe.';pn.style.color=codes[c]?'var(--lime)':'var(--red)'});
-f.addEventListener('submit',function(ev){ev.preventDefault();try{localStorage.setItem('relais-email',e.value)}catch(x){}n.textContent='Noté : '+e.value+'. Pour être sûr d\'être prévenu, envoyez aussi un mot à l\'adresse ci-dessous.'});
+var pr=document.getElementById('promo'),pn=document.getElementById('promoNote');var codes={LANCEMENT:'26 € par mois à vie',LAUNCH:'26 € per month for life'};pr.addEventListener('input',function(){var c=pr.value.trim().toUpperCase();if(!c){pn.hidden=true;return}pn.hidden=false;pn.textContent=codes[c]?'Code valide : '+codes[c]:'Code inconnu, vérifiez l\'orthographe.';pn.style.color=codes[c]?'var(--lime)':'var(--red)'});
+
 document.querySelectorAll('.copy-mail').forEach(function(b){b.addEventListener('click',function(){var el=b.previousElementSibling,t=el.textContent;function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){b.textContent='Copié'},sel)}else sel()})});
 document.getElementById('copy').addEventListener('click',function(){var el=document.getElementById('mail'),t=el.textContent,btn=this;function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}
 if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){btn.textContent='Copié'},sel)}else sel()})})();
+</script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=BAAbnm17WOiALXRjXSujKLiwdtW-61DS794-SW0Tril6irqCY-dWTvGGf8rb4WUdnVwEMSxWVURDQNOEx0&vault=true&intent=subscription&currency=EUR&locale=fr_FR" data-sdk-integration-source="button-factory"></script>
+<script>
+/* Achat : abonnement PayPal. Le paiement cree la licence cote serveur (webhook) et envoie la cle par e-mail.
+   L'adresse saisie ici part dans custom_id : c'est le repli si PayPal ne nous donne pas celle du payeur. */
+(function(){
+  var PLANS = {mensuel:"P-1XR15648MM973145XNLFI2BA", lancement:"P-4XV881496L912445GNLFI2BI", annuel:"P-4NP18085DA968014ENLFI2BI"};
+  var zone = document.getElementById('paypal-buttons');
+  if(!zone || typeof paypal === 'undefined'){ if(zone) zone.innerHTML = '<p class="note">Le paiement est momentanement indisponible. Ecrivez-nous a contact@relais-copier.com.</p>'; return; }
+  var champMail = document.getElementById('email');
+  var champCode = document.getElementById('promo');
+  var ligne     = document.getElementById('buyPlan');
+  var flash     = document.getElementById('buyFlash');
+
+  function annuelChoisi(){ var b = document.querySelector('.pbtn[aria-pressed="true"]'); return !!(b && b.dataset.p === 'y'); }
+  function codeLancement(){ var c = (champCode.value||'').trim().toUpperCase(); return c === 'LANCEMENT' || c === 'LAUNCH'; }
+  function planChoisi(){
+    if(annuelChoisi()) return {id: PLANS.annuel,    texte: '390 \u20ac par an'};
+    if(codeLancement()) return {id: PLANS.lancement, texte: '26 \u20ac par mois, prix de lancement'};
+    return {id: PLANS.mensuel, texte: '39 \u20ac par mois'};
+  }
+  function majLigne(){ ligne.textContent = 'Vous allez souscrire : ' + planChoisi().texte + '.'; }
+
+  function dire(message, bon){ flash.hidden = false; flash.textContent = message; flash.style.color = bon ? 'var(--lime)' : 'var(--amber)'; }
+
+  paypal.Buttons({
+    style: {layout: 'vertical', color: 'blue', shape: 'pill', label: 'subscribe'},
+    onClick: function(data, actions){
+      var mail = (champMail.value||'').trim();
+      if(!mail || mail.indexOf('@') < 1){ dire('Entrez votre e-mail avant de payer : la cle y sera envoyee.', false); champMail.focus(); return actions.reject(); }
+      try{ localStorage.setItem('relais-email', mail); }catch(e){}
+      return actions.resolve();
+    },
+    createSubscription: function(data, actions){
+      var mail = (champMail.value||'').trim();
+      return actions.subscription.create({plan_id: planChoisi().id, custom_id: mail,
+        subscriber: {email_address: mail}});
+    },
+    onApprove: function(data){
+      zone.innerHTML = '';
+      dire('Paiement accepte. Votre cle part par e-mail a ' + (champMail.value||'').trim() + ', verifiez aussi vos spams. Reference : ' + data.subscriptionID, true);
+    },
+    onError: function(err){ dire('Le paiement n\'a pas abouti. Reessayez, ou ecrivez-nous a contact@relais-copier.com.', false); }
+  }).render('#paypal-buttons');
+
+  champCode.addEventListener('input', majLigne);
+  document.querySelectorAll('.pbtn').forEach(function(b){ b.addEventListener('click', majLigne); });
+  majLigne();
+})();
 </script>
 
 </head>
