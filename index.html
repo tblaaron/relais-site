@@ -790,7 +790,9 @@ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.write
     },
     onApprove: function(data){
       zone.innerHTML = '';
-      dire('Paiement accepte. Votre cle part par e-mail a ' + (champMail.value||'').trim() + ', verifiez aussi vos spams. Reference : ' + data.subscriptionID, true);
+      var mail = (champMail.value||'').trim();
+      if(window.relaisMerci){ window.relaisMerci(mail, data.subscriptionID); }
+      else { dire('Paiement accepte. Votre cle part par e-mail a ' + mail + '.', true); }
     },
     onError: function(err){ dire('Le paiement n\'a pas abouti. Reessayez, ou ecrivez-nous a contact@relais-copier.com.', false); }
   }).render('#paypal-buttons');
@@ -798,6 +800,39 @@ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.write
   champCode.addEventListener('input', majLigne);
   document.querySelectorAll('.pbtn').forEach(function(b){ b.addEventListener('click', majLigne); });
   majLigne();
+})();
+</script>
+
+<div id="merci" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="merci-boite">
+    <div class="merci-rond">✓</div>
+    <h2 class="merci-titre">Paiement accepté</h2>
+    <p class="merci-texte">Votre clé part par e-mail à <strong id="merci-mail"></strong>.<br>Pensez à regarder vos spams.</p>
+    <p class="merci-ref">Référence : <span id="merci-ref"></span></p>
+    <a class="btn" id="merci-espace" href="https://app.relais-copier.com/espace" target="_blank" rel="noopener">Ouvrir mon espace client</a>
+    <button class="btn ghost" type="button" id="merci-fermer">Fermer</button>
+  </div>
+</div>
+<style>
+#merci{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(5,4,18,.82);backdrop-filter:blur(8px);padding:1.2rem}
+#merci.ouvert{display:flex}
+.merci-boite{max-width:34rem;width:100%;text-align:center;background:linear-gradient(180deg,rgba(32,27,82,.96),rgba(14,11,46,.98));border:1px solid rgba(124,247,212,.35);border-radius:22px;padding:2.4rem 1.8rem;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.merci-rond{width:72px;height:72px;margin:0 auto 1.1rem;border-radius:50%;display:grid;place-items:center;font-size:2.2rem;color:#061;background:var(--lime);box-shadow:0 0 36px rgba(124,247,212,.55)}
+.merci-titre{font-family:var(--display);font-size:clamp(1.9rem,6vw,2.7rem);margin:0 0 .6rem;color:var(--lime)}
+.merci-texte{font-size:clamp(1rem,3.4vw,1.15rem);color:var(--fg);margin:0 0 .9rem;line-height:1.5}
+.merci-ref{font-size:.9rem;color:var(--fg-2);margin:0 0 1.6rem;word-break:break-all}
+.merci-boite .btn{margin:.3rem}
+</style>
+<script>
+(function(){
+  var voile = document.getElementById('merci');
+  if(!voile) return;
+  document.getElementById('merci-fermer').addEventListener('click', function(){ voile.classList.remove('ouvert'); voile.setAttribute('aria-hidden','true'); });
+  window.relaisMerci = function(mail, reference){
+    document.getElementById('merci-mail').textContent = mail || '';
+    document.getElementById('merci-ref').textContent = reference || '';
+    voile.classList.add('ouvert'); voile.setAttribute('aria-hidden','false');
+  };
 })();
 </script>
 
