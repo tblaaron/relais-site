@@ -742,7 +742,7 @@ document.querySelectorAll('.sw').forEach(function(b){b.addEventListener('click',
 /* ---------- waitlist ---------- */
 (function(){var n=document.getElementById('wlNote'),e=document.getElementById('email');
 try{var d=localStorage.getItem('relais-email');if(d)e.value=d}catch(x){}
-var pr=document.getElementById('promo'),pn=document.getElementById('promoNote');var codes={LANCEMENT:'26 € par mois à vie',LAUNCH:'26 € per month for life'};pr.addEventListener('input',function(){var c=pr.value.trim().toUpperCase();if(!c){pn.hidden=true;return}pn.hidden=false;pn.textContent=codes[c]?'Code valide : '+codes[c]:'Code inconnu, vérifiez l\'orthographe.';pn.style.color=codes[c]?'var(--lime)':'var(--red)'});
+var pr=document.getElementById('promo'),pn=document.getElementById('promoNote');var codes={LANCEMENT:'26 € par mois à vie',LAUNCH:'26 € per month for life','RELAIS-INTERNE-1':'essai interne à 1 €'};pr.addEventListener('input',function(){var c=pr.value.trim().toUpperCase();if(!c){pn.hidden=true;return}pn.hidden=false;pn.textContent=codes[c]?'Code valide : '+codes[c]:'Code inconnu, vérifiez l\'orthographe.';pn.style.color=codes[c]?'var(--lime)':'var(--red)'});
 
 document.querySelectorAll('.copy-mail').forEach(function(b){b.addEventListener('click',function(){var el=b.previousElementSibling,t=el.textContent;function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){b.textContent='Copié'},sel)}else sel()})});
 document.getElementById('copy').addEventListener('click',function(){var el=document.getElementById('mail'),t=el.textContent,btn=this;function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}
@@ -754,7 +754,7 @@ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.write
 /* Achat : abonnement PayPal. Le paiement cree la licence cote serveur (webhook) et envoie la cle par e-mail.
    L'adresse saisie ici part dans custom_id : c'est le repli si PayPal ne nous donne pas celle du payeur. */
 (function(){
-  var PLANS = {mensuel:"P-1XR15648MM973145XNLFI2BA", lancement:"P-4XV881496L912445GNLFI2BI", annuel:"P-4NP18085DA968014ENLFI2BI"};
+  var PLANS = {mensuel:"P-1XR15648MM973145XNLFI2BA", lancement:"P-4XV881496L912445GNLFI2BI", annuel:"P-4NP18085DA968014ENLFI2BI", essai:"P-2AT166828T228813YNLFI46I"};
   var zone = document.getElementById('paypal-buttons');
   if(!zone || typeof paypal === 'undefined'){ if(zone) zone.innerHTML = '<p class="note">Le paiement est momentanement indisponible. Ecrivez-nous a contact@relais-copier.com.</p>'; return; }
   var champMail = document.getElementById('email');
@@ -763,8 +763,10 @@ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.write
   var flash     = document.getElementById('buyFlash');
 
   function annuelChoisi(){ var b = document.querySelector('.pbtn[aria-pressed="true"]'); return !!(b && b.dataset.p === 'y'); }
-  function codeLancement(){ var c = (champCode.value||'').trim().toUpperCase(); return c === 'LANCEMENT' || c === 'LAUNCH'; }
+  function saisi(){ return (champCode.value||'').trim().toUpperCase(); }
+  function codeLancement(){ var c = saisi(); return c === 'LANCEMENT' || c === 'LAUNCH'; }
   function planChoisi(){
+    if(saisi() === 'RELAIS-INTERNE-1') return {id: PLANS.essai, texte: '1 \u20ac par mois, essai interne'};
     if(annuelChoisi()) return {id: PLANS.annuel,    texte: '390 \u20ac par an'};
     if(codeLancement()) return {id: PLANS.lancement, texte: '26 \u20ac par mois, prix de lancement'};
     return {id: PLANS.mensuel, texte: '39 \u20ac par mois'};
